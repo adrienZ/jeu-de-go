@@ -1,4 +1,4 @@
-var d = 20; // dimension du carrÃ©
+var d = 9; // dimension du carrÃ©
 var w; // w z  w2 z2 sont des variables qui vont m'aider Ã  vÃ©rifier les case aux alentours de la case actuelle
 var w2;
 var z;
