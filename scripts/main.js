@@ -1,4 +1,4 @@
-var d = 20; // dimension du carrÃ©
+var d = 9; // dimension du carrÃ©
 var w; // w z  w2 z2 sont des variables qui vont m'aider Ã  vÃ©rifier les case aux alentours de la case actuelle
 var w2;
 var z;
@@ -11,7 +11,7 @@ var tab1; // grille des valeurs courantes
 var tab2; // grille temporaire
 var compt=0;
 
-
+var joueur=1;
 
 
 
@@ -19,12 +19,12 @@ function initialisation() //////////////////////////////////////////////
 {
     tab1 = new Array(d); 
     tab2 = new Array(d);
-    
+    document.write('<table cellpadding="0" cellspacing="0">');
     for (var i = 0; i < d; i++) 
-    {
+    {	
+    	document.write("<tr id='ligne_"+i+"'>")
         tab1[i] = new Array(d); 
         tab2[i] = new Array(d);
-
 
         for (var j = 0; j < d; j++)
         {
@@ -32,34 +32,68 @@ function initialisation() //////////////////////////////////////////////
             tab1[i][j] = 0;	
             tab2[i][j] = 0;
 
+            
+            document.write("<td id='col_"+i+" line_"+j+" ' class='div2'onclick=' modifier(this); coordonne(this);'></td>")
+            if(i==0 || i==8){
+            	//Rogner 10 de height
 
-
-            document.write("<div id='col_"+i+" line_"+j+" ' class='div2'onclick=' modifier(this); coordonne(this);'></div>")
-
+            }
+            if(j==0 || j==8){
+            	//Rogner 10 de width
+            }
+        
         }
 
-        document.write('</br>');
+        document.write("</tr>")
+        
+       
 
+         
+       
     }
     
+        	
+        
+ document.write('</table>');
+
 
 
 } //////////////////////////////////////////////////
+
 function modifier(monID)  //////////////////////////////////////////////
 {	
-
+  if(joueur==1){
+  	
+  	
     if(monID.className=='div2') 
 
     {
         monID.className='div1';
+        joueur=2;
     }
 	 else 
 
     {
-        monID.className = 'div2';
+       
 
     }
+   }
+  else{
+  	
+  	
+    if(monID.className=='div2') 
 
+    {
+    	joueur=1;
+        monID.className='div3';
+    }
+	 else 
+
+    {
+       
+
+    }
+   }
 }
 
 
@@ -81,7 +115,7 @@ function coordonne(monID) /////////////////////////////////////////
         tab1[extract1][extract2]=false;	
     }
 
-    console.log(extract1+" "+extract2+" "+tab1[extract1][extract2]);
+    
 } /////////////////////////////////////////////////////
 function game()
 {

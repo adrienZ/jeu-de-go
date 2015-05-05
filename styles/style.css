@@ -1,12 +1,18 @@
+
+*{
+box-sizing: border-box;
+
+
+}
+
 .div1
 {
   
   display: inline-block;
-  margin-left: 5px;
-  width: 10px;
-  height: 10px;
-  background: red;
-background-size: cover;
+  width: 25px;
+  height: 25px;
+  background:url(../images/pionRouge.png);
+  background-size: cover;
 	background-position: center;
 	
 
@@ -17,17 +23,40 @@ background-size: cover;
 {
   
   display: inline-block;
-  margin-left: 5px;
-  width: 10px;
-  height: 10px;
-  background: black;
+  width: 25px;
+  height: 25px;
+  background:url(../images/croix.png);
+  
 	background-size: cover;
 	background-position: center;
 
-} 
+}
+.div3
+{
+  
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background:url(../images/pionBleu.png);
+  background-size: cover;
+  background-position: center;
+
+}
+
 
 body {
     
     height: 100vh;
     width:100%;
+}
+
+tr {
+  height:19px;
+  margin:0;
+  padding:0;
+}
+
+td {
+  margin:0;
+  padding:0;
 }
