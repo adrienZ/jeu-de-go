@@ -10,7 +10,8 @@ var b2;
 var tab1; // grille des valeurs courantes
 var tab2; // grille temporaire
 var compt=0;
-
+var compteurJ2;
+var compteurJ1;
 var joueur=1;
 
 
@@ -33,7 +34,7 @@ function initialisation() //////////////////////////////////////////////
             tab2[i][j] = 0;
 
             
-            document.write("<td id='col_"+i+" line_"+j+" ' class='div2'onclick=' modifier(this); coordonne(this);'></td>")
+            document.write("<td id='col_"+i+" line_"+j+" ' class='div2'onclick=' modifier(this); coordonne(this); verification()'></td>")
             if(i==0 || i==8){
             	//Rogner 10 de height
 
@@ -59,7 +60,297 @@ function initialisation() //////////////////////////////////////////////
 
 
 } //////////////////////////////////////////////////
+function verification(){
+	
+    for (var i = 0; i < d; i++) 
+    {	
+    	
 
+        for (var j = 0; j < d; j++)
+        {
+        	if(i==8 && j==8){
+
+        		if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div1'&&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div1'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div3'&&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+        	}
+        		if(i==0 && j==8){
+
+        		if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div1'&&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div1'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div3'&&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+        	}
+        		if(i==8 && j==0){
+
+        		if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div1'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div1'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div3'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+        	}
+        		if(i==0 && j==0){
+
+        		if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div1'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div1'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div3'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+        	}
+
+
+
+
+        	if(i==8 && j+1<=d-1 && j-1>=0){
+
+
+            if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div1'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div1' &&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div1'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div3'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div3' &&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+        }
+
+            if( i==0 && j+1<=d-1 && j-1>=0){
+
+
+            if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div1'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div1' &&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div1'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div3'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div3' &&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+        	}
+        	 //VERIF CASE ROUGE MIDDLE
+           	if(i+1<=d-1 && i-1>=0 && j==8){
+
+            if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div1'&&
+            	
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div1'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div3'&&
+            	
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+        }
+             //VERIF CASE ROUGE MIDDLE
+           	if(i+1<=d-1 && i-1>=0 && j==0 ){
+
+            if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div1'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div1' 
+            	
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div3'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+            
+        }
+            //VERIF CASE ROUGE MIDDLE
+           	if(i+1<=d-1 && i-1>=0 && j+1<=d-1 && j-1>=0){
+
+            if(	
+            	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div1'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div1' &&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div1'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+            //VERIF CASE BLEU MIDDLE
+             if(
+             	
+            	document.getElementById("col_"+i+" line_"+j+" ").className=='div1' &&
+            	document.getElementById("col_"+(i+1)+" line_"+j+" ").className=='div3' &&
+            	document.getElementById("col_"+(i-1)+" line_"+j+" ").className=='div3'&&
+            	document.getElementById("col_"+i+" line_"+(j+1)+" ").className=='div3' &&
+            	document.getElementById("col_"+i+" line_"+(j-1)+" ").className=='div3'
+            	){
+
+            	document.getElementById("col_"+i+" line_"+j+" ").className='div2'
+            	compteurJ2=compteurJ2+1;
+
+            }
+
+        }
+        }  
+        }
+
+}
 function modifier(monID)  //////////////////////////////////////////////
 {	
   if(joueur==1){
@@ -94,6 +385,7 @@ function modifier(monID)  //////////////////////////////////////////////
 
     }
    }
+
 }
 
 
