@@ -19,10 +19,24 @@
     width: 25px;
     height: 25px;
     background: url(../img/dot2.svg);
+    
     background-size: contain;
 /*    background-color:red;*/
 /*    background-position: center;*/
 }
+
+.div5 {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url(../img/dot2.svg);
+    visibility: hidden;
+    background-size: contain;
+/*    background-color:red;*/
+}
+
+
+
 
 .div3 {
     display: inline-block;
@@ -44,7 +58,8 @@ body {
 table {
     margin: auto;
     text-align:center;
-    background-color: RGBA(255, 255, 255, 0.59);
+/*    background-color: RGBA(255, 255, 255, 0.59);*/
+   background: url(../img/wood1.jpg);
 
 
 }
@@ -62,8 +77,4 @@ td {
 }
 
 
-/*
-tr td:nth-child(1), tr:nth-child(1), tr:nth-child(9),tr td:nth-child(9)  {
-    background-position: 2px 3px;
-    background:RGBA(7, 255, 7, 0.1);
-}*/
+
