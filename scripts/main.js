@@ -13,32 +13,34 @@ var compt=0;
 var compteurJ2;
 var compteurJ1;
 var joueur=1;
+// Ce qu'il faut faire,c'est reperé ou l'on clique,on analyse ce qu'il y a autour. Si autour il ya un enemi,on regarde son tab2 pour voir si il appartient a un groupe. Si oui, alors regarder pour ce groupe et faire une vérif de chaque liberté.
+
 
 
 
 function initialisation() //////////////////////////////////////////////
 {
-    tab1 = new Array(d);
-    tab2 = new Array(d); 
+    tab1 = new Array();
+    tab2 = new Array(); 
     
     document.write('<table cellpadding="0" cellspacing="0">');
     for (var i = 0; i <= d; i++) 
     {	
     	document.write("<tr id='ligne_"+i+"'>")
-        tab1[i] = new Array(d); 
-       	tab2[i] = new Array(d); 
+       
+       	tab2[i] = new Array(); 
 
         for (var j = 0; j <= d; j++)
         {
 
-            tab1[i][j] = 4;
-            tab2[i][j] = 4;
+            
+            tab2[i][j] = 0;
             
             if(i==0 || i==d || j==0 || j==d){
             document.write("<td id='col_"+i+" line_"+j+" ' class='div5'</td>")
         	}
         	else{
-            document.write("<td id='col_"+i+" line_"+j+" ' class='div2'onclick=' modifier(this); verification()'></td>")
+            document.write("<td id='col_"+i+" line_"+j+" ' class='div2'onclick=' modifier(this); verification(this)'></td>")
             }
         
         }
@@ -58,166 +60,326 @@ function initialisation() //////////////////////////////////////////////
 
 
 } //////////////////////////////////////////////////
-function verification(){
-	 
-	var $ = function (id) {return document.getElementById(id);}; //shorten document.getElementbyId()
-    for (var i = 0; i < d; i++) 
-    {
-    	
- 		   	
 
-        for (var j = 0; j < d; j++)
-        {
-        	if( $("col_" + i +" line_" + j +" ").className =='div3'){
-        		if($("col_" + (i+1)+" line_" + j +" ").className =='div1' || $("col_" + (i+1)+" line_" + j +" ").className =='div5'){
-        			
-        			tab1[i][j]=tab1[i][j] -1;
-        		}
-        		
-
-
-        		if($("col_" + (i-1)+" line_" + j +" ").className =='div1' || $("col_" + (i-1)+" line_" + j +" ").className =='div5'){
-        			tab1[i][j]=tab1[i][j] -1;
-        		}
-        		
-
-
-
-        		if($("col_" + i+" line_" + (j+1) +" ").className =='div1' || $("col_" + i+" line_" + (j+1) +" ").className =='div5'){
-        			tab1[i][j]=tab1[i][j] -1;
-        		}
-        		
-
-
-        		if($("col_" + i+" line_" + (j-1) +" ").className =='div1' || $("col_" + i+" line_" + (j-1) +" ").className =='div5'){
-        			tab1[i][j]=tab1[i][j] -1;
-        		}
-
-				if($("col_" + (i)+" line_" + (j-1) +" ").className =='div3'){
-        			if(tab1[i][j-1]==0 || (tab1[i][j]>=1 && tab1[i][j-1]==1)){
-        				tab1[i][j]=tab1[i][j] -1;
-        				tab1[i][j-1]=tab1[i][j-1] -1;
-        			}
-
-        		}
-                if($("col_" + (i)+" line_" + (j+1) +" ").className =='div3'){
-                    if(tab1[i][j+1]==0 || (tab1[i][j]>=1 && tab1[i][j+1]==1)){
-                        tab1[i][j]=tab1[i][j] -1;
-                        tab1[i][j+1]=tab1[i][j+1] -1;
-                    }
-
-                }
-                if($("col_" + (i-1)+" line_" + j +" ").className =='div3'){
-                    if(tab1[i-1][j]==0 || (tab1[i][j]>=1 && tab1[i-1][j]==1)){
-                        tab1[i][j]=tab1[i][j] -1;
-
-                        tab1[i-1][j]=tab1[i-1][j] -1;
-                    }
-
-                }
-                if($("col_" + (i+1)+" line_" + j +" ").className =='div3'){
-                    if(tab1[i+1][j]==0 || (tab1[i][j]>=1 && tab1[i+1][j]==1)){
-                        tab1[i][j]=tab1[i][j] -1;
-                        tab1[i+1][j]=tab1[i+1][j] -1;
-                    }
-
-                }
-
-        		
-        	}
-
-        		// J2
-
-        	else if( $("col_" + i +" line_" + j +" ").className =='div1'){
-        		
-        		if($("col_" + (i+1)+" line_" + j +" ").className =='div3' || $("col_" + (i+1)+" line_" + j +" ").className =='div5'){
-        			tab1[i][j]=tab1[i][j] -1;
-        		}
-        		
-
-
-
-        		if($("col_" + (i-1)+" line_" + j +" ").className =='div3' || $("col_" + (i-1)+" line_" + j +" ").className =='div5'){
-        			tab1[i][j]=tab1[i][j] -1;
-        		}
-        		
-
-
-
-        		if($("col_" + i+" line_" + (j+1) +" ").className =='div3' || $("col_" +i+" line_" + (j+1) +" ").className =='div5'){
-        			tab1[i][j]=tab1[i][j] -1;
-        		}
-        		
-
-
-        		if($("col_" + i+" line_" + (j-1) +" ").className =='div3' || $("col_" + i+" line_" + (j-1) +" ").className =='div5'){
-        			tab1[i][j]=tab1[i][j] -1;
-        		}
-
-				if($("col_" + (i)+" line_" + (j-1) +" ").className =='div1'){
-        			if(tab1[i][j-1]==0 || (tab1[i][j]>=1 && tab1[i][j-1]==1)){
-        				tab1[i][j]=tab1[i][j] -1;
-
-        				tab1[i][j-1]=tab1[i][j-1] -1;
-        			}
-
-        		}
-
-                if($("col_" + (i-1)+" line_" + j +" ").className =='div1'){
+function liberte(i,j){
+    var liberte=4;
+    
+     var $ = function (id) {return document.getElementById(id);}; //shorten document.getElementbyId()
+    if($("col_" + i +" line_" + j +" ").className =='div1'){
+        if( $("col_" + (i+1) +" line_" + j +" ").className =='div3' || $("col_" + (i+1) +" line_" + j +" ").className =='div5' || $("col_" + (i+1) +" line_" + j +" ").className =='div1' ){
+                    liberte--;
                     
-                    if(tab1[i-1][j]==0 || (tab1[i][j]>=1 && tab1[i-1][j]==1) ){
-
-                        tab1[i][j]=tab1[i][j] -1;
-                        tab1[i-1][j]=tab1[i-1][j] -1;
-                    }
-
                 }
-
-                if($("col_" + (i)+" line_" + (j+1) +" ").className =='div1'){
-                    if(tab1[i][j+1]==0 || (tab1[i][j]>=1 && tab1[i][j+1]==1)){
-                        tab1[i][j]=tab1[i][j] -1;
-                        tab1[i][j+1]=tab1[i][j+1] -1;
-                    }
-
-                }
-
-                if($("col_" + (i+1)+" line_" + j +" ").className =='div1'){
+        if( $("col_" + (i-1) +" line_" + j +" ").className =='div3' || $("col_" + (i-1) +" line_" + j +" ").className =='div5' || $("col_" + (i-1) +" line_" + j +" ").className =='div1' ){
+                    liberte--;
                     
-                    if(tab1[i+1][j]==0 || (tab1[i][j]>=1 && tab1[i+1][j]==1)){
-                        
-                        tab1[i][j]=tab1[i][j] -1;
-                        tab1[i+1][j]=tab1[i+1][j] -1;
-                    }
-
                 }
-        		
-        	}
-        	
-        	console.log(tab1[4][4],tab1[4][3],tab1[4][2])
+        if( $("col_" + i +" line_" + (j-1) +" ").className =='div3' || $("col_" + i +" line_" + (j-1) +" ").className =='div5' || $("col_" + i +" line_" + (j-1) +" ").className =='div1'){
+                    liberte--;
+                    
+                }
+        if( $("col_" + i +" line_" + (j+1) +" ").className =='div3' || $("col_" + i +" line_" + (j+1) +" ").className =='div5' || $("col_" + i +" line_" + (j+1) +" ").className =='div1'){
+                    liberte--;
+                    
+                }
+        
+            }
+        if($("col_" + i +" line_" + j +" ").className =='div3'){
+        if( $("col_" + (i+1) +" line_" + j +" ").className =='div1' || $("col_" + (i+1) +" line_" + j +" ").className =='div5' || $("col_" + (i+1) +" line_" + j +" ").className =='div3' ){
+                    liberte--;
+                    
+                }
+        if( $("col_" + (i-1) +" line_" + j +" ").className =='div1' || $("col_" + (i-1) +" line_" + j +" ").className =='div5' || $("col_" + (i-1) +" line_" + j +" ").className =='div3' ){
+                    liberte--;
+                    
+                }
+        if( $("col_" + i +" line_" + (j-1) +" ").className =='div1' || $("col_" + i +" line_" + (j-1) +" ").className =='div5' || $("col_" + i +" line_" + (j-1) +" ").className =='div3' ){
+                    liberte--;
+                    
+                }
+        if( $("col_" + i +" line_" + (j+1) +" ").className =='div1' || $("col_" + i +" line_" + (j+1) +" ").className =='div5' || $("col_" + i +" line_" + (j+1)     +" ").className =='div3' ){
+                    liberte--;
+                    
+                }
+       
+        }
 
-    		
-    	}		
+    if(liberte!=0){
+        return true;
     }
-        for (var i = 0; i < d; i++) 
-    	{
-    	
- 		   	
-
-        for (var j = 0; j < d; j++)
-        {
-        	if(tab1[i][j]==0){
-        			$("col_" + i +" line_" + j +" ").className ='div2'
-        			
-        		}
-        	tab1[i][j]=4;
-
+    else {
+        return false;
     }
+
+                
+    
 
 }
+function verification(caser){
+    b=1;
+    c=100;
+    tab1 = new Array();
+    var $ = function (id) {return document.getElementById(id);}; //shorten document.getElementbyId()
+    //Creation tableau final
+
+    for (var i=1;i<d;i++){
+        for (var j=1;j<d;j++){
+            if( $("col_" + i +" line_" + j +" ").className =='div1')
+                    {
+                            
+                            tab2[i][j]= b;
+                            
+                            b++;
+                            
+                    }
+            if( $("col_" + i +" line_" + j +" ").className =='div3')
+                    {
+
+                        tab2[i][j]=c;
+                        
+
+                        c++;
+
+                    }
+
+    }
+    
+    }
+    
+    
+    // formation des groupes en changant le tableau final
+    for (var i=1;i<d;i++){
+        for (var j=1;j<d;j++){
+
+                if( $("col_" + (i+1) +" line_" + j +" ").className == $("col_" + i +" line_" + j +" ").className){
+                    
+                    tab2[i+1][j]=tab2[i][j] ;
+                   
+                }
+
+                if( $("col_" + (i-1) +" line_" + j +" ").className == $("col_" + i +" line_" + j +" ").className){
+                    
+                    tab2[i-1][j]=tab2[i][j] ;
+                  
+                }
+
+                if( $("col_" + i +" line_" + (j+1) +" ").className == $("col_" + i +" line_" + j +" ").className){
+                    
+                    tab2[i][j+1]=tab2[i][j] ;
+                    
+                }
+    
+                if( $("col_" + i +" line_" + (j-1) +" ").className == $("col_" + i +" line_" + j +" ").className){
+                    
+                    tab2[i][j-1]=tab2[i][j] ;
+                    
+                }
+
+
+                 if( $("col_" + (i+1) +" line_" + (j-1) +" ").className == $("col_" + i +" line_" + j +" ").className){
+                    
+                    tab2[i+1][j-1]=tab2[i][j] ;
+                    
+                }
+
+                 if( $("col_" + (i-1) +" line_" + (j-1) +" ").className == $("col_" + i +" line_" + j +" ").className){
+                    
+                    tab2[i-1][j-1]=tab2[i][j] ;
+                    
+                }
+
+                 if( $("col_" + (i+1) +" line_" + (j+1) +" ").className == $("col_" + i +" line_" + j +" ").className){
+                    
+                    tab2[i+1][j+1]=tab2[i][j] ;
+                    
+                }
+
+                 if( $("col_" + (i-1) +" line_" + (j+1) +" ").className == $("col_" + i +" line_" + j +" ").className){
+                    
+                    tab2[i-1][j+1]=tab2[i][j] ;
+                    
+                }
+
+
+
+
+
+
+               
+
+
+    }
+}
+     
+                   
+                
+    var yolo=caser.id;
+    var Icase=parseInt(yolo.substr(4,1));
+    var Jcase=parseInt(yolo.substr(11));
+    
+    
+    ///VERIF CASE AUTOUR DE CELLE OU LON VIENT DE CLIQUER ////
+
+        if(tab2[Icase+1][Jcase]!=0){
+            var NombreDePion=0;
+            var compteurFalse=0;
+        for (var i=1;i<d;i++){
+            for (var j=1;j<d;j++){
+                if(tab2[i][j]== tab2[Icase+1][Jcase]){
+                NombreDePion++;
+                liberte(i,j);
+                if(liberte(i,j)==true){
+                
+                    break;
+                
+                }
+                if (liberte(i,j)==false) {
+                    compteurFalse++;
+                
+
+            }
+        }
+        }
+        }
+        
+        if(compteurFalse==NombreDePion){
+            NombreDePion=0;
+            compteurFalse=0;
+            for (var i=1;i<d;i++){
+            for (var j=1;j<d;j++){
+                if(tab2[i][j]== tab2[Icase+1][Jcase]){
+                    console.log('bijour');
+                    $("col_" + i +" line_" + j +" ").className='div2';
+                }
+            }
+            }
+        }
+
+    }
+    
+     if(tab2[Icase-1][Jcase]!=0){
+        var NombreDePion=0;
+                var compteurFalse=0;
+        for (var i=1;i<d;i++){
+            for (var j=1;j<d;j++){
+
+                if(tab2[i][j]== tab2[Icase-1][Jcase]){
+                NombreDePion++;
+                liberte(i,j);
+                if(liberte(i,j)==true){
+                
+                    break;
+                
+                }
+                if (liberte(i,j)==false) {
+                    compteurFalse++;
+                
+
+            }
+        }
+        }
+        }
+        
+        if(compteurFalse==NombreDePion){
+            NombreDePion=0;
+            compteurFalse=0;
+            for (var i=1;i<d;i++){
+            for (var j=1;j<d;j++){
+                if(tab2[i][j]== tab2[Icase-1][Jcase]){
+                    console.log('bijour2');
+                    $("col_" + i +" line_" + j +" ").className='div2';
+                }
+            }
+            }
+        }
+
+    }
+
+     if(tab2[Icase][Jcase+1]!=0){
+                var NombreDePion=0;
+                var compteurFalse=0;
+        for (var i=1;i<d;i++){
+            for (var j=1;j<d;j++){
+                
+
+                if(tab2[i][j]== tab2[Icase][Jcase+1]){
+                NombreDePion++;
+                liberte(i,j);
+                
+                if(liberte(i,j)==true){
+
+                
+                    break;
+                
+                }
+                if (liberte(i,j)==false){
+                    
+                    compteurFalse++;
+                
+
+            }
+        }
+        }
+        }
+        
+        if(compteurFalse==NombreDePion){
+            
+            for (var i=1;i<d;i++){
+            for (var j=1;j<d;j++){
+                if(tab2[i][j]== tab2[Icase][Jcase+1]){
+                    console.log('bijour3');
+                    $("col_" + i +" line_" + j +" ").className='div2';
+                }
+            }
+            }
+        }
+
+    }
+
+     if(tab2[Icase][Jcase-1]!=0){
+        var NombreDePion=0;
+                var compteurFalse=0;
+        for (var i=1;i<d;i++){
+            for (var j=1;j<d;j++){
+
+                if(tab2[i][j]== tab2[Icase][Jcase-1]){
+                NombreDePion++;
+                liberte(i,j);
+                if(liberte(i,j)==true){
+                
+                    break;
+                
+                }
+                if (liberte(i,j)==false) {
+                    compteurFalse++;
+                
+
+            }
+        }
+        }
+        }
+        
+        
+        if(compteurFalse==NombreDePion){
+            NombreDePion=0;
+            compteurFalse=0;
+            for (var i=1;i<d;i++){
+            for (var j=1;j<d;j++){
+                if(tab2[i][j]== tab2[Icase][Jcase-1]){
+                    
+                    $("col_" + i +" line_" + j +" ").className='div2';
+                }
+            }
+            }
+        }
+
+    }
+    
 }
 
 function modifier(monID)  //////////////////////////////////////////////
-{	
+{
+
   if(joueur==1){
   	
   	
@@ -225,6 +387,7 @@ function modifier(monID)  //////////////////////////////////////////////
 
     {
         monID.className='div1';
+        
         joueur=2;
     }
 	 else 
