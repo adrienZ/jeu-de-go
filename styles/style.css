@@ -74,13 +74,10 @@ body {
 table {
     margin: auto;
 /*    background-color: RGBA(255, 255, 255, 0.59);*/
-<<<<<<< HEAD
    background: url(../img/wood2.png);
 margin-top:15%;
-=======
-   background: url(../img/wood1.jpg);
+  /* background: url(../img/wood1.jpg);*/
    margin-top: 10%;
->>>>>>> origin/master
 }
 
 tr {
