@@ -7,7 +7,7 @@
     width: 25px;
     height: 25px;
 /*    background: url(../images/pionRouge.png);*/
-        background: red;
+        background: url(../img/pion2.svg);
     border-radius:50%;
 
     background-size: cover;
@@ -43,7 +43,7 @@
     width: 25px;
     height: 25px;
 /*    background: url(../images/pionBleu.png);*/
-            background: blue;
+    background: url(../img/pion1.svg);
     border-radius:50%;
     background-size: cover;
     background-position: center;
