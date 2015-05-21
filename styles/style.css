@@ -11,6 +11,7 @@ h1
 {
     font-family: "Kanban";
     text-align: center;
+    font-size: 35px;
 }
 
 .div1 {
@@ -18,7 +19,7 @@ h1
     width: 45px;
     height: 45px;
 /*    background: url(../images/pionRouge.png);*/
-        background: url(../img/pion2.svg);
+        background: url(../img/captainAmerica.svg);
     border-radius:50%;
     background-size: cover;
     background-position: center;
@@ -52,7 +53,7 @@ h1
     width: 45px;
     height: 45px;
 /*    background: url(../images/pionBleu.png);*/
-    background: url(../img/pion1.svg);
+    background: url(../img/irondMan.svg);
     border-radius:50%;
     background-size: cover;
     background-position: center;
