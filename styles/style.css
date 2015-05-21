@@ -4,8 +4,8 @@
 
 .div1 {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 45px;
+    height: 45px;
 /*    background: url(../images/pionRouge.png);*/
         background: url(../img/pion2.svg);
     border-radius:50%;
@@ -16,8 +16,8 @@
 
 .div2 {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 45px;
+    height: 45px;
     background: url(../img/dot2.svg);
     
     background-size: contain;
@@ -27,8 +27,8 @@
 
 .div5 {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 45px;
+    height: 45px;
     background: url(../img/dot2.svg);
     visibility: hidden;
     background-size: contain;
@@ -40,8 +40,8 @@
 
 .div3 {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 45px;
+    height: 45px;
 /*    background: url(../images/pionBleu.png);*/
     background: url(../img/pion1.svg);
     border-radius:50%;
@@ -52,16 +52,15 @@
 body {
     height: 100vh;
     width: 100%;
-    background : black;
+/*    background : #E0E0E0;*/
+    background : linear-gradient( #D6D6D6,white )
 }
 
 table {
     margin: auto;
-    text-align:center;
 /*    background-color: RGBA(255, 255, 255, 0.59);*/
-   background: url(../img/wood1.jpg);
-
-
+   background: url(../img/wood2.png);
+margin-top:15%;
 }
 
 tr {
