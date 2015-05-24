@@ -12,6 +12,9 @@ var tab2; // grille temporaire
 var compteurJ2;
 var compteurJ1;
 var joueur = 1;
+var $ = function (id) {
+    return document.getElementById(id);
+}; //shorten document.getElementbyId()
 
 
 
@@ -34,14 +37,14 @@ function initialisation() //////////////////////////////////////////////
 
                 if (i == 0 || i == d || j == 0 || j == d) {
                     document.write("<td id='col_" + i + " line_" + j + " ' class='div5'</td>")
-                } 
-//                    else if (i == 1) {
-//
-//                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2 top'</td>")
-//
-//}
+                }
+                //                    else if (i == 1) {
+                //
+                //                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2 top'</td>")
+                //
+                //}
                 else {
-                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2'onclick=' modifier(this); verification(this)'></td>")
+                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2'onclick=' modifier(this); verification(this); illegal(this);'></td>")
                 }
 
             }
@@ -122,9 +125,7 @@ function verification(caser) {
     b = 1;
     c = 100;
     tab1 = new Array();
-    var $ = function (id) {
-        return document.getElementById(id);
-    }; //shorten document.getElementbyId()
+
     //Creation tableau final
 
     for (var i = 1; i < d; i++) {
@@ -476,25 +477,27 @@ function modifier(monID) //////////////////////////////////////////////
 initialisation();
 
 
-var data= new Array();
-for (var i = 0; i <= d; i++) {
-            for (var j = 0; j <= d; j++) {
-                var current = tab2[i][j];
-                data.push(current);
-                current= null;
-                console.log(data)
-            }
-}
+
 
 function save() {
+
+    var data = new Array();
     for (var i = 0; i <= d; i++) {
-            for (var j = 0; j <= d; j++) {
-                var current = tab2[i][j];
-                data.push(current);
-                current= null;
-                console.log(data)
-            }
-}
+        for (var j = 0; j <= d; j++) {
+            var current = tab2[i][j];
+            data.push(current);
+            current = null;
+            console.log(data)
+        }
+    }
+    for (var i = 0; i <= d; i++) {
+        for (var j = 0; j <= d; j++) {
+            var current = tab2[i][j];
+            data.push(current);
+            current = null;
+            console.log(data)
+        }
+    }
 
     var blob = new Blob([data], {
         type: "text/plain;charset=utf-8"
@@ -502,3 +505,41 @@ function save() {
     saveAs(blob, "array.txt");
 
 }
+
+
+function illegal(monID) {
+        for (var i = 1; i < d; i++) {
+            for (var j = 1; j < d; j++) {
+
+
+                if ((($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') || // left and right
+                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')) || //top and bot
+                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //bot and right
+                        (($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //top and right                 
+                        (($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5')) || //top and left
+                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5'))) && //bot and left                 
+                        $("col_" + i + " line_" + j + " ").className == 'div3') {
+
+                        $("console").innerHTML = '<p> nope </p>';
+                        setTimeout(function () {
+                            $("console").innerHTML = '<p>  </p>';
+                        }, 1500);
+                    }
+
+
+                    if ((($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') || // left and right
+                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')) || //top and bot
+                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //bot and right
+                        (($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //top and right                 
+                        (($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5')) || //top and left
+                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5'))) && //bot and left                 
+                        $("col_" + i + " line_" + j + " ").className == 'div1') {
+
+                        $("console").innerHTML = '<p> nope </p>';
+                        setTimeout(function () {
+                            $("console").innerHTML = '<p>  </p>';
+                        }, 1500);
+                    }
+                }
+            }
+        }
