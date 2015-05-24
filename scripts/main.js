@@ -44,7 +44,7 @@ function initialisation() //////////////////////////////////////////////
                 //
                 //}
                 else {
-                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2'onclick=' modifier(this); verification(this); illegal(this);'></td>")
+                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2'onclick=' modifier(this); verification(this); illegal(this); '></td>")
                 }
 
             }
