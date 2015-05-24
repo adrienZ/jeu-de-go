@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+
+
+@font-face {
+   font-family: "Kanban";
+   src: url('../font-face/Kanban.ttf');
+    }
+h1
+{
+    font-family: "Kanban";
+    text-align: center;
+    color:white;
+    font-size: 35px;
+}
+
+.div1 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+/*    background: url(../images/pionRouge.png);*/
+        background: url(../img/captainAmerica.svg);
+    border-radius:50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.div2 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: url(../img/dot2.svg);
+    background-size: contain;
+}
+
+.div5 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: url(../img/dot2.svg);
+    visibility: hidden;
+    background-size: contain;
+}
+
+
+
+
+.div3 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+/*    background: url(../images/pionBleu.png);*/
+    background: url(../img/irondMan.svg);
+    border-radius:50%;
+    background-size: cover;
+    background-position: center;
+
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+background: url('../img/bg.jpg') no-repeat center;
+    background-size:contain;
+    background-color:black;
+    /*
+    background : linear-gradient( #d6d6d6,#FFF);
+*/
+    overflow: hidden;
+}
+
+table {
+    margin: auto;
+   background: url(../img/wood2.png);
+margin-top:15%;
+  /* background: url(../img/wood1.jpg);*/
+   margin-top: 10%;
+}
+
+tr {
+    height: 19px;
+    margin: 0;
+    padding: 0;
+}
+
+td {
+    margin: 0;
+    padding: 0;
+
+}
+
+.tchat {
+    width: 250px;
+    height: 350px;
+    background:#E3E3E3;
+    position:absolute;
+    border: 1 px solid white;
+    bottom:0;
+    right:150px;
+    box-shadow: 3px solid white;
+}
+
+.tchat header {
+    width: 100%;
+    height: 40px;
+    background: #FFFFFF;
+    border:1px solid #919090;
+    margin:0;
+}
+
+.history {
+    background: white;
+    height: 350px;
+}
+
+.history p{
+    border-radius:5px;
+    background: orange;
+    width:80%;
+margin: auto ;
+
+}
+
+#message input {
+    width:100%;
+    height:40px;
+    background: #E9F5FA;
+    border:thin solid black;
+    position:absolute;
+    bottom:0;
+}
+#save {
+   margin:auto; 
+    width:100px;
+    height:50px;
+}
+
+#console {
+    position:absolute;
+    top:5px;
+    border:1px solid #00FF00;
+    color:#00FF00;
+    width:400px;
+    height:50px;
+    background:black;
+    text-align:center;
+    overflow:scroll;
+}
+
+.chacha {
+    width: 30%;
+    height: 200px;
+    border:2px solid red;
+    position: relative;;
+    bottom: 50%;
+    background:white
+
+}
