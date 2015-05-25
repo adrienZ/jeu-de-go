@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express();
-server = require('http').createServer(app),
+    server = require('http').createServer(app),
     io = require('socket.io').listen(server),
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
     fs = require('fs');
@@ -58,10 +58,14 @@ io.sockets.on('connection', function (socket, pseudo) {
 
     // Dès qu'on reçoit un message, on récupère le pseudo de son auteur et on le transmet aux autres personnes
     socket.on('message', function (message) {
+        date = new Date();
         message = ent.encode(message);
         socket.broadcast.emit('message', {
+            h: date.getHours(),
+            m: date.getMinutes(),
             pseudo: socket.pseudo,
-            message: message
+            message: message,
+
         });
     });
 });
