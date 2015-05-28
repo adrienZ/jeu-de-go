@@ -44,7 +44,7 @@ function initialisation() //////////////////////////////////////////////
                 //
                 //}
                 else {
-                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2'onclick=' modifier(this); verification(this); illegal(this);'></td>")
+                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2'onclick=' modifier(this); verification(this); illegal(this); '></td>")
                 }
 
             }
@@ -447,7 +447,7 @@ function modifier(monID) //////////////////////////////////////////////
 
             {
                 monID.className = 'div1';
-
+                console.log('lol');
                 joueur = 2;
             } else
 
@@ -463,6 +463,8 @@ function modifier(monID) //////////////////////////////////////////////
             {
                 joueur = 1;
                 monID.className = 'div3';
+                                console.log('auké');
+
             } else
 
             {
@@ -490,15 +492,6 @@ function save() {
             console.log(data)
         }
     }
-    for (var i = 0; i <= d; i++) {
-        for (var j = 0; j <= d; j++) {
-            var current = tab2[i][j];
-            data.push(current);
-            current = null;
-            console.log(data)
-        }
-    }
-
     var blob = new Blob([data], {
         type: "text/plain;charset=utf-8"
     });
@@ -508,38 +501,38 @@ function save() {
 
 
 function illegal(monID) {
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
+    for (var i = 1; i < d; i++) {
+        for (var j = 1; j < d; j++) {
 
 
-                if ((($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') || // left and right
-                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')) || //top and bot
-                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //bot and right
-                        (($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //top and right                 
-                        (($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5')) || //top and left
-                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5'))) && //bot and left                 
-                        $("col_" + i + " line_" + j + " ").className == 'div3') {
+            if ((($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') || // left and right
+                    (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')) || //top and bot
+                    (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //bot and right
+                    (($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //top and right                 
+                    (($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5')) || //top and left
+                    (($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5'))) && //bot and left                 
+                $("col_" + i + " line_" + j + " ").className == 'div3') {
 
-                        $("console").innerHTML = '<p> nope </p>';
-                        setTimeout(function () {
-                            $("console").innerHTML = '<p>  </p>';
-                        }, 1500);
-                    }
+                $("console").innerHTML = '<p> nope </p>';
+                setTimeout(function () {
+                    $("console").innerHTML = '<p>  </p>';
+                }, 1500);
+            }
 
 
-                    if ((($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') || // left and right
-                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')) || //top and bot
-                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //bot and right
-                        (($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //top and right                 
-                        (($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5')) || //top and left
-                        (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5'))) && //bot and left                 
-                        $("col_" + i + " line_" + j + " ").className == 'div1') {
+            if ((($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') || // left and right
+                    (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')) || //top and bot
+                    (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //bot and right
+                    (($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5')) || //top and right                 
+                    (($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5')) || //top and left
+                    (($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') && ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5'))) && //bot and left                 
+                $("col_" + i + " line_" + j + " ").className == 'div1') {
 
-                        $("console").innerHTML = '<p> nope </p>';
-                        setTimeout(function () {
-                            $("console").innerHTML = '<p>  </p>';
-                        }, 1500);
-                    }
-                }
+                $("console").innerHTML = '<p> nope </p>';
+                setTimeout(function () {
+                    $("console").innerHTML = '<p>  </p>';
+                }, 1500);
             }
         }
+    }
+}
