@@ -12,7 +12,8 @@ var tab2; // grille temporaire
 var compteurJ2;
 var compteurJ1;
 var joueur = 1;
-var clic = 0;
+var handi = 0;
+
 var $ = function (id) {
     return document.getElementById(id);
 }; //shorten document.getElementbyId()
@@ -69,9 +70,6 @@ function initialisation() //////////////////////////////////////////////
 function liberte(i, j) {
     var liberte = 4;
 
-    var $ = function (id) {
-        return document.getElementById(id);
-    }; //shorten document.getElementbyId()
     if ($("col_" + i + " line_" + j + " ").className == 'div1') {
         if ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div1') {
             liberte--;
@@ -146,7 +144,36 @@ function verification(caser) {
                 c++;
 
             }
+    if ($("col_" + i + " line_" + j + " ").className == 'div3' &&
+        ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
+        ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
+        ($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
+        ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') 
 
+    ) {
+
+        $("col_" + i + " line_" + j + " ").className = 'div2';
+        console.log('suicide');
+
+
+
+
+    }
+                if ($("col_" + i + " line_" + j + " ").className == 'div1' &&
+        ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
+        ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
+        ($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
+        ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') 
+
+    ) {
+
+        $("col_" + i + " line_" + j + " ").className = 'div2';
+        console.log('suicide');
+
+
+
+
+    }
         }
 
     }
@@ -435,7 +462,10 @@ function verification(caser) {
         }
 
     }
-    console.log(tab2[Icase][Jcase]);
+
+
+
+
 }
 
 function modifier(monID) //////////////////////////////////////////////
@@ -445,8 +475,6 @@ function modifier(monID) //////////////////////////////////////////////
         if (joueur == 1) {
             setInterval(function () {
                 compteurJ1--;
-                console.log(compteurJ1);
-                $('console').innerHTML = '<p>' + compteurJ1 + '</p>';
 
             }, 1000);
 
@@ -454,7 +482,6 @@ function modifier(monID) //////////////////////////////////////////////
 
             {
                 monID.className = 'div1';
-                console.log('lol');
                 joueur = 2;
             } else
 
@@ -466,10 +493,8 @@ function modifier(monID) //////////////////////////////////////////////
 
             if (joueur == 2) {
                 setInterval(function () {
-                    console.log(compteurJ2);
 
                     compteurJ2--;
-                    $('console').innerHTML = '<p>' + compteurJ2 + '</p>';
 
                 }, 1000);
 
@@ -478,7 +503,6 @@ function modifier(monID) //////////////////////////////////////////////
                 {
                     joueur = 1;
                     monID.className = 'div3';
-                    console.log('auké');
 
                 } else
 
@@ -592,3 +616,21 @@ function ia()
 //}
 //
 //if (clic ==1) {timer();}
+
+
+
+function handicap(zizi) {
+
+    var choix = (zizi.id)
+
+    if (choix == 'non') {
+
+    } else {
+        var Nhandi = window.prompt('Combien d\'handicap ?');
+        handi = parseInt(Nhandi);
+        return handi;
+
+    }
+
+    //    document.getElementsByClassName('handicap').style.display = 'none'
+}
