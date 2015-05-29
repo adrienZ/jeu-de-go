@@ -40,11 +40,11 @@ h1 {
     display: inline-block;
     width: 45px;
     height: 45px;
-    /*    background: url(../images/pionRouge.png);*/
-    background: purple;
+        background: url(../img/sonic.png) no-repeat;
     border-radius: 50%;
-    background-size: cover;
-    background-position: center; }
+    background-size: 100%;
+    background-position: center;
+}
 
 .div6 {
     display: inline-block;

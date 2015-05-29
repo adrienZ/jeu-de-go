@@ -13,7 +13,10 @@ var compteurJ2;
 var compteurJ1;
 var joueur = 1;
 var handi = 0;
-
+var minusJ1;
+if (timerJ1 == 0)
+    var timerJ1 = 5;
+var timerJ2 = 30;
 var $ = function (id) {
     return document.getElementById(id);
 }; //shorten document.getElementbyId()
@@ -70,44 +73,45 @@ function initialisation() //////////////////////////////////////////////
 function liberte(i, j) {
     var liberte = 4;
 
-    if ($("col_" + i + " line_" + j + " ").className == 'div1') {
-        if ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div1') {
-            liberte--;
+ if ($("col_" + i + " line_" + j + " ").className == 'div1') {
+            if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+                liberte--;
+
+            }
+            if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+
+                liberte--;
+
+            }
+            if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+                liberte--;
+
+            }
+            if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+                liberte--;
+
+            }
 
         }
-        if ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div1') {
-            liberte--;
+        if ($("col_" + i + " line_" + j + " ").className == 'div3') {
+            if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+                liberte--;
 
+            }
+            if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+
+                liberte--;
+
+            }
+            if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+                liberte--;
+
+            }
+            if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+                liberte--;
+
+            }
         }
-        if ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div1') {
-            liberte--;
-
-        }
-        if ($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div1') {
-            liberte--;
-
-        }
-
-    }
-    if ($("col_" + i + " line_" + j + " ").className == 'div3') {
-        if ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div3') {
-            liberte--;
-
-        }
-        if ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div3') {
-            liberte--;
-
-        }
-        if ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div3') {
-            liberte--;
-
-        }
-        if ($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div3') {
-            liberte--;
-
-        }
-
-    }
 
     if (liberte != 0) {
         return true;
@@ -144,36 +148,39 @@ function verification(caser) {
                 c++;
 
             }
-    if ($("col_" + i + " line_" + j + " ").className == 'div3' &&
-        ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
-        ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
-        ($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
-        ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') 
-
-    ) {
-
-        $("col_" + i + " line_" + j + " ").className = 'div2';
-        console.log('suicide');
 
 
+            // suicide J2        
+            if ($("col_" + i + " line_" + j + " ").className == 'div3' &&
+                ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
+                ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
+                ($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
+                ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')
 
+            ) {
 
-    }
-                if ($("col_" + i + " line_" + j + " ").className == 'div1' &&
-        ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
-        ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
-        ($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
-        ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5') 
-
-    ) {
-
-        $("col_" + i + " line_" + j + " ").className = 'div2';
-        console.log('suicide');
+                $("col_" + i + " line_" + j + " ").className = 'div2';
+                console.log('suicide');
 
 
 
+                //suicide J1
+            }
+            if ($("col_" + i + " line_" + j + " ").className == 'div1' &&
+                ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
+                ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
+                ($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
+                ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')
 
-    }
+            ) {
+
+                $("col_" + i + " line_" + j + " ").className = 'div2';
+                console.log('suicide');
+
+
+
+
+            }
         }
 
     }
@@ -470,17 +477,25 @@ function verification(caser) {
 
 function modifier(monID) //////////////////////////////////////////////
     {
-        var compteurJ1 = 30;
-        var compteurJ2 = 30;
-        if (joueur == 1) {
-            setInterval(function () {
-                compteurJ1--;
 
+        if (joueur == 1) {
+            minusJ1 = setInterval(function () {
+                timerJ1--;
+                console.log(timerJ1)
             }, 1000);
 
+
+            if (handi >= 0) {
+                joueur = 1;
+                handi--;
+            }
             if (monID.className == 'div2')
 
             {
+                            if (handi > 0) {
+                joueur = 1;
+                handi--;
+            }
                 monID.className = 'div1';
                 joueur = 2;
             } else
@@ -590,47 +605,17 @@ function ia()
 
 }
 
-//function timer() {
-//    var compteurJ1 = 30;
-//    var compteurJ2 = 30;
-//
-//    if (joueur == 1) {
-//        setInterval(function () {
-//            compteurJ1--;
-//            console.log(compteurJ1);
-//        }, 1000);
-//        $('console').innerHTML = '<p>' + compteurJ1 + '</p>';
-//    }
-//    if (joueur == 2) {
-//        setInterval(function () {
-//                        console.log(compteurJ2);
-//
-//            compteurJ2--
-//        }, 1000);
-//        $('console').innerHTML ='<p>' + compteurJ2 + '</p>';
-//
-//    }
-//
-//
-//
-//}
-//
-//if (clic ==1) {timer();}
 
 
 
-function handicap(zizi) {
+function handicap(choix) {
 
-    var choix = (zizi.id)
+    var choix = (choix.id)
 
-    if (choix == 'non') {
-
-    } else {
+    if (choix == 'oui') {
         var Nhandi = window.prompt('Combien d\'handicap ?');
         handi = parseInt(Nhandi);
         return handi;
 
     }
-
-    //    document.getElementsByClassName('handicap').style.display = 'none'
 }

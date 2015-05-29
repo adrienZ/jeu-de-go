@@ -5,6 +5,8 @@ var express = require('express'),
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
     fs = require('fs');
 
+//eval(fs.readfileSync('./scripts/main.js')+'');
+
 
 // Chargement de la page index.html
 app.get('/', function (req, res) {
@@ -48,6 +50,7 @@ app.get('/img/irondMan.svg', function (req, res) {
 
 
 
+
 io.sockets.on('connection', function (socket, pseudo) {
     // Dès qu'on nous donne un pseudo, on le stocke en variable de session et on informe les autres personnes
     socket.on('nouveau_client', function (pseudo) {
@@ -70,4 +73,15 @@ io.sockets.on('connection', function (socket, pseudo) {
     });
 });
 
+var jsdom = require("jsdom");
+
+jsdom.env(
+  "http://nodejs.org/dist/",
+  ["http://code.jquery.com/jquery.js"],
+  function (errors, window) {
+    console.log("there have been", window.$("a").length, "nodejs releases!");
+  }
+);
+
+// file is included here:
 server.listen(8080);
