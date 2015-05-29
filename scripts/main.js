@@ -9,19 +9,44 @@ var b;
 var b2;
 var tab1; // grille des valeurs courantes
 var tab2; // grille temporaire
-var compteurJ2;
-var compteurJ1;
+var compteurJ2 = 0;
+var compteurJ1 = 0;
 var joueur = 1;
 var handi = 0;
 var minusJ1;
-if (timerJ1 == 0)
-    var timerJ1 = 5;
+var passe = 0;
+var timerJ1 = 5;
 var timerJ2 = 30;
 var $ = function (id) {
     return document.getElementById(id);
 }; //shorten document.getElementbyId()
 
+function passer() {
+    passe++;
+    if (joueur == 1) {
+        joueur = 2;
+    } else {
+        joueur = 1;
+    }
+    if (passe == 2) {
+        findepartie();
+    }
 
+}
+
+
+function findepartie(){
+    if(compteurJ2>compteurJ1){
+    window.alert('Joueur 2 à gagné avec ' +compteurJ2+ ' points !');
+}
+    else if(compteurJ1>compteurJ2){
+    window.alert('Joueur 1 à gagné avec ' + compteurJ1+ ' points !');
+}
+    else {
+        window.alert('Egalité !');
+    }
+
+}
 
 
 function initialisation() //////////////////////////////////////////////
@@ -73,45 +98,45 @@ function initialisation() //////////////////////////////////////////////
 function liberte(i, j) {
     var liberte = 4;
 
- if ($("col_" + i + " line_" + j + " ").className == 'div1') {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
-                liberte--;
-
-            }
-            if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
-
-                liberte--;
-
-            }
-            if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
-                liberte--;
-
-            }
-            if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
-                liberte--;
-
-            }
+    if ($("col_" + i + " line_" + j + " ").className == 'div1') {
+        if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+            liberte--;
 
         }
-        if ($("col_" + i + " line_" + j + " ").className == 'div3') {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
-                liberte--;
+        if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
 
-            }
-            if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+            liberte--;
 
-                liberte--;
-
-            }
-            if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
-                liberte--;
-
-            }
-            if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
-                liberte--;
-
-            }
         }
+        if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+            liberte--;
+
+        }
+        if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+            liberte--;
+
+        }
+
+    }
+    if ($("col_" + i + " line_" + j + " ").className == 'div3') {
+        if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+            liberte--;
+
+        }
+        if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+
+            liberte--;
+
+        }
+        if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+            liberte--;
+
+        }
+        if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+            liberte--;
+
+        }
+    }
 
     if (liberte != 0) {
         return true;
@@ -150,37 +175,37 @@ function verification(caser) {
             }
 
 
-            // suicide J2        
-            if ($("col_" + i + " line_" + j + " ").className == 'div3' &&
-                ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
-                ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
-                ($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
-                ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')
-
-            ) {
-
-                $("col_" + i + " line_" + j + " ").className = 'div2';
-                console.log('suicide');
-
-
-
-                //suicide J1
-            }
-            if ($("col_" + i + " line_" + j + " ").className == 'div1' &&
-                ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
-                ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
-                ($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
-                ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')
-
-            ) {
-
-                $("col_" + i + " line_" + j + " ").className = 'div2';
-                console.log('suicide');
-
-
-
-
-            }
+//            // suicide J2        
+//            if ($("col_" + i + " line_" + j + " ").className == 'div3' &&
+//                ($("col_" + (i + 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
+//                ($("col_" + (i - 1) + " line_" + j + " ").className == 'div1' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
+//                ($("col_" + i + " line_" + (j + 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
+//                ($("col_" + i + " line_" + (j - 1) + " ").className == 'div1' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')
+//
+//            ) {
+//
+//                $("col_" + i + " line_" + j + " ").className = 'div2';
+//                console.log('suicide');
+//
+//
+//
+//                //suicide J1
+//            }
+//            if ($("col_" + i + " line_" + j + " ").className == 'div1' &&
+//                ($("col_" + (i + 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i + 1) + " line_" + j + " ").className == 'div5') &&
+//                ($("col_" + (i - 1) + " line_" + j + " ").className == 'div3' || $("col_" + (i - 1) + " line_" + j + " ").className == 'div5') &&
+//                ($("col_" + i + " line_" + (j + 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j + 1) + " ").className == 'div5') &&
+//                ($("col_" + i + " line_" + (j - 1) + " ").className == 'div3' || $("col_" + i + " line_" + (j - 1) + " ").className == 'div5')
+//
+//            ) {
+//
+//                $("col_" + i + " line_" + j + " ").className = 'div2';
+//                console.log('suicide');
+//
+//
+//
+//
+//            }
         }
 
     }
@@ -343,7 +368,13 @@ function verification(caser) {
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
-
+                        if (tab2[i][j] >= 100) {
+                            compteurJ1++;
+                            console.log(compteurJ1);
+                        } else {
+                            compteurJ2++;
+                            console.log(compteurJ2);
+                        }
                         $("col_" + i + " line_" + j + " ").className = 'div2';
                     }
                 }
@@ -381,7 +412,13 @@ function verification(caser) {
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
-
+                        if (tab2[i][j] >= 100) {
+                            compteurJ1++;
+                            console.log(compteurJ1);
+                        } else {
+                            compteurJ2++;
+                            console.log(compteurJ2);
+                        }
                         $("col_" + i + " line_" + j + " ").className = 'div2';
                     }
                 }
@@ -422,7 +459,13 @@ function verification(caser) {
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
-
+                        if (tab2[i][j] >= 100) {
+                            compteurJ1++;
+                            console.log(compteurJ1);
+                        } else {
+                            compteurJ2++;
+                            console.log(compteurJ2);
+                        }
                         $("col_" + i + " line_" + j + " ").className = 'div2';
                     }
                 }
@@ -461,7 +504,13 @@ function verification(caser) {
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
-
+                        if (tab2[i][j] >= 100) {
+                            compteurJ1++;
+                            console.log(compteurJ1);
+                        } else {
+                            compteurJ2++;
+                            console.log(compteurJ2);
+                        }
                         $("col_" + i + " line_" + j + " ").className = 'div2';
                     }
                 }
@@ -477,27 +526,24 @@ function verification(caser) {
 
 function modifier(monID) //////////////////////////////////////////////
     {
+        x = 0;
 
         if (joueur == 1) {
+
             minusJ1 = setInterval(function () {
                 timerJ1--;
-                console.log(timerJ1)
             }, 1000);
-
-
-            if (handi >= 0) {
-                joueur = 1;
-                handi--;
-            }
             if (monID.className == 'div2')
 
             {
-                            if (handi > 0) {
-                joueur = 1;
-                handi--;
-            }
                 monID.className = 'div1';
-                joueur = 2;
+                if (handi <= 1) {
+                    joueur = 2;
+                } else {
+                    handi = handi - 1;
+
+
+                }
             } else
 
             {
@@ -506,27 +552,22 @@ function modifier(monID) //////////////////////////////////////////////
             }
         } else {
 
-            if (joueur == 2) {
-                setInterval(function () {
+            minusJ2 = setInterval(function () {
+                timerJ2--;
+            }, 1000);
+            if (monID.className == 'div2')
 
-                    compteurJ2--;
+            {
+                joueur = 1;
+                monID.className = 'div3';
+            } else
 
-                }, 1000);
-
-                if (monID.className == 'div2')
-
-                {
-                    joueur = 1;
-                    monID.className = 'div3';
-
-                } else
-
-                {
+            {
 
 
-                }
             }
         }
+
     }
 
 
@@ -608,9 +649,9 @@ function ia()
 
 
 
-function handicap(choix) {
+function handicap(lol) {
 
-    var choix = (choix.id)
+    var choix = (lol.id)
 
     if (choix == 'oui') {
         var Nhandi = window.prompt('Combien d\'handicap ?');

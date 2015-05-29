@@ -486,7 +486,7 @@ function liberte(i, j) {
 
             function modifier(monID) //////////////////////////////////////////////
                 {
-
+                    
                     switch (joueur) {
 
                     case 1:
