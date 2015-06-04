@@ -115,10 +115,9 @@ body {
 table {
     margin: auto;
     background: url(../img/wood2.png);
-    margin-top: 15%;
     /* background: url(../img/wood1.jpg);*/
     
-    margin-top: 10%;
+    margin-top: 5vh;
 }
 
 tr {
@@ -130,6 +129,13 @@ tr {
 td {
     margin: 0;
     padding: 0;
+}
+
+#pass {
+    background: white;
+    width: 6vw;
+    height: 4vh;
+    margin-left: 30vw;
 }
 
 .tchat {
