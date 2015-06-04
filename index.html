@@ -9,15 +9,46 @@
 </head>
 
 <body>
-<!--    <div class="handicap">-->
-        <button id='oui' onclick='handicap(this)'> Oui </button>
-        <button id='non' onclick='handicap(this)'> Non </button>
-<!--    </div>-->
+    <!--    <div class="handicap">-->
+    <button id='oui' onclick='handicap(this)'> Oui </button>
+    <button id='non' onclick='handicap(this)'> Non </button>
+    <!--    </div>-->
     <h1> Jeu de Go </h1>
     <div id="J1"></div>
     <div id="J2"></div>
     <script type="text/javascript" src="scripts/main.js"></script>
     <button id='oui' onclick='handicap(this)'> Oui </button>
+   <input type="file" id="fileinput" multiple />
+<script type="text/javascript">
+  function readMultipleFiles(evt) {
+    //Retrieve all the files from the FileList object
+    var files = evt.target.files; 
+    		
+    if (files) {
+        for (var i=0, f; f=files[i]; i++) {
+	          var r = new FileReader();
+            r.onload = (function(f) {
+                return function(e) {
+                    var contents = e.target.result;
+                    alert( "Got the file.n" 
+                          +"name: " + f.name + "n"
+                          +"type: " + f.type + "n"
+                          +"size: " + f.size + " bytesn"
+                          + "starts with: " + contents.substr(1, contents.indexOf("n"))
+                    ); 
+                    console.log(f)
+                };
+            })(f);
+
+            r.readAsText(f);
+        }   
+    } else {
+	      alert("Failed to load files"); 
+    }
+  }
+  
+  document.getElementById('fileinput').addEventListener('change', readMultipleFiles, false);
+</script>
     <button onclick='passer();'></button>
     <button id='non' onclick='handicap(this)'> Non </button>
     <button id='save' value=save onclick=save();>SAVE</button>

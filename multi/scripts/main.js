@@ -638,3 +638,4 @@ function liberte(i, j) {
 
                 //    document.getElementsByClassName('handicap').style.display = 'none'
             }
+

@@ -53,6 +53,27 @@ h1 {
     background: violet;
     background-size: contain; }
 
+.div9 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: pink;
+    background-size: contain; }
+.div8 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: white;
+    background-size: contain; }
+
+
+.div7 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: green;
+    background-size: contain; }
+
 
 .div3 {
   display: inline-block;
@@ -150,6 +171,11 @@ td {
   bottom: 50%;
   overflow: hidden; }
 
-
+#fileinput {
+    width : 100px;
+    height : 50px;
+    background: green;
+    
+}
 
 /*# sourceMappingURL=style.css.map */

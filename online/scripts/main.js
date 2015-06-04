@@ -11,7 +11,7 @@ var tab1; // grille des valeurs courantes
 var tab2; // grille temporaire
 var compteurJ2;
 var compteurJ1;
-var joueur = 1;
+//var joueur = 1;
 var handi = 0;
 var minusJ1;
     var timerJ1 = 5;
@@ -480,7 +480,6 @@ function modifier(monID) //////////////////////////////////////////////
         if (joueur == 1) {
             minusJ1 = setInterval(function () {
                 timerJ1--;
-                console.log(timerJ1)
             }, 1000);
 
 

@@ -30,6 +30,7 @@
 
         <h1> Jeu de Go </h1>
         <script type="text/javascript" src="/scripts/main.js"></script>
+
         <button id='save' value=save onclick=save();>SAVE</button>
 
 
@@ -87,7 +88,7 @@
         function insereMessage(pseudo, message) {
             $('#zone_chat').append('<p><strong>' + pseudo + '</strong> ' + message + '</p>');
         }
-        
+        io.sockets.emit('player1clic');
         
     </script>
 </body>

@@ -73,15 +73,62 @@ io.sockets.on('connection', function (socket, pseudo) {
     });
 });
 
-var jsdom = require("jsdom");
+var jsdom = require('jsdom');
 
-jsdom.env(
-  "http://nodejs.org/dist/",
-  ["http://code.jquery.com/jquery.js"],
-  function (errors, window) {
-    console.log("there have been", window.$("a").length, "nodejs releases!");
-  }
-);
+jsdom.env({  
+  html: "<html><body></body></html>",
+  scripts: [
+    'http://code.jquery.com/jquery-1.5.min.js'
+  ]
+,done : function (err, window) {
+  var $ = window.jQuery;
 
-// file is included here:
+  $('body').append("<div class='testing'>Hello World</div>");
+  console.log($(".testing").text()); // outputs Hello World
+}
+});
+
+io.sockets.on('player1clic')
+
+var joueur = 1;
+
+io.sockets.on('player1clic');
+function modifier(monID) //////////////////////////////////////////////
+    {
+        x = 0;
+
+        if (joueur == 1) {
+
+
+            if (monID.className == 'div2')
+
+            {
+                
+                monID.className = 'div1';
+                    joueur = 2;
+                console.log(joueur)
+                } else {
+
+
+                }
+            } 
+         else {
+
+
+            if (monID.className == 'div2')
+
+            {
+                joueur = 1;
+                monID.className = 'div3';
+            } else
+
+            {
+
+
+            }
+        }
+
+    }
+
+
 server.listen(8080);
