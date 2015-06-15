@@ -791,3 +791,18 @@ function ApparitionObjet() {
 
 
 }
+
+
+function bomb(e) {
+
+
+    for (i = 2; i <= 5; i++) {
+        for (j = 2; j <= 5; j++) {
+            if ($("col_" + i + " line_" + j + " ").className != 'div5') {
+                $("col_" + i + " line_" + j + " ").className = 'div3';
+            }
+
+        }
+    }
+
+}

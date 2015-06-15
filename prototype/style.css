@@ -1,0 +1,153 @@
+@font-face {
+    font-family: 'museo';
+    src: url(Museo_Slab_300.otf);
+}
+* {
+    box-sizing: border-box;
+    
+    font-family:'museo';
+    font-weight:50;
+}
+
+#section0 {
+    background: url('img/banner.jpg') no-repeat bottom;
+    background-size: cover;
+}
+/*
+    SECOND SLIDE
+*/
+
+#section2 {
+
+  background: -webkit-linear-gradient( #6441A5 10%, #2a0845 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(#6441A5 10%, #2a0845 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient( #6441A5 10%, #2a0845 90%); /* IE10 */
+  background:      -o-linear-gradient( #6441A5 10%, #2a0845 90%); /* Opera 11.10+ */
+  background:         linear-gradient(#6441A5 10%, #2a0845 90%); /* W3C */
+        
+    
+    color:white;
+}
+
+#section2 h1 {
+    text-align: center;
+    font-size: 40px;
+    padding-top: 10vh;
+    color:white;
+}
+
+#section2 div.container {
+    width: 80vw;
+    margin: 0 10vw;
+}
+
+div.rule {
+    width: 15vw;
+    display: inline-block;
+    margin: 0 2vw;
+    vertical-align: top;
+}
+/*style of the rule's illustration*/
+
+.view {
+    width: 15vw;
+    height: 15vw;
+    margin-top: 10vh;
+    vertical-align: top;
+}
+/*first rule illustration*/
+
+div#view1.view {
+    background: url('img/regle/regle1.png') no-repeat;
+    background-size: contain;
+}
+/*second rule illustration*/
+
+div#view2.view {
+    background: url('img/regle/regle2.png') no-repeat center;
+    background-size: contain;
+}
+/*third rule illustration*/
+
+div#view3.view {
+    background: url('img/regle/regle3.png') no-repeat center;
+    background-size: contain;
+}
+/*forfth rule illustration*/
+
+div#view4.view {
+    background: url('img/regle/regle4.png') no-repeat center;
+    background-size: contain;
+}
+/*style of the rule's text*/
+
+div.text {
+    margin-top: 10vh;
+    font-size: 18px;
+    vertical-align: top;
+}
+
+.mod {
+    width:80vw;
+    margin:5vw 10vw 2vw 10vw;
+    
+
+}
+.up {
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 10vw 10vw 10vw;
+border-color: transparent transparent #007bff transparent;
+}
+
+.down{
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 10vw 10vw 0 10vw;
+border-color: #007bff transparent transparent transparent;
+}
+#slide1 h3 {
+    text-align:center;
+    font-size:45px;
+    margin-top:1vw;
+}
+
+.tri {
+    display : inline-block;
+    vertical-align:bottom;
+    margin:0 -5vw;
+    color:white;
+}
+div.tri.up:nth-child(1){
+margin-left:20vw;}
+
+.tri.up p {
+    margin-top:5vw;
+    margin-left:-2.5vw;
+}
+
+div.tri.up:nth-child(2) p{
+    margin-right:-2.5vw;
+}
+.tri.down p {
+    margin-top:-5vw;
+        margin-left:-1.75vw;
+
+}
+
+.apercu {
+    width:40.6vw;
+    height:20vw;
+    border:2px solid black;
+    margin:0 20vw;;
+}
+
+button {
+    width: 20vw;
+    height:5vw;
+    margin:2.5vw 40vw;
+    border:4px solid green;
+    
+}
