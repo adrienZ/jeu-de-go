@@ -19,17 +19,25 @@
 
 #section2 {
 
-  background: -webkit-linear-gradient( #6441A5 10%, #2a0845 90%); /* Chrome 10+, Saf5.1+ */
+
+
+
+
+
+  background: -webkit-linear-gradient(#6441A5 10%, #2a0845 90%); /* Chrome 10+, Saf5.1+ */
   background:    -moz-linear-gradient(#6441A5 10%, #2a0845 90%); /* FF3.6+ */
   background:     -ms-linear-gradient( #6441A5 10%, #2a0845 90%); /* IE10 */
   background:      -o-linear-gradient( #6441A5 10%, #2a0845 90%); /* Opera 11.10+ */
-  background:         linear-gradient(#6441A5 10%, #2a0845 90%); /* W3C */
+  background:         linear-gradient( #6441A5 10%, #2a0845 90%); /* W3C */
+        
+        
+        
         
     
     color:white;
 }
 
-#section2 h1 {
+#section2 h3 {
     text-align: center;
     font-size: 40px;
     padding-top: 10vh;
@@ -93,21 +101,7 @@ div.text {
     
 
 }
-.up {
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 0 10vw 10vw 10vw;
-border-color: transparent transparent #007bff transparent;
-}
 
-.down{
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 10vw 10vw 0 10vw;
-border-color: #007bff transparent transparent transparent;
-}
 #slide1 h3 {
     text-align:center;
     font-size:45px;
@@ -115,26 +109,41 @@ border-color: #007bff transparent transparent transparent;
 }
 
 .tri {
-    display : inline-block;
-    vertical-align:bottom;
-    margin:0 -5vw;
+    width:40vw;
     color:white;
-}
-div.tri.up:nth-child(1){
-margin-left:20vw;}
+    background:red;
+    height:10vw;
+    margin:2vw auto;
+    text-align:center;
+    border-radius:1vw;
+    box-shadow:0.1vw 0.1vw 2vw #FF6464;
+        transition:1s
 
-.tri.up p {
-    margin-top:5vw;
-    margin-left:-2.5vw;
 }
 
-div.tri.up:nth-child(2) p{
-    margin-right:-2.5vw;
+.tri p {
+    font: 4em;
+    padding-top:5vw;
+} 
+/*
+.tri:hover {
+    background:blue;
 }
-.tri.down p {
-    margin-top:-5vw;
-        margin-left:-1.75vw;
+*/
 
+.mod .tri:nth-child(1):hover {
+    background:url('http://i.jeuxactus.com/datas/jeux/s/u/super-smash-bros-for-nintendo-3ds/vu/super-smash-bros-for-nin-54298a8eb1edf.jpg') no-repeat center;
+    background-size:cover;
+}
+
+.mod .tri:nth-child(2):hover {
+    background:url('http://vignette4.wikia.nocookie.net/gowikia/images/c/c2/Gostones.jpg/revision/latest?cb=20080130234916') no-repeat center;
+    background-size:cover;
+}
+
+.mod .tri:nth-child(3):hover {
+    background:url('http://img1.wikia.nocookie.net/__cb20110416035508/logopedia/images/d/dc/Super_smash_bros_logo.png') no-repeat center;
+    background-size:cover;
 }
 
 .apercu {
@@ -147,7 +156,16 @@ div.tri.up:nth-child(2) p{
 button {
     width: 20vw;
     height:5vw;
-    margin:2.5vw 40vw;
-    border:4px solid green;
+    margin:2.5vw 30vw;
     
 }
+/*
+
+/*
+
+Onclick on triangle
+*/
+
+
+
+
