@@ -246,3 +246,7 @@ td {
 #J1.ui {
     right: 5vw;
 }
+
+.active{
+    border:3px solid red;
+}

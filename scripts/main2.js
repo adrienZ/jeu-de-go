@@ -1,3 +1,8 @@
+var get = function (id) {
+    return document.getElementById(id);
+}; //shorten document.getElementbyId()
+
+
 var d = 9; // dimension du carrÃ©
 var w; // w z  w2 z2 sont des variables qui vont m'aider Ã  vÃ©rifier les case aux alentours de la case actuelle
 var w2;
@@ -11,25 +16,76 @@ var b;
 var marteau1 = 0;
 var marteau2 = 0;
 var numberObjet = 200;
-
+var compteurJ2 = 0;
+var compteurJ1 = 0;
 var b2;
 var tab1; // grille des valeurs courantes
 var tab2; // grille temporaire
-var compteurJ2 = 0;
-var compteurJ1 = 0;
 var joueur = 1;
 var handi = 0;
 var minusJ1;
+var minusJ2;
+
 var passe = 0;
-var timerJ1 = 5;
-var timerJ2 = 30;
+var timerJ1 = 15;
+var timerJ2 = 15;
+
 var audiobombe = new Audio(['songs/bombe.mp3'])
-var audiomarteau = new Audio (['songs/marteau.mp3'])
-var audioballe = new Audio (['songs/balle.mp3'])
-var audioup = new Audio (['songs/UP.mp3'])
-var $ = function (id) {
-    return document.getElementById(id);
-}; //shorten document.getElementbyId()
+var audiomarteau = new Audio(['songs/marteau.mp3'])
+var audioballe = new Audio(['songs/balle.mp3'])
+var audioup = new Audio(['songs/UP.mp3'])
+
+
+function timer(test) {
+    
+    if (test == 1) {
+        clearInterval(minusJ2);
+        
+        
+        minusJ1 = setInterval(function () {
+            if (timerJ1 >= 0) {
+
+                timerJ1--;
+                console.log(timerJ1)
+                if (timerJ1 == 0) {
+                    console.log('loose1');
+                    clearInterval(minusJ1);
+                }
+            }
+        }, 1000);
+
+
+    } else if (test==2){
+        clearInterval(minusJ1);
+
+        minusJ2 = setInterval(function () {
+            if (timerJ2 >= 0) {
+
+                timerJ2--;
+                console.log(timerJ2)
+                if (timerJ2 == 0) {
+                    console.log('loose2');
+                    clearInterval(minusJ2);
+                }
+            }
+        }, 1000);
+
+    }
+
+
+
+
+
+}
+
+
+function blabla() {
+
+
+}
+setInterval(blabla(), 1000);
+
+
 
 function passer() {
     passe++;
@@ -106,47 +162,47 @@ function initialisation() //////////////////////////////////////////////
 function liberte(i, j) {
     var liberte = 4;
 
-    if ($("col_" + i + " line_" + j + " ").className == 'div1') {
-        if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+    if (get("col_" + i + " line_" + j + " ").className == 'div1') {
+        if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+        if (get("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
 
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+        if (get("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+        if (get("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
             liberte--;
 
         }
 
     }
-    if ($("col_" + i + " line_" + j + " ").className == 'div3' || $("col_" + i + " line_" + j + " ").className == 'div7' || $("col_" + i + " line_" + j + " ").className == 'div8' || $("col_" + i + " line_" + j + " ").className == 'div9' || $("col_" + i + " line_" + j + " ").className == 'div10' || $("col_" + i + " line_" + j + " ").className == 'div11') {
+    if (get("col_" + i + " line_" + j + " ").className == 'div3' || get("col_" + i + " line_" + j + " ").className == 'div7' || get("col_" + i + " line_" + j + " ").className == 'div8' || get("col_" + i + " line_" + j + " ").className == 'div9' || get("col_" + i + " line_" + j + " ").className == 'div10' || get("col_" + i + " line_" + j + " ").className == 'div11') {
 
-        if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+        if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+        if (get("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
 
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+        if (get("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+        if (get("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
             liberte--;
 
         }
     }
-   
+
 
     if (liberte != 0) {
         return true;
@@ -160,10 +216,10 @@ function liberte(i, j) {
 }
 
 function verification(caser) {
-    
+
     b = 1;
     var bonus = true;
-    
+
     c = 100;
     tab1 = new Array();
 
@@ -171,14 +227,14 @@ function verification(caser) {
 
     for (var i = 1; i < d; i++) {
         for (var j = 1; j < d; j++) {
-            if ($("col_" + i + " line_" + j + " ").className == 'div1') {
+            if (get("col_" + i + " line_" + j + " ").className == 'div1') {
 
                 tab2[i][j] = b;
 
                 b++;
 
             }
-            if ($("col_" + i + " line_" + j + " ").className == 'div3') {
+            if (get("col_" + i + " line_" + j + " ").className == 'div3') {
 
                 tab2[i][j] = c;
 
@@ -186,7 +242,7 @@ function verification(caser) {
                 c++;
 
             }
-            if ($("col_" + i + " line_" + j + " ").className == 'div2') {
+            if (get("col_" + i + " line_" + j + " ").className == 'div2') {
                 tab2[i][j] = 0;
             }
         }
@@ -198,25 +254,25 @@ function verification(caser) {
     for (var i = 1; i < d; i++) {
         for (var j = 1; j < d; j++) {
 
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -224,25 +280,25 @@ function verification(caser) {
 
         }
         for (var j = d - 1; j > 1; j--) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -253,25 +309,25 @@ function verification(caser) {
 
     for (var i = d - 1; i > 1; i--) {
         for (var j = d - 1; j > 1; j--) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -287,25 +343,25 @@ function verification(caser) {
 
         }
         for (var j = 1; j < d; j++) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -319,933 +375,911 @@ function verification(caser) {
     var yolo = caser.id;
     var Icase = parseInt(yolo.substr(4, 1));
     var Jcase = parseInt(yolo.substr(11));
-    var prio=false;
+    var prio = false;
 
 
     ///VERIF CASE AUTOUR DE CELLE OU LON VIENT DE CLIQUER ////
 
     if (tab2[Icase + 1][Jcase] != 0) {
-        if(tab2[Icase + 1][Jcase] == tab2[Icase][Jcase]){
-            prio=true;
-        }
-        else{
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
-                if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
-
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
-
-
-                    }
-                }
-            }
-        }
-
-        if (compteurFalse == NombreDePion) {
-             prio=false;
-            NombreDePion = 0;
-            compteurFalse = 0;
+        if (tab2[Icase + 1][Jcase] == tab2[Icase][Jcase]) {
+            prio = true;
+        } else {
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
-                        if (tab2[i][j] >= 200) {
-                              if ($("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g=i-1;g<=i+1;g++)
-                                {
-                                    for (var h=j-1;h<=j+1;h++){
-                                        if ($("col_" + g + " line_" + h + " ").className!='div5'){
-                                        $("col_" + g + " line_" + h + " ").className='div2';    
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
 
-                                    }
-                                }
-                            }
-                             }
-
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
-                                    }
-                                }
-
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
-                                    }
-                                }
-
-                            }
-                            else if($("col_" + i + " line_" + j + " ").className == 'div10'){
-                                audioballe.play();
-                               handi=handi+3;
-                                if(joueur==1){
-                                    joueur=2;
-                                }
-                                else {
-                                    joueur=1;
-                                }
-
-                            }
-                        }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
+                            break;
 
                         }
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
 
-                        if (bonus == true) {
-                           
-                           
-                              jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",0);
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class','div2');
-                     
-                   
-                         
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",2);
-                            
-                        } else {
-                            bonus = true
-                        };
+
+                        }
                     }
                 }
             }
-        }
 
+            if (compteurFalse == NombreDePion) {
+                prio = false;
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
+
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
+
+                            }
+
+                            if (bonus == true) {
+
+
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 0);
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class', 'div2');
+
+
+
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 2);
+
+                            } else {
+                                bonus = true
+                            };
+                        }
+                    }
+                }
+            }
+
+        }
     }
-}
 
     if (tab2[Icase - 1][Jcase] != 0) {
-        if(tab2[Icase - 1][Jcase] == tab2[Icase][Jcase]){
-            prio=true;
+        if (tab2[Icase - 1][Jcase] == tab2[Icase][Jcase]) {
+            prio = true;
 
-        }
-        else{
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
-
-                if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
-
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
-
-
-                    }
-                }
-            }
-        }
-
-        if (compteurFalse == NombreDePion) {
-            prio=false;
-            NombreDePion = 0;
-            compteurFalse = 0;
+        } else {
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
+
                     if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
 
-                        if (tab2[i][j] >= 200) {
-                             if ($("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g=i-1;g<=i+1;g++)
-                                {
-                                    for (var h=j-1;h<=j+1;h++){
-                                        if ($("col_" + g + " line_" + h + " ").className!='div5'){
-                                        $("col_" + g + " line_" + h + " ").className='div2';
-                                    }
-                                }
-                                }
-                             }
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
-                                    }
-                                }
-
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
-                                    }
-                                }
-
-                            }
-                            else if($("col_" + i + " line_" + j + " ").className == 'div10'){
-                                audioballe.play();
-                                handi=handi+3;
-                                if(joueur==1){
-                                    joueur=2;
-                                }
-                                else {
-                                    joueur=1;
-                                }
-
-                            }
-                        }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
+                            break;
 
                         }
-                        if (bonus == true) {
-                                 jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",0);
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class','div2');
-                     
-                   
-                         
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",2);
-                           
-                        } else {
-                            bonus = true
-                        };
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
 
+
+                        }
+                    }
+                }
+            }
+
+            if (compteurFalse == NombreDePion) {
+                prio = false;
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
+
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+                                            }
+                                        }
+                                    }
+                                }
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
+
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
+
+                            }
+                            if (bonus == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 0);
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class', 'div2');
+
+
+
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 2);
+
+                            } else {
+                                bonus = true
+                            };
+
+                        }
                     }
                 }
             }
         }
-    }
     }
 
     if (tab2[Icase][Jcase + 1] != 0) {
-        if(tab2[Icase][Jcase+1] == tab2[Icase][Jcase]){
-            prio=true;
-        }
-        else {
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
-
-
-                if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
-                    NombreDePion++;
-                    liberte(i, j);
-
-                    if (liberte(i, j) == true) {
-
-
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-
-                        compteurFalse++;
-
-
-                    }
-                }
-            }
-        }
-
-        if (compteurFalse == NombreDePion) {
-             prio=false;
+        if (tab2[Icase][Jcase + 1] == tab2[Icase][Jcase]) {
+            prio = true;
+        } else {
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
+
+
                     if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
-                        if (tab2[i][j] >= 200) {
-                             if ($("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
+                        NombreDePion++;
+                        liberte(i, j);
 
-                                for (var g=i-1;g<=i+1;g++)
-                                {
-                                    for (var h=j-1;h<=j+1;h++){
-                                        if ($("col_" + g + " line_" + h + " ").className!='div5'){
-                                        $("col_" + g + " line_" + h + " ").className='div2';
-                                    }
-                                }
-                                }
-                             }
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
-                                    }
-                                }
+                        if (liberte(i, j) == true) {
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
-                                    }
-                                }
 
-                            }
-                            else if($("col_" + i + " line_" + j + " ").className == 'div10'){
-                                audioballe.play();
-                                handi=handi+3;
-                                if(joueur==1){
-                                    joueur=2;
-                                }
-                                else {
-                                    joueur=1;
-                                }
-
-                            }
-                        }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
+                            break;
 
                         }
-                        if (bonus == true) {
-                                 jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",0);
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class','div2');
-                     
-                   
-                         
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",2);
-                            
-                        } else {
-                            bonus = true
-                        };
+                        if (liberte(i, j) == false) {
+
+                            compteurFalse++;
+
+
+                        }
+                    }
+                }
+            }
+
+            if (compteurFalse == NombreDePion) {
+                prio = false;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                    audiobombe.play();
+
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+                                            }
+                                        }
+                                    }
+                                }
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
+
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
+
+                            }
+                            if (bonus == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 0);
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class', 'div2');
+
+
+
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 2);
+
+                            } else {
+                                bonus = true
+                            };
+                        }
                     }
                 }
             }
         }
-    }
     }
 
     if (tab2[Icase][Jcase - 1] != 0) {
-        if(tab2[Icase][Jcase-1] == tab2[Icase][Jcase]){
-            prio=true;
+        if (tab2[Icase][Jcase - 1] == tab2[Icase][Jcase]) {
+            prio = true;
 
-        }
-        else{
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
-
-                if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
-
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
-
-
-                    }
-                }
-            }
-        }
-
-
-        if (compteurFalse == NombreDePion) {
-             prio=false;
-            NombreDePion = 0;
-            compteurFalse = 0;
+        } else {
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
+
                     if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
-                        if (tab2[i][j] >= 200) {
-                             if ($("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g=i-1;g<=i+1;g++)
-                                {
-                                    for (var h=j-1;h<=j+1;h++){
-                                         if ($("col_" + g + " line_" + h + " ").className!='div5'){
-                                        $("col_" + g + " line_" + h + " ").className='div2';
-                                    }
-                                    }
-                                }
-                             }
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
-                                    }
-                                }
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
-                                    }
-                                }
+                            break;
 
-
-                            }
-                            else if($("col_" + i + " line_" + j + " ").className == 'div10'){
-                                audioballe.play();
-                                handi=handi+3;
-                                if(joueur==1){
-                                    joueur=2;
-                                }
-                                else {
-                                    joueur=1;
-                                }
-
-                            }
                         }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-                            console.log(compteurJ1);
-                        } else {
-                            compteurJ2++;
-                            console.log(compteurJ2);
-                        }
-                        if (bonus == true) {
-                                  jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",0);
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class','div2');
-                     
-                   
-                         
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",2);
-                        } else {
-                            bonus = true;
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
+
+
                         }
                     }
                 }
             }
 
+
+            if (compteurFalse == NombreDePion) {
+                prio = false;
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+                                            }
+                                        }
+                                    }
+                                }
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1';
+                                        }
+                                    }
+
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
+
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+                                console.log(compteurJ1);
+                            } else {
+                                compteurJ2++;
+                                console.log(compteurJ2);
+                            }
+                            if (bonus == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 0);
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class', 'div2');
+
+
+
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 2);
+                            } else {
+                                bonus = true;
+                            }
+                        }
+                    }
+                }
+
+            }
         }
+
     }
-    
-}
 
-if(prio==true){
+    if (prio == true) {
 
-    if (tab2[Icase + 1][Jcase] != 0) {
-    
-        
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
-                if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
-
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
+        if (tab2[Icase + 1][Jcase] != 0) {
 
 
-                    }
-                }
-            }
-        }
-
-        if (compteurFalse == NombreDePion) {
-             prio=false;
-            NombreDePion = 0;
-            compteurFalse = 0;
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
-                        if (tab2[i][j] >= 200) {
-                              if ($("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g=i-1;g<=i+1;g++)
-                                {
-                                    for (var h=j-1;h<=j+1;h++){
-                                        if ($("col_" + g + " line_" + h + " ").className!='div5'){
-                                        $("col_" + g + " line_" + h + " ").className='div2';
-                                    }
-                                }
-                                }
-                             }
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
 
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
-                                    }
-                                }
-
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
-                                    }
-                                }
-
-                            }
-                            else if($("col_" + i + " line_" + j + " ").className == 'div10'){
-                                audioballe.play();
-                               handi=handi+3;
-                                if(joueur==1){
-                                    joueur=2;
-                                }
-                                else {
-                                    joueur=1;
-                                }
-
-                            }
-                        }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
+                            break;
 
                         }
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
 
-                        if (bonus == true) {
-                                 jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",0);
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class','div2');
-                     
-                   
-                         
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",2);
-                            
-                        } else {
-                            bonus = true
-                        };
+
+                        }
                     }
                 }
             }
-        }
 
-    }
+            if (compteurFalse == NombreDePion) {
+                prio = false;
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
+
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
+
+                            }
+
+                            if (bonus == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 0);
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class', 'div2');
 
 
-    if (tab2[Icase - 1][Jcase] != 0) {
-      
-        
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
 
-                if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 2);
 
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
-
-
+                            } else {
+                                bonus = true
+                            };
+                        }
                     }
                 }
             }
+
         }
 
-        if (compteurFalse == NombreDePion) {
-            prio=false;
-            NombreDePion = 0;
-            compteurFalse = 0;
+
+        if (tab2[Icase - 1][Jcase] != 0) {
+
+
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
+
                     if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
 
-                        if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g=i-1;g<=i+1;g++)
-                                {
-                                    for (var h=j-1;h<=j+1;h++){
-                                        if ($("col_" + g + " line_" + h + " ").className!='div5'){
-                                        $("col_" + g + " line_" + h + " ").className='div2';
-                                    }
-                                }
-                                }
-                             }
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
-                                    }
-                                }
-
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
-                                    }
-                                }
-
-                            }
-                            else if($("col_" + i + " line_" + j + " ").className == 'div10'){
-                                audioballe.play();
-                                handi=handi+3;
-                                if(joueur==1){
-                                    joueur=2;
-                                }
-                                else {
-                                    joueur=1;
-                                }
-
-                            }
-                        }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
+                            break;
 
                         }
-                        if (bonus == true) {
-                                 jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",0);
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class','div2');
-                     
-                   
-                         
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",2);
-                            
-                        } else {
-                            bonus = true
-                        };
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
 
+
+                        }
                     }
                 }
             }
-        }
-    
-    }
 
-    if (tab2[Icase][Jcase + 1] != 0) {
-        
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
+            if (compteurFalse == NombreDePion) {
+                prio = false;
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
+
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+                                            }
+                                        }
+                                    }
+                                }
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
+
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
+
+                            }
+                            if (bonus == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 0);
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class', 'div2');
 
 
-                if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
-                    NombreDePion++;
-                    liberte(i, j);
 
-                    if (liberte(i, j) == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 2);
 
+                            } else {
+                                bonus = true
+                            };
 
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-
-                        compteurFalse++;
-
-
+                        }
                     }
                 }
             }
+
         }
 
-        if (compteurFalse == NombreDePion) {
-             prio=false;
+        if (tab2[Icase][Jcase + 1] != 0) {
+
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
+
+
                     if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
-                        if (tab2[i][j] >= 200) {
-                               if ($("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g=i-1;g<=i+1;g++)
-                                {
-                                    for (var h=j-1;h<=j+1;h++){
-                                        if ($("col_" + g + " line_" + h + " ").className!='div5'){
-                                        $("col_" + g + " line_" + h + " ").className='div2';
-                                    }
-                                }
-                                }
-                             }
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
-                                    }
-                                }
+                        NombreDePion++;
+                        liberte(i, j);
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
-                                    }
-                                }
+                        if (liberte(i, j) == true) {
 
-                            }
-                            else if($("col_" + i + " line_" + j + " ").className == 'div10'){
-                                audioballe.play();
-                                handi=handi+3;
-                                if(joueur==1){
-                                    joueur=2;
-                                }
-                                else {
-                                    joueur=1;
-                                }
 
-                            }
-                        }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
+                            break;
 
                         }
-                        if (bonus == true) {
-                                 jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",0);
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class','div2');
-                     
-                   
-                         
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",2);
-                          
-                        } else {
-                            bonus = true
-                        };
+                        if (liberte(i, j) == false) {
+
+                            compteurFalse++;
+
+
+                        }
                     }
                 }
             }
-        }
-    
-    }
 
-    if (tab2[Icase][Jcase - 1] != 0) {
-  
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
+            if (compteurFalse == NombreDePion) {
+                prio = false;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+                                            }
+                                        }
+                                    }
+                                }
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1';
+                                        }
+                                    }
 
-                if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1';
+                                        }
+                                    }
 
-                        break;
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
 
-                    }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
+
+                            }
+                            if (bonus == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 0);
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class', 'div2');
 
 
+
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 2);
+
+                            } else {
+                                bonus = true
+                            };
+                        }
                     }
                 }
             }
+
         }
 
 
-        if (compteurFalse == NombreDePion) {
-             prio=false;
-            NombreDePion = 0;
-            compteurFalse = 0;
+
+        if (tab2[Icase][Jcase - 1] != 0) {
+
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
+
                     if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
-                        if (tab2[i][j] >= 200) { 
-                              if ($("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g=i-1;g<=i+1;g++)
-                                {
-                                    for (var h=j-1;h<=j+1;h++){
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
 
-                                        if ($("col_" + g + " line_" + h + " ").className!='div5'){
-                                        $("col_" + g + " line_" + h + " ").className='div2';
-                                    }
-                                }
-                                }
-                             }  
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
-                                    }
-                                }
+                            break;
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
-                                 audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
-                                    } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
-                                    }
-                                }
-
-
-                            }
-                            else if($("col_" + i + " line_" + j + " ").className == 'div10'){
-                                audioballe.play();
-                                handi=handi+3;
-                                if(joueur==1){
-                                    joueur=2;
-                                }
-                                else {
-                                    joueur=1;
-                                }
-
-                            }
                         }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-                            console.log(compteurJ1);
-                        } else {
-                            compteurJ2++;
-                            console.log(compteurJ2);
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
+
+
                         }
-                        if (bonus == true) {
-                                 jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",0);
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class','div2');
-                     
-                   
-                         
-                        jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow",2);
-                               
-                        } else {
-                            bonus = true
-                        };
                     }
                 }
             }
 
-            
-    }
-}
 
-}
+            if (compteurFalse == NombreDePion) {
+                prio = false;
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+                                            }
+                                        }
+                                    }
+                                }
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1';
+                                        }
+                                    }
+
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
+
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+                                console.log(compteurJ1);
+                            } else {
+                                compteurJ2++;
+                                console.log(compteurJ2);
+                            }
+                            if (bonus == true) {
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 0);
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").attr('class', 'div2');
+
+
+
+                                jQuery("#col_" + i + "\\ line_" + j + "\\ ").fadeTo("slow", 2);
+
+                            } else {
+                                bonus = true
+                            };
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+    }
+    get("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
+    get("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
+    get("bonusJ2").innerHTML = "X " + marteau2;
+    get("bonusJ1").innerHTML = "X " + marteau1;
 
 }
 
@@ -1256,29 +1290,26 @@ function modifier(monID) //////////////////////////////////////////////
         var Icase = parseInt(yolo.substr(4, 1));
         var Jcase = parseInt(yolo.substr(11));
 
-        if (joueur == 1  
-            &&( ($("col_" + (Icase+1)+ " line_" + Jcase + " ").className!='div3' && $("col_" + (Icase+1)+ " line_" + Jcase + " ").className!='div5') || ($("col_" + (Icase-1) + " line_" + Jcase + " ").className!='div3' && $("col_" + (Icase-1) + " line_" + Jcase + " ").className!='div5')  || ($("col_" + (Icase) + " line_" + (Jcase+1) + " ").className!='div3' && $("col_" + (Icase) + " line_" + (Jcase+1) + " ").className!='div5')  || ($("col_" + (Icase) + " line_" + (Jcase-1) + " ").className!='div3' && $("col_" + (Icase) + " line_" + (Jcase-1) + " ").className!='div5') )) {
+        if (joueur == 1 && ((get("col_" + (Icase + 1) + " line_" + Jcase + " ").className != 'div3' && get("col_" + (Icase + 1) + " line_" + Jcase + " ").className != 'div5') || (get("col_" + (Icase - 1) + " line_" + Jcase + " ").className != 'div3' && get("col_" + (Icase - 1) + " line_" + Jcase + " ").className != 'div5') || (get("col_" + (Icase) + " line_" + (Jcase + 1) + " ").className != 'div3' && get("col_" + (Icase) + " line_" + (Jcase + 1) + " ").className != 'div5') || (get("col_" + (Icase) + " line_" + (Jcase - 1) + " ").className != 'div3' && get("col_" + (Icase) + " line_" + (Jcase - 1) + " ").className != 'div5'))) {
 
-            minusJ1 = setInterval(function () {
-                timerJ1--;
-            }, 1000);
+
             if (monID.className == 'div2')
 
             {
                 ApparitionObjet();
-               
-                
-                jQuery(monID).fadeTo("fast",0,function(){
-                    jQuery(monID).attr('class','div1')
-                     
-                   
+
+
+                jQuery(monID).fadeTo("fast", 0, function () {
+                    jQuery(monID).attr('class', 'div1')
+
+
                 });
-                jQuery(monID).fadeTo("fast",1);
-                
-                
-                
-                
-                
+                jQuery(monID).fadeTo("fast", 1);
+
+
+
+
+
                 if (handi <= 1) {
                     joueur = 2;
                 } else {
@@ -1290,12 +1321,12 @@ function modifier(monID) //////////////////////////////////////////////
 
             {
                 if (marteau2 != 0 && monID.className == 'div3') {
-                    jQuery(monID).fadeTo("fast",0,function(){
-                    jQuery(monID).attr('class','div1')
-                     
-                   
-                });
-                jQuery(monID).fadeTo("fast",1);
+                    jQuery(monID).fadeTo("fast", 0, function () {
+                        jQuery(monID).attr('class', 'div1')
+
+
+                    });
+                    jQuery(monID).fadeTo("fast", 1);
                     joueur = 2;
                     marteau2--;
                     ApparitionObjet();
@@ -1304,24 +1335,22 @@ function modifier(monID) //////////////////////////////////////////////
                 }
 
             }
-        } else if(joueur == 2 &&( ($("col_" + (Icase+1)+ " line_" + Jcase + " ").className!='div1' && $("col_" + (Icase+1)+ " line_" + Jcase + " ").className!='div5') || ($("col_" + (Icase-1) + " line_" + Jcase + " ").className!='div1' && $("col_" + (Icase-1) + " line_" + Jcase + " ").className!='div5')  || ($("col_" + (Icase) + " line_" + (Jcase+1) + " ").className!='div1' && $("col_" + (Icase) + " line_" + (Jcase+1) + " ").className!='div5')  || ($("col_" + (Icase) + " line_" + (Jcase-1) + " ").className!='div1' && $("col_" + (Icase) + " line_" + (Jcase-1) + " ").className!='div5') )) {
+        } else if (joueur == 2 && ((get("col_" + (Icase + 1) + " line_" + Jcase + " ").className != 'div1' && get("col_" + (Icase + 1) + " line_" + Jcase + " ").className != 'div5') || (get("col_" + (Icase - 1) + " line_" + Jcase + " ").className != 'div1' && get("col_" + (Icase - 1) + " line_" + Jcase + " ").className != 'div5') || (get("col_" + (Icase) + " line_" + (Jcase + 1) + " ").className != 'div1' && get("col_" + (Icase) + " line_" + (Jcase + 1) + " ").className != 'div5') || (get("col_" + (Icase) + " line_" + (Jcase - 1) + " ").className != 'div1' && get("col_" + (Icase) + " line_" + (Jcase - 1) + " ").className != 'div5'))) {
 
-            minusJ2 = setInterval(function () {
-                timerJ2--;
-            }, 1000);
+
             if (monID.className == 'div2')
 
             {
                 ApparitionObjet();
-                
 
-                jQuery(monID).fadeTo("fast",0,function(){
-                    jQuery(monID).attr('class','div3')
-                     
-                   
+
+                jQuery(monID).fadeTo("fast", 0, function () {
+                    jQuery(monID).attr('class', 'div3')
+
+
                 });
-                jQuery(monID).fadeTo("fast",1);
-                
+                jQuery(monID).fadeTo("fast", 1);
+
                 if (handi <= 1) {
                     joueur = 1;
                 } else {
@@ -1333,12 +1362,12 @@ function modifier(monID) //////////////////////////////////////////////
 
             {
                 if (marteau1 != 0 && monID.className == 'div1') {
-                    jQuery(monID).fadeTo("fast",0,function(){
-                    jQuery(monID).attr('class','div3')
-                     
-                   
-                });
-                jQuery(monID).fadeTo("fast",1);
+                    jQuery(monID).fadeTo("fast", 0, function () {
+                        jQuery(monID).attr('class', 'div3')
+
+
+                    });
+                    jQuery(monID).fadeTo("fast", 1);
                     joueur = 1;
                     marteau1--;
                     ApparitionObjet();
@@ -1347,13 +1376,19 @@ function modifier(monID) //////////////////////////////////////////////
 
             }
         }
+
+        setTimeout(function () {
+            verification(monID)
+        }, 500);
+        timer(joueur)
         
-        setTimeout(function(){verification(monID)} ,500);
+            get('timerJ1').innerHTML = 'blbla' + timerJ1;
+    get('timerJ2').innerHTML = 'blsda' + timerJ2;
     }
 
 
 initialisation();
- 
+
 
 
 
@@ -1430,118 +1465,120 @@ function ApparitionObjet() {
             var popX = Math.ceil(Math.random() * 10) - 1;
             var popY = Math.ceil(Math.random() * 10) - 1;
         }
-        while ($("col_" + popX + " line_" + popY + " ").className != 'div2');
+        while (get("col_" + popX + " line_" + popY + " ").className != 'div2');
         var typeObjet = Math.ceil(Math.random() * 5);
-        if (($("col_" + (popX + 1) + " line_" + popY + " ").className == 'div2' || $("col_" + (popX + 1) + " line_" + popY + " ").className == 'div1' || $("col_" + (popX + 1) + " line_" + popY + " ").className == 'div3' || $("col_" + (popX + 1) + " line_" + popY + " ").className == 'div5')&&
-            ($("col_" + (popX - 1) + " line_" + popY + " ").className == 'div2' || $("col_" + (popX - 1) + " line_" + popY + " ").className == 'div1' || $("col_" + (popX - 1) + " line_" + popY + " ").className == 'div3' || $("col_" + (popX - 1) + " line_" + popY + " ").className == 'div5') &&
-            ($("col_" + (popX) + " line_" + (popY-1) + " ").className == 'div2' || $("col_" + (popX) + " line_" + (popY-1) + " ").className == 'div1' || $("col_" + (popX) + " line_" + (popY-1) + " ").className == 'div3' || $("col_" + (popX) + " line_" + (popY-1) + " ").className == 'div5') && 
-            ($("col_" + (popX) + " line_" + (popY+1) + " ").className == 'div2' || $("col_" + (popX) + " line_" + (popY+1) + " ").className == 'div1' || $("col_" + (popX) + " line_" + (popY+1) + " ").className == 'div3' || $("col_" + (popX) + " line_" + (popY+1) + " ").className == 'div5')) {
-            
+        if ((get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div5') &&
+            (get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div5') &&
+            (get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div5') &&
+            (get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div5')) {
 
-        
-        
-        
-        switch (typeObjet) {
-        case 1:
-                 
-                        jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",0,function(){
-                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class','div8') 
-                    });
-                 jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",1);
+
+
+
+
+            switch (typeObjet) {
+            case 1:
+
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 0, function () {
+                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class', 'div8')
+                });
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 1);
 
                 break;
 
-        case 2:
-                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",0,function(){
-                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class','div7') 
-                    });
-                 jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",1);
+            case 2:
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 0, function () {
+                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class', 'div7')
+                });
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 1);
 
 
-            break;
+                break;
 
-        case 3:
-                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",0,function(){
-                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class','div9') 
-                    });
-                 jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",1);
-
-
-            break;
-        
-        case 4:
-            jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",0,function(){
-                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class','div10') 
-                    });
-                 jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",1);
+            case 3:
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 0, function () {
+                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class', 'div9')
+                });
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 1);
 
 
-             break;
-        
-        case 5:
-           jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",0,function(){
-                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class','div11') 
-                    });
-                 jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast",1);
+                break;
+
+            case 4:
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 0, function () {
+                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class', 'div10')
+                });
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 1);
 
 
-             break;
+                break;
+
+            case 5:
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 0, function () {
+                    jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").attr('class', 'div11')
+                });
+                jQuery("#col_" + popX + "\\ line_" + popY + "\\ ").fadeTo("fast", 1);
+
+
+                break;
+            }
+            tab2[popX][popY] = numberObjet;
+
+            numberObjet++;
+
         }
-        tab2[popX][popY] = numberObjet;
 
-        numberObjet++;
-    
     }
 
 }
 
-}
-
-function SetCookie (name, value) {
-    var argv=SetCookie.arguments;
-    var argc=SetCookie.arguments.length;
-    var expires=(argc > 2) ? argv[2] : null;
-    var path=(argc > 3) ? argv[3] : null;
-    var domain=(argc > 4) ? argv[4] : null;
-    var secure=(argc > 5) ? argv[5] : false;
-    document.cookie=name+"="+escape(value)+
-        ((expires==null) ? "" : ("; expires="+expires.toGMTString()))+
-        ((path==null) ? "" : ("; path="+path))+
-        ((domain==null) ? "" : ("; domain="+domain))+
-        ((secure==true) ? "; secure" : "");
+function SetCookie(name, value) {
+    var argv = SetCookie.arguments;
+    var argc = SetCookie.arguments.length;
+    var expires = (argc > 2) ? argv[2] : null;
+    var path = (argc > 3) ? argv[3] : null;
+    var domain = (argc > 4) ? argv[4] : null;
+    var secure = (argc > 5) ? argv[5] : false;
+    document.cookie = name + "=" + escape(value) +
+        ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+        ((path == null) ? "" : ("; path=" + path)) +
+        ((domain == null) ? "" : ("; domain=" + domain)) +
+        ((secure == true) ? "; secure" : "");
 }
 
 
 function getCookieVal(offset) {
-    var endstr=document.cookie.indexOf (";", offset);
-    if (endstr==-1)
-            endstr=document.cookie.length;
+    var endstr = document.cookie.indexOf(";", offset);
+    if (endstr == -1)
+        endstr = document.cookie.length;
     return unescape(document.cookie.substring(offset, endstr));
 }
-function GetCookie (name) {
-    var arg=name+"=";
-    var alen=arg.length;
-    var clen=document.cookie.length;
-    var i=0;
-    while (i<clen) {
-        var j=i+alen;
-        if (document.cookie.substring(i, j)==arg)
-                        return getCookieVal (j);
-                i=document.cookie.indexOf(" ",i)+1;
-                        if (i==0) break;}
+
+function GetCookie(name) {
+    var arg = name + "=";
+    var alen = arg.length;
+    var clen = document.cookie.length;
+    var i = 0;
+    while (i < clen) {
+        var j = i + alen;
+        if (document.cookie.substring(i, j) == arg)
+            return getCookieVal(j);
+        i = document.cookie.indexOf(" ", i) + 1;
+        if (i == 0) break;
+    }
     return null;
 }
 
 
 
-function Mario(){
-                theme=1;
-                var pathname=location.pathname;
-                var myDomain=pathname.substring(0,pathname.lastIndexOf('/')) +'/';
-                var date_exp = new Date();
-                date_exp.setTime(date_exp.getTime()+(365*24*3600*1000));
+function Mario() {
+    theme = 1;
+    var pathname = location.pathname;
+    var myDomain = pathname.substring(0, pathname.lastIndexOf('/')) + '/';
+    var date_exp = new Date();
+    date_exp.setTime(date_exp.getTime() + (365 * 24 * 3600 * 1000));
     // Ici on définit une durée de vie de 365 jours
-                SetCookie("theme",theme,date_exp,myDomain);
-                
+    SetCookie("theme", theme, date_exp, myDomain);
+
 
 }

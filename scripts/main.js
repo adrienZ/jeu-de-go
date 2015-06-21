@@ -21,13 +21,12 @@ var compteurJ1 = 0;
 var b2;
 var tab1; // grille des valeurs courantes
 var tab2; // grille temporaire
-
 var joueur = 1;
 var handi = 0;
 var minusJ1;
 var passe = 0;
 var timerJ1 = 5;
-var timerJ2 = 30;
+var timerJ2 = 5;
 
 function passer() {
     passe++;
@@ -629,10 +628,11 @@ function verification(caser) {
         }
 
     }
-        $("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
-        $("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
-        $("bonusJ1").innerHTML = $("bonusJ1").innerHTML;
-        $("bonusJ2").innerHTML = $("bonusJ2").innerHTML;
+    $("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
+    $("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
+    $("bonusJ2").innerHTML = "X " + marteau2;
+
+    $("bonusJ1").innerHTML = "X " + marteau1;
 
 }
 
@@ -695,17 +695,14 @@ function modifier(monID) //////////////////////////////////////////////
 
             }
         }
-$("bonusJ1").innerHTML = "X 0" ;
-$("bonusJ2").innerHTML = "X 0";
+
+
     }
 
 
 initialisation();
-scoreJ1 = "Score : 0";
-scoreJ2 = "Score : 0";
 
-
-
+        
 
 
 function save() {
