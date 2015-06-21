@@ -77,14 +77,21 @@ function timer(test) {
 
 
 }
+var myVar;
+
+function myFunction() {
+    myVar = setInterval( blabla, 1000);
+}
+
 
 
 function blabla() {
-
+    get('timerJ1').innerHTML = 'blbla' + timerJ1;
+    get('timerJ2').innerHTML = 'blsda' + timerJ2;
 
 }
-setInterval(blabla(), 1000);
 
+myFunction();
 
 
 function passer() {
@@ -144,7 +151,6 @@ function initialisation() //////////////////////////////////////////////
             }
 
             document.write("</tr>")
-
 
 
 
@@ -1381,9 +1387,6 @@ function modifier(monID) //////////////////////////////////////////////
             verification(monID)
         }, 500);
         timer(joueur)
-        
-            get('timerJ1').innerHTML = 'blbla' + timerJ1;
-    get('timerJ2').innerHTML = 'blsda' + timerJ2;
     }
 
 
