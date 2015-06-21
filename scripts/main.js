@@ -1,3 +1,8 @@
+var $ = function (id) {
+    return document.getElementById(id);
+}; //shorten document.getElementbyId()
+
+
 var d = 9; // dimension du carrÃ©
 var w; // w z  w2 z2 sont des variables qui vont m'aider Ã  vÃ©rifier les case aux alentours de la case actuelle
 var w2;
@@ -11,21 +16,18 @@ var b;
 var marteau1 = 0;
 var marteau2 = 0;
 var numberObjet = 200;
-
+var compteurJ2 = 0;
+var compteurJ1 = 0;
 var b2;
 var tab1; // grille des valeurs courantes
 var tab2; // grille temporaire
-var compteurJ2 = 0;
-var compteurJ1 = 0;
+
 var joueur = 1;
 var handi = 0;
 var minusJ1;
 var passe = 0;
 var timerJ1 = 5;
 var timerJ2 = 30;
-var $ = function (id) {
-    return document.getElementById(id);
-}; //shorten document.getElementbyId()
 
 function passer() {
     passe++;
@@ -608,9 +610,11 @@ function verification(caser) {
                         }
                         if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
                             compteurJ1++;
+
                             console.log(compteurJ1);
                         } else {
                             compteurJ2++;
+
                             console.log(compteurJ2);
                         }
                         if (bonus == true) {
@@ -625,6 +629,11 @@ function verification(caser) {
         }
 
     }
+        $("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
+        $("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
+        $("bonusJ1").innerHTML = $("bonusJ1").innerHTML;
+        $("bonusJ2").innerHTML = $("bonusJ2").innerHTML;
+
 }
 
 function modifier(monID) //////////////////////////////////////////////
@@ -691,6 +700,10 @@ function modifier(monID) //////////////////////////////////////////////
 
 
 initialisation();
+scoreJ1 = "Score : 0";
+scoreJ2 = "Score : 0";
+$("bonusJ1").innerHTML = "X 0" ;
+$("bonusJ2").innerHTML = "X 0";
 
 
 
@@ -806,3 +819,12 @@ function bomb(e) {
     }
 
 }
+
+
+
+
+
+
+
+
+//HUD
