@@ -4,18 +4,29 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Smash Brawl go</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" type="text/css" href="javascript.fullPage.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/javascript.fullPage.css" />
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/multi.css">
+
 </head>
 
 <body>
     <div id="fullpage">
-
+        <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+        </a>
 
 
         <div class="section " id="section0">
-
+            <h1>Super Smash Bros Go</h1>
+            <p>Partage le jeu pour affronter tes amis ou importe une partie en cours !</p>
+            <div class="buttons">
+                <button class="fb">Partager sur Facebook</button>
+                <button class="import">Importer une Partie</button>
+            </div>
+            <div class="mouse-icon">
+                <div class="wheel"></div>
+            </div>
         </div>
 
 
@@ -62,97 +73,78 @@
                 <h3>Mode de jeu</h3>
                 <div class="mod">
                     <div class="tri fp-controlArrow fp-next" id="duel">
-                        <p>Duel</p>
+                        <p onclick='choose="classic";deploy();'>Duel</p>
+
                     </div>
-                    <div class="tri fp-controlArrow fp-next" id=classiq>
+                    <div class="tri" id=classiq>
                         <p>Classique</p>
                     </div>
-                    <div class="tri fp-controlArrow fp-next" "multiplayer">
-                        <p>Multijoueur</p>
-                    </div>
+
+
+
 
 
                     <!--                    <div class="apercu"></div>-->
-<!--                    <button>OK</button>-->
+                    <!--                    <button>OK</button>-->
+                </div>
+                <div class="choose_ia">
+                    <p> Comment souhaitez vous jouer ?</p>
+                    <div class=choice_box>
+                        <a href="#" class="choice fp-controlArrow fp-next" id="ia">Jouer contre une I.A</a>
+                        <a href="#" class="choice fp-controlArrow fp-next" id="friend">Jouer contre un ami</a>
+                    </div>
+
                 </div>
             </div>
             <div class="slide" id="slide2">
 
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
+                <div class="game">
+                    <div class="multiplayer">
+                        <div class="handicap">
+                            <button id="oui" onclick="handicap(this)"> Oui </button>
+                            <button id="non" onclick="handicap(this)"> Non </button>
+                            <button id="bomb" onclick=" bomb()">bomb</button>
+                        </div>
+                        <h1> Jeu de Go </h1>
+                        <div id="J1"></div>
+                        <div id="J2"></div>
+                        <div class="game"> </div>
+                        <input type="file" id="fileinput" multiple />
+                        <script type="text/javascript">
+                            function readMultipleFiles(evt) { //Retrieve all the files from the FileList object var files = evt.target.files; if (files) { for (var i = 0, f; f = files[i]; i++) { var r = new FileReader(); r.onload = (function (f) { return function (e) { var contents = e.target.result; alert("Got the file.n" + "name: " + f.name + "n" + "type: " + f.type + "n" + "size: " + f.size + " bytesn" + "starts with: " + contents.substr(1, contents.indexOf("n"))); console.log(f) }; })(f); r.readAsText(f); } } else { alert("Failed to load files"); } } document.getElementById("fileinput").addEventListener("change", readMultipleFiles, false);
+                        </script>
+                        <button onclick="passer();" id="pass">PASS</button>
+                        <button id="save" value=save onclick=save();>SAVE</button>
+                        <script type="text/javascript" src="scripts/FileSaver.min.js"></script>
+                    </div>
+                    <script type="text/javascript" id="gameScript" src="scripts/big.js"></script>
+
+                </div>
+
+
             </div>
+
 
         </div>
 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
 
     </div>
 
-    <script type="text/javascript" src="javascript.fullPage.js"></script>
+    <script type="text/javascript" src="scripts/javascript.fullPage.js"></script>
     <script type="text/javascript">
-        fullpage.initialize('#fullpage', {
-            anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-            menu: '#menu',
+        fullpage.initialize("#fullpage", {
+            anchors: ["firstPage", "secondPage", "3rdPage", "4thpage", "lastPage"],
+            menu: "#menu",
             css3: true
         });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type='text/javascript' src='interaction.js'></script>
+    <script type="text/javascript" src="scripts/interaction.js"></script>
 </body>
 
 </html>

@@ -1,8 +1,3 @@
-var $ = function (id) {
-    return document.getElementById(id);
-}; //shorten document.getElementbyId()
-
-
 var d = 9; // dimension du carrÃ©
 var w; // w z  w2 z2 sont des variables qui vont m'aider Ã  vÃ©rifier les case aux alentours de la case actuelle
 var w2;
@@ -16,18 +11,21 @@ var b;
 var marteau1 = 0;
 var marteau2 = 0;
 var numberObjet = 200;
-var compteurJ2 = 0;
-var compteurJ1 = 0;
+
 var b2;
 var tab1; // grille des valeurs courantes
 var tab2; // grille temporaire
-
+var compteurJ2 = 0;
+var compteurJ1 = 0;
 var joueur = 1;
 var handi = 0;
 var minusJ1;
 var passe = 0;
 var timerJ1 = 5;
 var timerJ2 = 30;
+var lorem = function (id) {
+    return document.getElementById(id);
+}; //shorten document.getElementbyId()
 
 function passer() {
     passe++;
@@ -57,6 +55,10 @@ function findepartie() {
 
 function initialisation() //////////////////////////////////////////////
     {
+        
+        var div = document.getElementsByClassName('divID');
+
+div.innerHTML = div.innerHTML + 'Extra stuff';
         tab1 = new Array();
         tab2 = new Array();
 
@@ -104,41 +106,41 @@ function initialisation() //////////////////////////////////////////////
 function liberte(i, j) {
     var liberte = 4;
 
-    if ($("col_" + i + " line_" + j + " ").className == 'div1') {
-        if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+    if (lorem("col_" + i + " line_" + j + " ").className == 'div1') {
+        if (lorem("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+        if (lorem("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
 
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+        if (lorem("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+        if (lorem("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
             liberte--;
 
         }
 
     }
-    if ($("col_" + i + " line_" + j + " ").className == 'div3' || $("col_" + i + " line_" + j + " ").className == 'div8' || $("col_" + i + " line_" + j + " ").className == 'div7' || $("col_" + i + " line_" + j + " ").className == 'div9') {
-        if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+    if (lorem("col_" + i + " line_" + j + " ").className == 'div3' || lorem("col_" + i + " line_" + j + " ").className == 'div8' || lorem("col_" + i + " line_" + j + " ").className == 'div7' || lorem("col_" + i + " line_" + j + " ").className == 'div9') {
+        if (lorem("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+        if (lorem("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
 
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+        if (lorem("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+        if (lorem("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
             liberte--;
 
         }
@@ -165,18 +167,18 @@ function verification(caser) {
 
     for (var i = 1; i < d; i++) {
         for (var j = 1; j < d; j++) {
-            if ($("col_" + i + " line_" + j + " ").className == 'div1') {
+            if (lorem("col_" + i + " line_" + j + " ").className == 'div1') {
 
                 tab2[i][j] = b;
-
                 b++;
 
             }
-            if ($("col_" + i + " line_" + j + " ").className == 'div3') {
+            if (lorem("col_" + i + " line_" + j + " ").className == 'div3') {
 
                 tab2[i][j] = c;
 
 
+                
                 c++;
 
             }
@@ -189,25 +191,25 @@ function verification(caser) {
     for (var i = 1; i < d; i++) {
         for (var j = 1; j < d; j++) {
 
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (lorem("col_" + (i + 1) + " line_" + j + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (lorem("col_" + (i - 1) + " line_" + j + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (lorem("col_" + i + " line_" + (j + 1) + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (lorem("col_" + i + " line_" + (j - 1) + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -215,25 +217,25 @@ function verification(caser) {
 
         }
         for (var j = d - 1; j > 1; j--) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (lorem("col_" + (i + 1) + " line_" + j + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (lorem("col_" + (i - 1) + " line_" + j + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (lorem("col_" + i + " line_" + (j + 1) + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (lorem("col_" + i + " line_" + (j - 1) + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -244,25 +246,25 @@ function verification(caser) {
 
     for (var i = d - 1; i > 1; i--) {
         for (var j = d - 1; j > 1; j--) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (lorem("col_" + (i + 1) + " line_" + j + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (lorem("col_" + (i - 1) + " line_" + j + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (lorem("col_" + i + " line_" + (j + 1) + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (lorem("col_" + i + " line_" + (j - 1) + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -278,25 +280,25 @@ function verification(caser) {
 
         }
         for (var j = 1; j < d; j++) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (lorem("col_" + (i + 1) + " line_" + j + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (lorem("col_" + (i - 1) + " line_" + j + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (lorem("col_" + i + " line_" + (j + 1) + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (lorem("col_" + i + " line_" + (j - 1) + " ").className == lorem("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -343,29 +345,29 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
                         if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
+                            if (lorem("col_" + i + " line_" + j + " ").className == 'div8') {
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
+                            } else if (lorem("col_" + i + " line_" + j + " ").className == 'div7') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
+                                        lorem("col_" + g + " line_" + j + " ").className = 'div3';
                                     } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
+                                        lorem("col_" + g + " line_" + j + " ").className = 'div1';
                                     }
                                 }
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
+                            } else if (lorem("col_" + i + " line_" + j + " ").className == 'div9') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
+                                        lorem("col_" + i + " line_" + g + " ").className = 'div3';
                                     } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
+                                        lorem("col_" + i + " line_" + g + " ").className = 'div1';
                                     }
                                 }
 
@@ -380,7 +382,7 @@ function verification(caser) {
                         }
 
                         if (bonus == true) {
-                            $("col_" + i + " line_" + j + " ").className = 'div2';
+                            lorem("col_" + i + " line_" + j + " ").className = 'div2';
                         } else {
                             bonus = true
                         };
@@ -421,29 +423,29 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
                         if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
+                            if (lorem("col_" + i + " line_" + j + " ").className == 'div8') {
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
+                            } else if (lorem("col_" + i + " line_" + j + " ").className == 'div7') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
+                                        lorem("col_" + g + " line_" + j + " ").className = 'div3';
                                     } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
+                                        lorem("col_" + g + " line_" + j + " ").className = 'div1';
                                     }
                                 }
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
+                            } else if (lorem("col_" + i + " line_" + j + " ").className == 'div9') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
+                                        lorem("col_" + i + " line_" + g + " ").className = 'div3';
                                     } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
+                                        lorem("col_" + i + " line_" + g + " ").className = 'div1';
                                     }
                                 }
 
@@ -457,7 +459,7 @@ function verification(caser) {
 
                         }
                         if (bonus == true) {
-                            $("col_" + i + " line_" + j + " ").className = 'div2';
+                            lorem("col_" + i + " line_" + j + " ").className = 'div2';
                         } else {
                             bonus = true
                         };
@@ -502,29 +504,29 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
                         if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
+                            if (lorem("col_" + i + " line_" + j + " ").className == 'div8') {
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
+                            } else if (lorem("col_" + i + " line_" + j + " ").className == 'div7') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
+                                        lorem("col_" + g + " line_" + j + " ").className = 'div3';
                                     } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
+                                        lorem("col_" + g + " line_" + j + " ").className = 'div1';
                                     }
                                 }
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
+                            } else if (lorem("col_" + i + " line_" + j + " ").className == 'div9') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
+                                        lorem("col_" + i + " line_" + g + " ").className = 'div3';
                                     } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
+                                        lorem("col_" + i + " line_" + g + " ").className = 'div1';
                                     }
                                 }
 
@@ -538,7 +540,7 @@ function verification(caser) {
 
                         }
                         if (bonus == true) {
-                            $("col_" + i + " line_" + j + " ").className = 'div2';
+                            lorem("col_" + i + " line_" + j + " ").className = 'div2';
                         } else {
                             bonus = true
                         };
@@ -580,29 +582,29 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
                         if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
+                            if (lorem("col_" + i + " line_" + j + " ").className == 'div8') {
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
+                            } else if (lorem("col_" + i + " line_" + j + " ").className == 'div7') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
+                                        lorem("col_" + g + " line_" + j + " ").className = 'div3';
                                     } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
+                                        lorem("col_" + g + " line_" + j + " ").className = 'div1';
                                     }
                                 }
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
+                            } else if (lorem("col_" + i + " line_" + j + " ").className == 'div9') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
+                                        lorem("col_" + i + " line_" + g + " ").className = 'div3';
                                     } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
+                                        lorem("col_" + i + " line_" + g + " ").className = 'div1';
                                     }
                                 }
 
@@ -610,15 +612,13 @@ function verification(caser) {
                         }
                         if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
                             compteurJ1++;
-
                             console.log(compteurJ1);
                         } else {
                             compteurJ2++;
-
                             console.log(compteurJ2);
                         }
                         if (bonus == true) {
-                            $("col_" + i + " line_" + j + " ").className = 'div2';
+                            lorem("col_" + i + " line_" + j + " ").className = 'div2';
                         } else {
                             bonus = true
                         };
@@ -629,11 +629,6 @@ function verification(caser) {
         }
 
     }
-        $("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
-        $("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
-        $("bonusJ1").innerHTML = $("bonusJ1").innerHTML;
-        $("bonusJ2").innerHTML = $("bonusJ2").innerHTML;
-
 }
 
 function modifier(monID) //////////////////////////////////////////////
@@ -695,15 +690,11 @@ function modifier(monID) //////////////////////////////////////////////
 
             }
         }
-$("bonusJ1").innerHTML = "X 0" ;
-$("bonusJ2").innerHTML = "X 0";
+
     }
 
 
 initialisation();
-scoreJ1 = "Score : 0";
-scoreJ2 = "Score : 0";
-
 
 
 
@@ -781,19 +772,19 @@ function ApparitionObjet() {
             var popX = Math.ceil(Math.random() * 10) - 1;
             var popY = Math.ceil(Math.random() * 10) - 1;
         }
-        while ($("col_" + popX + " line_" + popY + " ").className != 'div2');
+        while (lorem("col_" + popX + " line_" + popY + " ").className != 'div2');
         var typeObjet = Math.ceil(Math.random() * 3);
         switch (typeObjet) {
         case 1:
-            $("col_" + popX + " line_" + popY + " ").className = 'div8';
+            lorem("col_" + popX + " line_" + popY + " ").className = 'div8';
             break;
 
         case 2:
-            $("col_" + popX + " line_" + popY + " ").className = 'div7';
+            lorem("col_" + popX + " line_" + popY + " ").className = 'div7';
             break;
 
         case 3:
-            $("col_" + popX + " line_" + popY + " ").className = 'div9';
+            lorem("col_" + popX + " line_" + popY + " ").className = 'div9';
             break;
         }
 
@@ -811,20 +802,11 @@ function bomb(e) {
 
     for (i = 2; i <= 5; i++) {
         for (j = 2; j <= 5; j++) {
-            if ($("col_" + i + " line_" + j + " ").className != 'div5') {
-                $("col_" + i + " line_" + j + " ").className = 'div3';
+            if (lorem("col_" + i + " line_" + j + " ").className != 'div5') {
+                lorem("col_" + i + " line_" + j + " ").className = 'div3';
             }
 
         }
     }
 
 }
-
-
-
-
-
-
-
-
-//HUD

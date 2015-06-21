@@ -1,0 +1,350 @@
+@font-face {
+    font-family: 'museo';
+    src: url(../fonts/Museo_Slab_300.otf);
+}
+* {
+    box-sizing: border-box;
+    
+    font-family:'museo';
+    font-weight:50;
+}
+
+#section0 {
+/*
+    background: url('../img/banner.jpg') no-repeat bottom;
+    background-size: cover;
+*/
+}
+
+
+#section0 h1{
+    text-align:center;
+    font-size:5em;
+    padding-top: 20vh;
+}
+
+#section0 p {
+    margin-top:10vh;
+    text-align:center;
+    font-size:1em;
+}
+
+#section0 .buttons {
+    width:40%;
+    margin:5vh auto;
+}
+
+#section0 button {
+    width:15vw;
+    height:10vh;
+    border:1px solid black;
+    font-size:1.5em;
+    margin: 0 2vw;
+    border-radius:10px;
+}
+
+
+
+
+.mouse-icon {
+    background: rgba(0, 0, 0, 0);
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 50px;
+    margin: 0 auto;
+    right: 0;
+    width: 35px;
+    cursor: pointer;
+    left:50%;
+    margin-left:-17.5px;
+    position:absolute;
+    bottom:80px;
+    -webkit-transition: all .6s linear;
+    -moz-transition: all .6s linear;
+    -ms-transition: all .6s linear;
+    -o-transition: all .6s linear;
+    transition: all .6s linear;
+
+}
+
+
+.mouse-icon .wheel {
+    -webkit-animation: 2s ease 0s normal infinite moving-icon;
+    -moz-animation: 2s ease 0s normal infinite moving-icon;
+    -o-animation: 2s ease 0s normal infinite moving-icon;
+    animation: 2s ease 0s normal infinite moving-icon;
+    border-radius: 50%;
+    height: 16px;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2px;
+    right: 0;
+    width: 8px;
+    background-color: transparent;
+    border:1px solid black;
+}
+
+
+
+@-moz-keyframes moving-icon {
+    0% {
+        margin-top: 6px;
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        margin-top: 18px;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes moving-icon {
+    0% {
+        margin-top: 6px;
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        margin-top: 18px;
+        opacity: 0;
+    }
+}
+@-o-keyframes moving-icon {
+    0% {
+        margin-top: 6px;
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        margin-top: 18px;
+        opacity: 0;
+    }
+}
+@keyframes moving-icon {
+    0% {
+        margin-top: 6px;
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        margin-top: 18px;
+        opacity: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    SECOND SLIDE
+*/
+
+#section2 {
+
+
+
+
+
+
+  background: -webkit-linear-gradient(#6441A5 10%, #2a0845 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(#6441A5 10%, #2a0845 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient( #6441A5 10%, #2a0845 90%); /* IE10 */
+  background:      -o-linear-gradient( #6441A5 10%, #2a0845 90%); /* Opera 11.10+ */
+  background:         linear-gradient( #6441A5 10%, #2a0845 90%); /* W3C */
+        
+        
+        
+        
+    
+    color:white;
+}
+
+#section2 h3 {
+    text-align: center;
+    font-size: 40px;
+    padding-top: 10vh;
+    color:white;
+}
+
+#section2 div.container {
+    width: 80vw;
+    margin: 0 10vw;
+}
+
+div.rule {
+    width: 15vw;
+    display: inline-block;
+    margin: 0 2vw;
+    vertical-align: top;
+}
+/*style of the rule's illustration*/
+
+.view {
+    width: 15vw;
+    height: 15vw;
+    margin-top: 10vh;
+    vertical-align: top;
+}
+/*first rule illustration*/
+
+div#view1.view {
+    background: url('../img/regle/regle1.png') no-repeat;
+    background-size: contain;
+}
+/*second rule illustration*/
+
+div#view2.view {
+    background: url('../img/regle/regle2.png') no-repeat center;
+    background-size: contain;
+}
+/*third rule illustration*/
+
+div#view3.view {
+    background: url('../img/regle/regle3.png') no-repeat center;
+    background-size: contain;
+}
+/*forfth rule illustration*/
+
+div#view4.view {
+    background: url('../img/regle/regle4.png') no-repeat center;
+    background-size: contain;
+}
+/*style of the rule's text*/
+
+div.text {
+    margin-top: 10vh;
+    font-size: 18px;
+    vertical-align: top;
+
+
+}
+
+.mod {
+    width:80vw;
+    margin:10vw 10vw 2vw 10vw;
+    
+
+}
+#slide1 {
+    background:#F0F0F0;
+}
+#slide1 h3 {
+    text-align:center;
+    font-size:45px;
+    margin-top:1vw;
+}
+
+.tri {
+    width:50vw;
+    color:white;
+    background:#0076FF;
+    height:10vw;
+    margin:5vw auto;
+    text-align:center;
+    border-radius:1vw;
+    box-shadow:0.1vw 0.1vw 2vw #76B5FF;
+        transition:1s
+
+}
+
+.tri p {
+    font: 4em;
+    padding-top:5vw;
+} 
+/*
+.tri:hover {
+    background:blue;
+}
+*/
+
+.mod .tri:nth-child(1):hover {
+    background:url('http://i.jeuxactus.com/datas/jeux/s/u/super-smash-bros-for-nintendo-3ds/vu/super-smash-bros-for-nin-54298a8eb1edf.jpg') no-repeat center;
+    background-size:cover;
+}
+
+.mod .tri:nth-child(2):hover {
+    background:url('http://vignette4.wikia.nocookie.net/gowikia/images/c/c2/Gostones.jpg/revision/latest?cb=20080130234916') no-repeat center;
+    background-size:cover;
+}
+
+.mod .tri:nth-child(3):hover {
+    background:url('http://img1.wikia.nocookie.net/__cb20110416035508/logopedia/images/d/dc/Super_smash_bros_logo.png') no-repeat center;
+    background-size:cover;
+}
+
+.apercu {
+    width:40.6vw;
+    height:20vw;
+    border:2px solid black;
+    margin:0 20vw;;
+}
+
+
+/*
+
+/*
+
+Onclick on triangle
+*/
+/*.multiplayer, .ia, .normal{display:none;}*/
+.choose_ia {
+    width:50vw;
+    height:30vw;
+    top:25vh;
+    left:25vw;
+    background:white;
+    position:absolute;
+    display:none;
+}
+
+.choose_ia p {
+    text-align: center;
+    margin-top : 5vw;
+    font-size:2.2em;
+}
+
+.choice_box {
+    width:90%;
+    margin:auto;
+}
+.choice {
+    text-decoration:none;
+    padding:1vw 2vw;
+    border:1px solid black;
+    display:inline-block;
+    margin: 5vw 3vw;
+    border-radius: 5px;
+}
+
+#gameScriptIa {display:none}
+
+
+
+
+
+
+
+
+
+
+
+/*.multiplayer { display:none;}*/

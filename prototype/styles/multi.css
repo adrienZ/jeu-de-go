@@ -1,0 +1,97 @@
+
+.multiplayer h1 {
+  font-family: "Kanban";
+  text-align: center;
+  color: white;
+  font-size: 35px; }
+
+.div1 {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  /*    background: url(../images/pionRouge.png);*/
+  background: url(../img/captainAmerica.svg);
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center; }
+
+.div2 {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  background: url(../img/dot2.svg);
+  background-size: contain; }
+
+.div5 {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  background: url(../img/dot2.svg);
+  visibility: hidden;
+  background-size: contain; }
+
+
+.div4 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+        background: url(../img/sonic.png) no-repeat;
+    border-radius: 50%;
+    background-size: 100%;
+    background-position: center;
+}
+
+.div6 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: violet;
+    background-size: contain; }
+
+
+.div3 {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  /*    background: url(../images/pionBleu.png);*/
+  background: url(../img/irondMan.svg);
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center; }
+
+.multiplayer body {
+  height: 100vh;
+  width: 100%;
+  background: url("../img/captain_america_vs_iron_man__civil_war_by_xionice-d84h0lr-compressor.jpg") no-repeat center;
+  background-size: contain;
+  background-color: black;
+    /*
+    background : linear-gradient( #d6d6d6,#FFF);
+*/
+  overflow: hidden; }
+
+table {
+  margin: auto;
+  background: url(../img/goban.png);
+  margin-top: 15%;
+  /* background: url(../img/wood1.jpg);*/
+  margin-top: 10%; }
+
+tr {
+  height: 19px;
+  margin: 0;
+  padding: 0; }
+
+td {
+  margin: 0;
+  padding: 0; }
+
+
+#save {
+  margin: auto;
+  width: 100px;
+  height: 50px; 
+}
+
+
+
