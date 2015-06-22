@@ -1,10 +1,11 @@
 * {
     box-sizing: border-box;
+    font-family:"Kanban"
 }
 
 @font-face {
     font-family: "Kanban";
-    src: url("../font-face/Kanban.ttf");
+    src: url("../font-face/Museo_Slab_300.otf");
 }
 
 .mainHeader {
@@ -14,6 +15,7 @@
     height: 5vh;
     top: 0;
     left: 0;
+    box-shadow: 0px 1px 1px RGBA(26, 26, 26, 0.38);
 }
 
 h1 {
@@ -42,7 +44,8 @@ h1 {
     display: inline-block;
     width: 45px;
     height: 45px;
-/*    background: url(../img/dot2.svg);*/
+    /*    background: url(../img/dot2.svg);*/
+    
     background-size: contain;
 }
 
@@ -61,10 +64,9 @@ h1 {
     height: 45px;
     background: RGBA(99, 129, 255, 0.30);
     background-size: contain;
-    border-radius:50%;
-    cursor:pointer;
+    border-radius: 50%;
+    cursor: pointer;
 }
-
 
 .div4 {
     display: inline-block;
@@ -122,20 +124,23 @@ h1 {
     background-position: center;
 }
 
-body {
+body{
     height: 100vh;
     width: 100%;
     background-size: contain;
-    background-color: black;
+    background:   linear-gradient( #D2F5FF 10%, #D2E7FF 90%); /* W3C */
+        
     overflow: hidden;
 }
 
 table {
     background: url(../img/gban.png);
-    background-size:contain;
+    background-size: contain;
     width: 31.5vw;
     height: 31.5vw;
     margin: 12vh auto;
+        box-shadow: 0px 2px 3px RGB(26, 26, 26);
+
 }
 
 tr {
@@ -150,24 +155,37 @@ td {
 }
 
 #pass {
-    background: white;
+    background: #F4F1F1;
     width: 60%;
     height: 7vh;
-    margin: 4vh 20%;
+    margin: 3vh 20%;
     font-size: 18px;
+    border-radius:5px;
+    border:1px solid #A2ADFF;
 }
 
 #save {
-    background: black;
-    color: red;
-    width: 5vw;
-    height: 3vh;
-    font-size: 10px;
+    background:white;
+    color: black;
+    width: 6vw;
+    height: 3.5vh;
+    vertical-align:middle;
     display: inline-block;
     position: absolute;
-    top: 0;
-    right: 0
+    border:1px solid black;
+    top: 0.7vh;
+    right: 2vw;
+    border-radius:10px; 
+        transition:0.4s;
+
 }
+
+#save:hover {
+    background:black;
+    color:white;
+    transition:0.4s;
+}
+
 
 #fileinput {
     width: 100px;
@@ -178,9 +196,12 @@ td {
 .ui {
     width: 20vw;
     height: 31.5vw;
-    background: #FAFAFA;
+    background: RGB(250, 250, 250);
     position: absolute;
     margin-top: 14vh;
+    box-shadow: 0px 1px 3px RGB(26, 26, 26);
+        font-size:1.5em;
+
 }
 
 #J2.ui {
@@ -192,15 +213,15 @@ td {
     top: 0;
     padding-bottom: 1vh;
     border-bottom: 1px solid #8D8D8D;
-    box-shadow: 0px 1px 6px #1A1A1A;
+    box-shadow: 0px 1px 6px RGBA(26, 26, 26, 0.38);
 }
 
 .ui .head {
     border-radius: 50%;
     width: 50px;
-    height:  50px;
+    height: 50px;
     background: url('http://i.imgur.com/Fp1l1.png');
-    background-size:contain;
+    background-size: contain;
     display: inline-block;
     margin: 1vh 2vw 0 3vw;
 }
@@ -211,13 +232,11 @@ td {
     top: 2vh;
     position: absolute;
     display: inline-block;
-    font-size: 30px;
 }
 
 .ui .score {
-    margin-top: 2vw;
-    padding:1vh 0;
-    border:1px 0 solid #8D8D8D;
+    
+    padding: 3vh 0;
 }
 
 .ui .logoBonus {
@@ -227,26 +246,44 @@ td {
     height: 50px;
 }
 
+.bonus {
+    padding: 3vh 0 3vh 0;
+}
+
 .logoBonus,
 .bonusLeft {
     display: inline-block;
-    margin-top: 2vw;
+}
+
+.iconTimer {
+    display: inline-block;
 }
 
 .timer {
-    width: 50%;
     padding: 3vh 1vw;
-    border: 1px solid black;
-    text-align: center;
     margin: auto;
     font-size: 1.3em;
-    margin-top: 5vw;
+    margin-top: 1vw;
+    border-bottom: 1px solid RGBA(180, 180, 180, 0.62);
+    border-top: 1px solid RGBA(180, 180, 180, 0.62);
+}
+
+#timerJ1,
+#timerJ2 {
+    display: inline-block;
 }
 
 #J1.ui {
     right: 5vw;
 }
 
-.active{
-    border:3px solid red;
+.active {
+    border: 3px solid red;
+}
+
+.iconTimer {
+    background: url(../img/clock.png) no-repeat center;
+    background-size: contain;
+    width: 35px;
+    height: 35px;
 }

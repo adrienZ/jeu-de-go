@@ -46,7 +46,6 @@ function timer(test) {
             if (timerJ1 >= 0) {
 
                 timerJ1--;
-                console.log(timerJ1)
                 if (timerJ1 == 0) {
                     console.log('loose1');
                     clearInterval(minusJ1);
@@ -62,7 +61,6 @@ function timer(test) {
             if (timerJ2 >= 0) {
 
                 timerJ2--;
-                console.log(timerJ2)
                 if (timerJ2 == 0) {
                     console.log('loose2');
                     clearInterval(minusJ2);
@@ -77,21 +75,21 @@ function timer(test) {
 
 
 }
-var myVar;
+var interval;
 
-function myFunction() {
-    myVar = setInterval( blabla, 1000);
+function time (){
+    interval = setInterval( blabla, 1000);
 }
 
 
 
 function blabla() {
-    get('timerJ1').innerHTML = 'blbla' + timerJ1;
-    get('timerJ2').innerHTML = 'blsda' + timerJ2;
+    get('timerJ1').innerHTML = '00 : ' + timerJ1;
+    get('timerJ2').innerHTML = '00 : ' + timerJ2;
 
 }
 
-myFunction();
+time();
 
 
 function passer() {
