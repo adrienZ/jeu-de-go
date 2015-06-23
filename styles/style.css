@@ -134,12 +134,11 @@ body{
 }
 
 table {
-    background: url(../img/gban.png);
+    background: url(../img/gban.png) no-repeat;
     background-size: contain;
-    width: 31.5vw;
-    height: 31.5vw;
     margin: 12vh auto;
-        box-shadow: 0px 2px 3px RGB(26, 26, 26);
+    box-shadow: 0px 2px 3px RGB(26, 26, 26);
+/*    width:31.5%;*/
 
 }
 
@@ -203,9 +202,14 @@ td {
         font-size:1.5em;
 
 }
+#J1.ui {
+        left:5vw;
+
+}
+
 
 #J2.ui {
-    left: 5vw;
+    right: 5vw;
 }
 
 .ui header {
@@ -286,4 +290,10 @@ td {
     background-size: contain;
     width: 35px;
     height: 35px;
+}
+
+
+.currentP {
+    box-shadow:0px 5px 10px #583110;
+    
 }

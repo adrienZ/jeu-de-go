@@ -1,4 +1,4 @@
-var $ = function (id) {
+var get = function (id) {
     return document.getElementById(id);
 }; //shorten document.getElementbyId()
 
@@ -24,9 +24,72 @@ var tab2; // grille temporaire
 var joueur = 1;
 var handi = 0;
 var minusJ1;
+var minusJ2;
+
 var passe = 0;
-var timerJ1 = 5;
-var timerJ2 = 5;
+var timerJ1 = 15;
+var timerJ2 = 15;
+
+var audiobombe = new Audio(['songs/bombe.mp3'])
+var audiomarteau = new Audio(['songs/marteau.mp3'])
+var audioballe = new Audio(['songs/balle.mp3'])
+var audioup = new Audio(['songs/UP.mp3'])
+
+
+function timer(test) {
+    
+    if (test == 1) {
+        clearInterval(minusJ2);
+        
+        
+        minusJ1 = setInterval(function () {
+            if (timerJ1 >= 0) {
+
+                timerJ1--;
+                if (timerJ1 == 0) {
+                    console.log('loose1');
+                    clearInterval(minusJ1);
+                }
+            }
+        }, 1000);
+
+
+    } else if (test==2){
+        clearInterval(minusJ1);
+
+        minusJ2 = setInterval(function () {
+            if (timerJ2 >= 0) {
+
+                timerJ2--;
+                if (timerJ2 == 0) {
+                    console.log('loose2');
+                    clearInterval(minusJ2);
+                }
+            }
+        }, 1000);
+
+    }
+
+
+
+
+
+}
+var interval;
+
+function time (){
+    interval = setInterval( blabla, 1000);
+}
+
+
+
+function blabla() {
+    get('timerJ1').innerHTML = '00 : ' + timerJ1;
+    get('timerJ2').innerHTML = '00 : ' + timerJ2;
+
+}
+
+time();
 
 function passer() {
     passe++;
@@ -103,41 +166,41 @@ function initialisation() //////////////////////////////////////////////
 function liberte(i, j) {
     var liberte = 4;
 
-    if ($("col_" + i + " line_" + j + " ").className == 'div1') {
-        if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+    if (get("col_" + i + " line_" + j + " ").className == 'div1 animated rollIn') {
+        if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+        if (get("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
 
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+        if (get("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+        if (get("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
             liberte--;
 
         }
 
     }
-    if ($("col_" + i + " line_" + j + " ").className == 'div3' || $("col_" + i + " line_" + j + " ").className == 'div8' || $("col_" + i + " line_" + j + " ").className == 'div7' || $("col_" + i + " line_" + j + " ").className == 'div9') {
-        if ($("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+    if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn' || get("col_" + i + " line_" + j + " ").className == 'div8' || get("col_" + i + " line_" + j + " ").className == 'div7' || get("col_" + i + " line_" + j + " ").className == 'div9') {
+        if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+        if (get("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
 
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+        if (get("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
             liberte--;
 
         }
-        if ($("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+        if (get("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
             liberte--;
 
         }
@@ -164,14 +227,14 @@ function verification(caser) {
 
     for (var i = 1; i < d; i++) {
         for (var j = 1; j < d; j++) {
-            if ($("col_" + i + " line_" + j + " ").className == 'div1') {
+            if (get("col_" + i + " line_" + j + " ").className == 'div1 animated rollIn') {
 
                 tab2[i][j] = b;
 
                 b++;
 
             }
-            if ($("col_" + i + " line_" + j + " ").className == 'div3') {
+            if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn') {
 
                 tab2[i][j] = c;
 
@@ -188,25 +251,25 @@ function verification(caser) {
     for (var i = 1; i < d; i++) {
         for (var j = 1; j < d; j++) {
 
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -214,25 +277,25 @@ function verification(caser) {
 
         }
         for (var j = d - 1; j > 1; j--) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -243,25 +306,25 @@ function verification(caser) {
 
     for (var i = d - 1; i > 1; i--) {
         for (var j = d - 1; j > 1; j--) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -277,25 +340,25 @@ function verification(caser) {
 
         }
         for (var j = 1; j < d; j++) {
-            if ($("col_" + (i + 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
 
                 tab2[i + 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + (i - 1) + " line_" + j + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
 
                 tab2[i - 1][j] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j + 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
 
                 tab2[i][j + 1] = tab2[i][j];
 
             }
 
-            if ($("col_" + i + " line_" + (j - 1) + " ").className == $("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
 
                 tab2[i][j - 1] = tab2[i][j];
 
@@ -342,29 +405,29 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
                         if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
+                            if (get("col_" + i + " line_" + j + " ").className == 'div8') {
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
+                                        get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
                                     } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
+                                        get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
                                     }
                                 }
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
+                                        get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
                                     } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
+                                        get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
                                     }
                                 }
 
@@ -379,7 +442,7 @@ function verification(caser) {
                         }
 
                         if (bonus == true) {
-                            $("col_" + i + " line_" + j + " ").className = 'div2';
+                            get("col_" + i + " line_" + j + " ").className = 'div2';
                         } else {
                             bonus = true
                         };
@@ -420,29 +483,29 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
                         if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
+                            if (get("col_" + i + " line_" + j + " ").className == 'div8') {
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
+                                        get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
                                     } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
+                                        get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
                                     }
                                 }
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
+                                        get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
                                     } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
+                                        get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
                                     }
                                 }
 
@@ -456,7 +519,7 @@ function verification(caser) {
 
                         }
                         if (bonus == true) {
-                            $("col_" + i + " line_" + j + " ").className = 'div2';
+                            get("col_" + i + " line_" + j + " ").className = 'div2';
                         } else {
                             bonus = true
                         };
@@ -501,29 +564,29 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
                         if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
+                            if (get("col_" + i + " line_" + j + " ").className == 'div8') {
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
+                                        get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
                                     } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
+                                        get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
                                     }
                                 }
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
+                                        get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
                                     } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
+                                        get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
                                     }
                                 }
 
@@ -537,7 +600,7 @@ function verification(caser) {
 
                         }
                         if (bonus == true) {
-                            $("col_" + i + " line_" + j + " ").className = 'div2';
+                            get("col_" + i + " line_" + j + " ").className = 'div2';
                         } else {
                             bonus = true
                         };
@@ -579,29 +642,29 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
                         if (tab2[i][j] >= 200) {
-                            if ($("col_" + i + " line_" + j + " ").className == 'div8') {
+                            if (get("col_" + i + " line_" + j + " ").className == 'div8') {
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div7') {
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + g + " line_" + j + " ").className = 'div3';
+                                        get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
                                     } else {
-                                        $("col_" + g + " line_" + j + " ").className = 'div1';
+                                        get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
                                     }
                                 }
 
-                            } else if ($("col_" + i + " line_" + j + " ").className == 'div9') {
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
-                                        $("col_" + i + " line_" + g + " ").className = 'div3';
+                                        get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
                                     } else {
-                                        $("col_" + i + " line_" + g + " ").className = 'div1';
+                                        get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
                                     }
                                 }
 
@@ -617,7 +680,7 @@ function verification(caser) {
                             console.log(compteurJ2);
                         }
                         if (bonus == true) {
-                            $("col_" + i + " line_" + j + " ").className = 'div2';
+                            get("col_" + i + " line_" + j + " ").className = 'div2';
                         } else {
                             bonus = true
                         };
@@ -628,11 +691,11 @@ function verification(caser) {
         }
 
     }
-    $("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
-    $("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
-    $("bonusJ2").innerHTML = "X " + marteau2;
+    get("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
+    get("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
+    get("bonusJ2").innerHTML = "X " + marteau2;
 
-    $("bonusJ1").innerHTML = "X " + marteau1;
+    get("bonusJ1").innerHTML = "X " + marteau1;
 
 }
 
@@ -641,6 +704,8 @@ function modifier(monID) //////////////////////////////////////////////
         x = 0;
 
         if (joueur == 1) {
+            document.querySelector('.ui#J1').className= 'ui currentP'
+                        document.querySelector('.ui#J2').className= 'ui'
 
             minusJ1 = setInterval(function () {
                 timerJ1--;
@@ -650,7 +715,7 @@ function modifier(monID) //////////////////////////////////////////////
             {
                 ApparitionObjet();
 
-                monID.className = 'div1';
+                monID.className = 'div1 animated rollIn';
                 if (handi <= 1) {
                     joueur = 2;
                 } else {
@@ -662,7 +727,7 @@ function modifier(monID) //////////////////////////////////////////////
 
             {
                 if (marteau2 != 0) {
-                    monID.className = 'div1';
+                    monID.className = 'div1 animated rollIn';
                     joueur = 2;
                     marteau2--;
                     ApparitionObjet();
@@ -672,7 +737,8 @@ function modifier(monID) //////////////////////////////////////////////
 
             }
         } else {
-
+            document.querySelector('.ui#J2').className= 'ui currentP'
+                        document.querySelector('.ui#J1').className= 'ui'
             minusJ2 = setInterval(function () {
                 timerJ2--;
             }, 1000);
@@ -681,12 +747,12 @@ function modifier(monID) //////////////////////////////////////////////
             {
                 ApparitionObjet();
                 joueur = 1;
-                monID.className = 'div3';
+                monID.className = 'div3 animated rollIn';
             } else
 
             {
                 if (marteau1 != 0) {
-                    monID.className = 'div3';
+                    monID.className = 'div3 animated rollIn';
                     joueur = 1;
                     marteau1--;
                     ApparitionObjet();
@@ -778,19 +844,19 @@ function ApparitionObjet() {
             var popX = Math.ceil(Math.random() * 10) - 1;
             var popY = Math.ceil(Math.random() * 10) - 1;
         }
-        while ($("col_" + popX + " line_" + popY + " ").className != 'div2');
+        while (get("col_" + popX + " line_" + popY + " ").className != 'div2');
         var typeObjet = Math.ceil(Math.random() * 3);
         switch (typeObjet) {
         case 1:
-            $("col_" + popX + " line_" + popY + " ").className = 'div8';
+            get("col_" + popX + " line_" + popY + " ").className = 'div8';
             break;
 
         case 2:
-            $("col_" + popX + " line_" + popY + " ").className = 'div7';
+            get("col_" + popX + " line_" + popY + " ").className = 'div7';
             break;
 
         case 3:
-            $("col_" + popX + " line_" + popY + " ").className = 'div9';
+            get("col_" + popX + " line_" + popY + " ").className = 'div9';
             break;
         }
 
@@ -808,8 +874,8 @@ function bomb(e) {
 
     for (i = 2; i <= 5; i++) {
         for (j = 2; j <= 5; j++) {
-            if ($("col_" + i + " line_" + j + " ").className != 'div5') {
-                $("col_" + i + " line_" + j + " ").className = 'div3';
+            if (get("col_" + i + " line_" + j + " ").className != 'div5') {
+                get("col_" + i + " line_" + j + " ").className = 'div3 animated rollIn';
             }
 
         }
