@@ -25,23 +25,23 @@ var joueur = 1;
 var handi = 0;
 var minusJ1;
 var minusJ2;
-
+var suicideuh = false;
 var passe = 0;
 var timerJ1 = 15;
 var timerJ2 = 15;
 
-var audiobombe = new Audio(['songs/bombe.mp3'])
-var audiomarteau = new Audio(['songs/marteau.mp3'])
-var audioballe = new Audio(['songs/balle.mp3'])
-var audioup = new Audio(['songs/UP.mp3'])
+var audiobombe = new Audio(['songs/bombe.mp3']);
+var audiomarteau = new Audio(['songs/marteau.mp3']);
+var audioballe = new Audio(['songs/balle.mp3']);
+var audioup = new Audio(['songs/UP.mp3']);
 
 
 function timer(test) {
-    
+
     if (test == 1) {
         clearInterval(minusJ2);
-        
-        
+
+
         minusJ1 = setInterval(function () {
             if (timerJ1 >= 0) {
 
@@ -54,7 +54,7 @@ function timer(test) {
         }, 1000);
 
 
-    } else if (test==2){
+    } else if (test == 2) {
         clearInterval(minusJ1);
 
         minusJ2 = setInterval(function () {
@@ -77,8 +77,8 @@ function timer(test) {
 }
 var interval;
 
-function time (){
-    interval = setInterval( blabla, 1000);
+function time() {
+    interval = setInterval(blabla, 1000);
 }
 
 
@@ -186,7 +186,7 @@ function liberte(i, j) {
         }
 
     }
-    if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn' || get("col_" + i + " line_" + j + " ").className == 'div8' || get("col_" + i + " line_" + j + " ").className == 'div7' || get("col_" + i + " line_" + j + " ").className == 'div9') {
+    if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn' || get("col_" + i + " line_" + j + " ").className == 'div8' || get("col_" + i + " line_" + j + " ").className == 'div7' || get("col_" + i + " line_" + j + " ").className == 'div9' || get("col_" + i + " line_" + j + " ").className == 'div10' || get("col_" + i + " line_" + j + " ").className == 'div11') {
         if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
             liberte--;
 
@@ -220,6 +220,7 @@ function liberte(i, j) {
 function verification(caser) {
     b = 1;
     var bonus = true;
+    suicideuh = false;
     c = 100;
     tab1 = new Array();
 
@@ -233,6 +234,7 @@ function verification(caser) {
 
                 b++;
 
+
             }
             if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn') {
 
@@ -242,8 +244,11 @@ function verification(caser) {
                 c++;
 
             }
-        }
+            if (get("col_" + i + " line_" + j + " ").className == 'div2') {
+                tab2[i][j] = 0;
+            }
 
+        }
     }
 
 
@@ -376,6 +381,12 @@ function verification(caser) {
 
     ///VERIF CASE AUTOUR DE CELLE OU LON VIENT DE CLIQUER ////
 
+    if (liberte(Icase, Jcase) == false) {
+        console.log(liberte(Icase, Jcase));
+        suicideuh = true;
+
+
+    }
     if (tab2[Icase + 1][Jcase] != 0) {
         var NombreDePion = 0;
         var compteurFalse = 0;
@@ -405,13 +416,27 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
                         if (tab2[i][j] >= 200) {
+                            if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                audiobombe.play();
+                                for (var g = i - 1; g <= i + 1; g++) {
+                                    for (var h = j - 1; h <= j + 1; h++) {
+                                        if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                            get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                        }
+                                    }
+                                }
+                            }
                             if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                audiomarteau.play();
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
                             } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+
+                                audioup.play();
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
@@ -422,6 +447,7 @@ function verification(caser) {
                                 }
 
                             } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                audioup.play();
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
@@ -431,8 +457,18 @@ function verification(caser) {
                                     }
                                 }
 
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                audioballe.play();
+                                handi = handi + 3;
+                                if (joueur == 1) {
+                                    joueur = 2;
+                                } else {
+                                    joueur = 1;
+                                }
+
                             }
                         }
+
                         if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
                             compteurJ1++;
 
@@ -443,6 +479,7 @@ function verification(caser) {
 
                         if (bonus == true) {
                             get("col_" + i + " line_" + j + " ").className = 'div2';
+                            suicideuh = false;
                         } else {
                             bonus = true
                         };
@@ -483,13 +520,27 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
                         if (tab2[i][j] >= 200) {
+                            if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                audiobombe.play();
+                                for (var g = i - 1; g <= i + 1; g++) {
+                                    for (var h = j - 1; h <= j + 1; h++) {
+                                        if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                            get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                        }
+                                    }
+                                }
+                            }
                             if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                audiomarteau.play();
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
                             } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+
+                                audioup.play();
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
@@ -500,6 +551,7 @@ function verification(caser) {
                                 }
 
                             } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                audioup.play();
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
@@ -507,6 +559,15 @@ function verification(caser) {
                                     } else {
                                         get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
                                     }
+                                }
+
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                audioballe.play();
+                                handi = handi + 3;
+                                if (joueur == 1) {
+                                    joueur = 2;
+                                } else {
+                                    joueur = 1;
                                 }
 
                             }
@@ -520,6 +581,8 @@ function verification(caser) {
                         }
                         if (bonus == true) {
                             get("col_" + i + " line_" + j + " ").className = 'div2';
+                            suicideuh = false;
+
                         } else {
                             bonus = true
                         };
@@ -564,13 +627,27 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
                         if (tab2[i][j] >= 200) {
+                            if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                audiobombe.play();
+                                for (var g = i - 1; g <= i + 1; g++) {
+                                    for (var h = j - 1; h <= j + 1; h++) {
+                                        if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                            get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                        }
+                                    }
+                                }
+                            }
                             if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                audiomarteau.play();
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
                             } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+
+                                audioup.play();
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
@@ -581,6 +658,7 @@ function verification(caser) {
                                 }
 
                             } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                audioup.play();
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
@@ -588,6 +666,15 @@ function verification(caser) {
                                     } else {
                                         get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
                                     }
+                                }
+
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                audioballe.play();
+                                handi = handi + 3;
+                                if (joueur == 1) {
+                                    joueur = 2;
+                                } else {
+                                    joueur = 1;
                                 }
 
                             }
@@ -601,6 +688,8 @@ function verification(caser) {
                         }
                         if (bonus == true) {
                             get("col_" + i + " line_" + j + " ").className = 'div2';
+                            suicideuh = false;
+
                         } else {
                             bonus = true
                         };
@@ -642,13 +731,27 @@ function verification(caser) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
                         if (tab2[i][j] >= 200) {
+                            if (get("col_" + i + " line_" + j + " ").className == 'div11') {
+                                audiobombe.play();
+                                for (var g = i - 1; g <= i + 1; g++) {
+                                    for (var h = j - 1; h <= j + 1; h++) {
+                                        if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                            get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                        }
+                                    }
+                                }
+                            }
                             if (get("col_" + i + " line_" + j + " ").className == 'div8') {
+                                audiomarteau.play();
                                 if (joueur == 1) {
                                     marteau1 = 2;
                                 } else {
                                     marteau2 = 2;
                                 }
                             } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
+
+                                audioup.play();
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
@@ -659,6 +762,7 @@ function verification(caser) {
                                 }
 
                             } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
+                                audioup.play();
                                 bonus = false;
                                 for (var g = 1; g < 9; g++) {
                                     if (joueur == 1) {
@@ -666,6 +770,15 @@ function verification(caser) {
                                     } else {
                                         get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
                                     }
+                                }
+
+                            } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
+                                audioballe.play();
+                                handi = handi + 3;
+                                if (joueur == 1) {
+                                    joueur = 2;
+                                } else {
+                                    joueur = 1;
                                 }
 
                             }
@@ -681,6 +794,8 @@ function verification(caser) {
                         }
                         if (bonus == true) {
                             get("col_" + i + " line_" + j + " ").className = 'div2';
+                            suicideuh = false;
+
                         } else {
                             bonus = true
                         };
@@ -690,11 +805,25 @@ function verification(caser) {
 
         }
 
+        if (suicideuh == true) {
+
+            get("col_" + Icase + " line_" + Jcase + " ").className = 'div2';
+            window.alert('sucide');
+            if (handi>1) {
+                handi++
+            }
+            if (joueur == 1) {
+
+                joueur = 2;
+            } else {
+                joueur = 1;
+
+            }
+        }
     }
     get("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
     get("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
     get("bonusJ2").innerHTML = "X " + marteau2;
-
     get("bonusJ1").innerHTML = "X " + marteau1;
 
 }
@@ -704,12 +833,10 @@ function modifier(monID) //////////////////////////////////////////////
         x = 0;
 
         if (joueur == 1) {
-            document.querySelector('.ui#J1').className= 'ui currentP'
-                        document.querySelector('.ui#J2').className= 'ui'
+            document.querySelector('.ui#J1 header').className = 'currentP';
+            document.querySelector('.ui#J2 header').className = '';
 
-            minusJ1 = setInterval(function () {
-                timerJ1--;
-            }, 1000);
+
             if (monID.className == 'div2')
 
             {
@@ -737,17 +864,22 @@ function modifier(monID) //////////////////////////////////////////////
 
             }
         } else {
-            document.querySelector('.ui#J2').className= 'ui currentP'
-                        document.querySelector('.ui#J1').className= 'ui'
-            minusJ2 = setInterval(function () {
-                timerJ2--;
-            }, 1000);
+            document.querySelector('.ui#J2 header').className = 'currentP';
+            document.querySelector('.ui#J1 header').className = '';
+
             if (monID.className == 'div2')
 
             {
                 ApparitionObjet();
-                joueur = 1;
+                
                 monID.className = 'div3 animated rollIn';
+                if (handi <= 1) {
+                    joueur = 1;
+                } else {
+                    handi = handi - 1;
+
+
+                }
             } else
 
             {
@@ -762,13 +894,14 @@ function modifier(monID) //////////////////////////////////////////////
             }
         }
 
-
+        timer(joueur);
+        console.log(handi);
     }
 
 
 initialisation();
 
-        
+
 
 
 function save() {
@@ -839,50 +972,77 @@ function readSingleFile(evt) {
 function ApparitionObjet() {
 
     var chanceObjet = Math.ceil(Math.random() * 10);
-    if (chanceObjet <= 1) {
+    if (chanceObjet <= 10) {
         do {
             var popX = Math.ceil(Math.random() * 10) - 1;
             var popY = Math.ceil(Math.random() * 10) - 1;
         }
         while (get("col_" + popX + " line_" + popY + " ").className != 'div2');
-        var typeObjet = Math.ceil(Math.random() * 3);
-        switch (typeObjet) {
-        case 1:
-            get("col_" + popX + " line_" + popY + " ").className = 'div8';
-            break;
+        var typeObjet = Math.ceil(Math.random() * 5);
+        if ((get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div5') &&
+            (get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div5') &&
+            (get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div5') &&
+            (get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div5')) {
 
-        case 2:
-            get("col_" + popX + " line_" + popY + " ").className = 'div7';
-            break;
+            var possible = liberteObjet(popX, popY);
 
-        case 3:
-            get("col_" + popX + " line_" + popY + " ").className = 'div9';
-            break;
-        }
+            if (possible == '0') {
 
-        tab2[popX][popY] = numberObjet;
+            }
+            switch (typeObjet) {
+            case 1:
+                get("col_" + popX + " line_" + popY + " ").className = 'div8';
+                break;
 
-        numberObjet++;
-    }
+            case 2:
+                get("col_" + popX + " line_" + popY + " ").className = 'div7';
+                break;
 
+            case 3:
+                get("col_" + popX + " line_" + popY + " ").className = 'div9';
+                break;
+            case 4:
+                get("col_" + popX + " line_" + popY + " ").className = 'div10';
 
-}
+                break;
 
-
-function bomb(e) {
-
-
-    for (i = 2; i <= 5; i++) {
-        for (j = 2; j <= 5; j++) {
-            if (get("col_" + i + " line_" + j + " ").className != 'div5') {
-                get("col_" + i + " line_" + j + " ").className = 'div3 animated rollIn';
+            case 5:
+                get("col_" + popX + " line_" + popY + " ").className = 'div11';
+                break;
             }
 
-        }
-    }
+            tab2[popX][popY] = numberObjet;
 
+            numberObjet++;
+        }
+
+
+
+    }
 }
 
+function liberteObjet(i, j) {
+    var liberte2 = 4;
+    if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+        liberte2--;
+
+    }
+    if (get("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
+
+        liberte2--;
+
+    }
+    if (get("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+        liberte2--;
+
+    }
+    if (get("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+        liberte2--;
+
+    }
+    return liberte2;
+
+}
 
 
 

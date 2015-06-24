@@ -62,8 +62,9 @@ h1 {
     display: inline-block;
     width: 45px;
     height: 45px;
-    background: RGBA(99, 129, 255, 0.30);
+    background: RGBA(99, 129, 255, 0.15);
     background-size: contain;
+    border: 1px dashed black;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -92,7 +93,7 @@ h1 {
     display: inline-block;
     width: 45px;
     height: 45px;
-    background: url('../img/billGaucheDroite.svg');
+    background: url('../img/billGaucheDroite.svg') no-repeat center;
     background-size: contain;
 }
 
@@ -100,7 +101,7 @@ h1 {
     display: inline-block;
     width: 45px;
     height: 45px;
-    background: url('../img/marteau.svg'), url(../img/dot2.svg);
+    background: url('../img/marteau.svg')no-repeat center;
     background-size: contain;
 }
 
@@ -108,7 +109,23 @@ h1 {
     display: inline-block;
     width: 45px;
     height: 45px;
-    background: url('../img/billHautBas.svg'), url(../img/dot2.svg);
+    background: url('../img/billHautBas.svg')no-repeat center;
+    background-size: contain;
+}
+
+.div10 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: url('http://cdn.shopify.com/s/files/1/0326/0713/products/smash-ball-burning_grande.jpg?v=1420043793')no-repeat center;
+    background-size: contain;
+}
+
+.div11 {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: url('../img/bombe.svg') no-repeat center;
     background-size: contain;
 }
 
@@ -134,8 +151,8 @@ body{
 }
 
 table {
-    background: url(../img/gban.png) no-repeat;
-    background-size: contain;
+    background: url(../img/gban2.png) no-repeat top;
+    background-size: cover;
     margin: 12vh auto;
     box-shadow: 0px 2px 3px RGB(26, 26, 26);
 /*    width:31.5%;*/
@@ -296,7 +313,7 @@ td {
 
 
 .currentP {
-    box-shadow:0px 5px 10px #583110;
+    box-shadow:0px 5px 10px #FFA700;
     transition:0.5s;
     
 }
