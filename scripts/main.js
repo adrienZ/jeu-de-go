@@ -142,7 +142,7 @@ function initialisation() //////////////////////////////////////////////
                 //
                 //}
                 else {
-                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2'onclick='modifier(this); verification(this);  '></td>")
+                    document.write("<td id='col_" + i + " line_" + j + " ' class='div2'onclick='modifier(this);   '></td>")
                 }
 
             }
@@ -896,6 +896,7 @@ function modifier(monID) //////////////////////////////////////////////
 
         timer(joueur);
         console.log(handi);
+       verification(monID);
     }
 
 
@@ -972,7 +973,7 @@ function readSingleFile(evt) {
 function ApparitionObjet() {
 
     var chanceObjet = Math.ceil(Math.random() * 10);
-    if (chanceObjet <= 10) {
+    if (chanceObjet <= 1) {
         do {
             var popX = Math.ceil(Math.random() * 10) - 1;
             var popY = Math.ceil(Math.random() * 10) - 1;

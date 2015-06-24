@@ -135,6 +135,7 @@ header .titre h3 {
     background:white;
     height:30vh;
     display:inline-block;
+    transition:1s;
 }
 
 footer {
@@ -145,4 +146,10 @@ footer {
     position:absolute;
     bottom:0;
     
+}
+
+
+
+.hero:nth-child(2) {
+     border:9px solid red;
 }

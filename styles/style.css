@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family:"Kanban"
+    font-family: "Kanban"
 }
 
 @font-face {
@@ -141,12 +141,13 @@ h1 {
     background-position: center;
 }
 
-body{
+body {
     height: 100vh;
     width: 100%;
     background-size: contain;
-    background:   linear-gradient( #D2F5FF 10%, #D2E7FF 90%); /* W3C */
-        
+    background: linear-gradient( #D2F5FF 10%, #D2E7FF 90%);
+    /* W3C */
+    
     overflow: hidden;
 }
 
@@ -155,8 +156,7 @@ table {
     background-size: cover;
     margin: 12vh auto;
     box-shadow: 0px 2px 3px RGB(26, 26, 26);
-/*    width:31.5%;*/
-
+    /*    width:31.5%;*/
 }
 
 tr {
@@ -176,32 +176,30 @@ td {
     height: 7vh;
     margin: 3vh 20%;
     font-size: 18px;
-    border-radius:5px;
-    border:1px solid #A2ADFF;
+    border-radius: 5px;
+    border: 1px solid #A2ADFF;
 }
 
 #save {
-    background:white;
+    background: white;
     color: black;
     width: 6vw;
     height: 3.5vh;
-    vertical-align:middle;
+    vertical-align: middle;
     display: inline-block;
     position: absolute;
-    border:1px solid black;
+    border: 1px solid black;
     top: 0.7vh;
     right: 2vw;
-    border-radius:10px; 
-        transition:0.4s;
-
+    border-radius: 10px;
+    transition: 0.4s;
 }
 
 #save:hover {
-    background:black;
-    color:white;
-    transition:0.4s;
+    background: black;
+    color: white;
+    transition: 0.4s;
 }
-
 
 #fileinput {
     width: 100px;
@@ -216,27 +214,24 @@ td {
     position: absolute;
     margin-top: 14vh;
     box-shadow: 0px 1px 3px RGB(26, 26, 26);
-        font-size:1.5em;
-        transition:0.5s;
-
-
+    font-size: 1.5em;
+    transition: 0.5s;
 }
+
 #J1.ui {
-        left:5vw;
-
+    left: 5vw;
 }
-
 
 #J2.ui {
     right: 5vw;
 }
 
 .ui header {
+    box-shadow: 0px 1px 6px RGBA(26, 26, 26, 0.38);
     position: relative;
     top: 0;
     padding-bottom: 1vh;
     border-bottom: 1px solid #8D8D8D;
-    box-shadow: 0px 1px 6px RGBA(26, 26, 26, 0.38);
 }
 
 .ui .head {
@@ -258,7 +253,6 @@ td {
 }
 
 .ui .score {
-    
     padding: 3vh 0;
 }
 
@@ -311,9 +305,10 @@ td {
     height: 35px;
 }
 
-
 .currentP {
-    box-shadow:0px 5px 10px #FFA700;
-    transition:0.5s;
-    
+    box-shadow: 0px 5px 5px RGB(85, 104, 116) !important;
+    background:RGB(123, 150, 167);
+    border:none !important;
+    color:white;
+    transition: 0.5s;
 }
