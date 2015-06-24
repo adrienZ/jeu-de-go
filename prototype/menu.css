@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.selectionMenu body {
+.selectionMenu  {
     background: black;
     color: white;
 }
@@ -17,14 +17,14 @@
 }
 
 .selectionMenu header .logo {
-    background: url(../images/Smash_Bros_Logo.png) no-repeat center;
+    background: url(images/Smash_Bros_Logo.png) no-repeat center;
     background-size: contain;
     height: 6vh;
     width: 20vw;
 }
 
 .selectionMenu header .titre {
-    background: url(../images/titre.png);
+    background: url(images/titre.png);
     background-size: 80vw 10vh;
     color: #fedf32;
     width: 80vw;
@@ -71,42 +71,42 @@
 }
 
 .selectionMenu .raw1 .character:nth-child(1) .img {
-    background: url(../images/marui.png) no-repeat center;
+    background: url(images/MARIO.png) no-repeat center;
     background-size: contain;
 }
 
 .selectionMenu .raw1 .character:nth-child(2) .img {
-    background: url(../images/pika.png)no-repeat center;
+    background: url(images/pika.png)no-repeat center;
     background-size: contain;
 }
 
 .selectionMenu .raw1 .character:nth-child(4) .img {
-    background: url(../images/link.png) no-repeat center;
+    background: url(images/link.png) no-repeat center;
     background-size: contain;
 }
 
 .selectionMenu .raw1 .character:nth-child(5) .img {
-    background: url(../images/samus.png) no-repeat center;
+    background: url(images/samus.png) no-repeat center;
     background-size: contain;
 }
 
 .selectionMenu .raw2 .character:nth-child(1) .img {
-    background: url(../images/donkey-kong.png) no-repeat center;
+    background: url(images/donkey-kong.png) no-repeat center;
     background-size: contain;
 }
 
 .selectionMenu .raw2 .character:nth-child(2) .img {
-    background: url(../images/bowser.png) no-repeat center;
+    background: url(images/bowser.png) no-repeat center;
     background-size: contain;
 }
 
 .selectionMenu .raw2 .character:nth-child(3) .img {
-    background: url(../images/luigi.png) no-repeat center;
+    background: url(images/luigi.png) no-repeat center;
     background-size: contain;
 }
 
 .selectionMenu .raw2 .character:nth-child(4) .img {
-    background: url(../images/yoshi.png) no-repeat center;
+    background: url(images/yoshi.png) no-repeat center;
     background-size: contain;
 }
 
@@ -139,7 +139,7 @@
 }
 
 .selectionMenu footer {
-    background: url(../images/Forme-3.png) no-repeat right;;
+    background: url(images/Forme-3.png) no-repeat right;;
     background-size:100vw 10vh;
     width: 100%;
     height:10vh;
@@ -148,6 +148,3 @@
     
 }
 
-.nope:hover {
-    cursor:none;
-}

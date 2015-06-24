@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" type="text/css" href="styles/javascript.fullPage.css" />
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/multi.css">
+    <link rel="stylesheet" href="menu.css">
 
 </head>
 
@@ -98,29 +98,85 @@
             </div>
             <div class="slide" id="slide2">
 
-                <div class="game">
-                    <div class="multiplayer">
-                        <div class="handicap">
-                            <button id="oui" onclick="handicap(this)"> Oui </button>
-                            <button id="non" onclick="handicap(this)"> Non </button>
-                            <button id="bomb" onclick=" bomb()">bomb</button>
-                        </div>
-                        <h1> Jeu de Go </h1>
-                        <div id="J1"></div>
-                        <div id="J2"></div>
-                        <div class="game"> </div>
-                        <input type="file" id="fileinput" multiple />
-                        <script type="text/javascript">
-                            function readMultipleFiles(evt) { //Retrieve all the files from the FileList object var files = evt.target.files; if (files) { for (var i = 0, f; f = files[i]; i++) { var r = new FileReader(); r.onload = (function (f) { return function (e) { var contents = e.target.result; alert("Got the file.n" + "name: " + f.name + "n" + "type: " + f.type + "n" + "size: " + f.size + " bytesn" + "starts with: " + contents.substr(1, contents.indexOf("n"))); console.log(f) }; })(f); r.readAsText(f); } } else { alert("Failed to load files"); } } document.getElementById("fileinput").addEventListener("change", readMultipleFiles, false);
-                        </script>
-                        <button onclick="passer();" id="pass">PASS</button>
-                        <button id="save" value=save onclick=save();>SAVE</button>
-                        <script type="text/javascript" src="scripts/FileSaver.min.js"></script>
-                    </div>
-                    <script type="text/javascript" id="gameScript" src="scripts/big.js"></script>
+   <div class='selectionMenu'>
+    <header>
+        <div class="logo"></div>
+        <div class="titre">
+            <h3>Mélée Générale</h3>
+        </div>
+    </header>
 
-                </div>
 
+    <div class="grid-selection">
+        <div class="raw1">
+            <div class="character" onclick="change(this)" id="mario">
+                <div class="img"></div>
+                <div class="name">MARIO</div>
+            </div>
+            <div class="character" onclick="change(this)" id="pikachu">
+                <div class="img"></div>
+                <div class="name">PIKACHU</div>
+            </div>
+            <div class="character" onclick="change(this)" id='sonic'>
+                <div class="img"></div>
+                <div class="name">SONIC</div>
+            </div>
+            <div class="character" onclick="change(this)" id="link">
+                <div class="img"></div>
+                <div class="name">LINK</div>
+            </div>
+            <div class="character" onclick="change(this)" id="samus">
+                <div class="img"></div>
+                <div class="name">SAMUS</div>
+            </div>
+
+
+
+        </div>
+
+        <div class="raw2">
+            <div class="character" onclick="change(this)" id="donkeyKong">
+                <div class="img"></div>
+                <div class="name">DONKEY KONG</div>
+            </div>
+            <div class="character" onclick="change(this)" id="bowser">
+                <div class="img"></div>
+                <div class="name">BOSWWER</div>
+            </div>
+            <div class="character" onclick="change(this)" id="luigi" >
+                <div class="img"></div>
+                <div class="name">LUIGI</div>
+            </div>
+            <div class="character" onclick="change(this)" id="yoshi">
+                <div class="img"></div>
+                <div class="name">YOSHI</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="selected">
+        <div class="hero">
+            <div class="name"></div>
+        </div>
+        <div class="hero">
+            <div class="name"></div>
+        </div>
+        <div class="hero">
+            <div class="name"></div>
+        </div>
+        <div class="hero">
+            <div class="name"></div>
+        </div>
+    </div>
+</div>
+
+    <footer></footer>
+<script type="text/javascript" src="menu.js"></script>
 
             </div>
 
