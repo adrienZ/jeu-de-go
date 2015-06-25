@@ -26,4 +26,10 @@ $(document).ready(function () {
         });
     })
 
+    
+
 });
+
+    function linkage() {
+        document.location.href= 'perso.html';
+    }

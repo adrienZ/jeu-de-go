@@ -2,7 +2,7 @@ var get = function (id) {
     return document.getElementById(id);
 }; //shorten document.getElementbyId()
 
-
+var ballUse = false;
 var d = 9; // dimension du carrÃ©
 var w; // w z  w2 z2 sont des variables qui vont m'aider Ã  vÃ©rifier les case aux alentours de la case actuelle
 var w2;
@@ -27,8 +27,8 @@ var minusJ1;
 var minusJ2;
 var suicideuh = false;
 var passe = 0;
-var timerJ1 = 15;
-var timerJ2 = 15;
+var timerJ1 = 0;
+var timerJ2 = 0;
 
 var audiobombe = new Audio(['songs/bombe.mp3']);
 var audiomarteau = new Audio(['songs/marteau.mp3']);
@@ -38,7 +38,7 @@ var audioup = new Audio(['songs/UP.mp3']);
 
 function timer(test) {
 
-    if (test == 1) {
+    if (test == -1) {
         clearInterval(minusJ2);
 
 
@@ -47,8 +47,10 @@ function timer(test) {
 
                 timerJ1--;
                 if (timerJ1 == 0) {
-                    console.log('loose1');
-                    clearInterval(minusJ1);
+                    min2--;
+                    timerJ1 = 59;
+
+                    //                    clearInterval(minusJ1);
                 }
             }
         }, 1000);
@@ -61,9 +63,11 @@ function timer(test) {
             if (timerJ2 >= 0) {
 
                 timerJ2--;
-                if (timerJ2 == 0) {
-                    console.log('loose2');
-                    clearInterval(minusJ2);
+                if (timerJ2 == -1) {
+                    min2--;
+                    timerJ2 = 59;
+
+                    //                    clearInterval(minusJ2);
                 }
             }
         }, 1000);
@@ -76,6 +80,8 @@ function timer(test) {
 
 }
 var interval;
+var min1 = 30;
+var min2 = 30;
 
 function time() {
     interval = setInterval(blabla, 1000);
@@ -84,8 +90,8 @@ function time() {
 
 
 function blabla() {
-    get('timerJ1').innerHTML = '00 : ' + timerJ1;
-    get('timerJ2').innerHTML = '00 : ' + timerJ2;
+    get('timerJ1').innerHTML = min1 + ' : ' + timerJ1;
+    get('timerJ2').innerHTML = min2 + ' : ' + timerJ2;
 
 }
 
@@ -161,6 +167,8 @@ function initialisation() //////////////////////////////////////////////
 
 
 
+
+
     } //////////////////////////////////////////////////
 
 function liberte(i, j) {
@@ -186,7 +194,7 @@ function liberte(i, j) {
         }
 
     }
-    if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn' || get("col_" + i + " line_" + j + " ").className == 'div8' || get("col_" + i + " line_" + j + " ").className == 'div7' || get("col_" + i + " line_" + j + " ").className == 'div9' || get("col_" + i + " line_" + j + " ").className == 'div10' || get("col_" + i + " line_" + j + " ").className == 'div11') {
+    if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn' || get("col_" + i + " line_" + j + " ").className == 'div8 animated bounce' || get("col_" + i + " line_" + j + " ").className == 'div7 animated bounce' || get("col_" + i + " line_" + j + " ").className == 'div9 animated bounce' || get("col_" + i + " line_" + j + " ").className == 'div10 animated bounce' || get("col_" + i + " line_" + j + " ").className == 'div11 animated bounce') {
         if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
             liberte--;
 
@@ -218,837 +226,858 @@ function liberte(i, j) {
 }
 
 function verification(caser) {
-    b = 1;
-    var bonus = true;
-    suicideuh = false;
-    c = 100;
-    tab1 = new Array();
+        b = 1;
+        var bonus = true;
+        suicideuh = false;
+        c = 100;
+        tab1 = new Array();
 
-    //Creation tableau final
+        //Creation tableau final
 
-    for (var i = 1; i < d; i++) {
-        for (var j = 1; j < d; j++) {
-            if (get("col_" + i + " line_" + j + " ").className == 'div1 animated rollIn') {
-
-                tab2[i][j] = b;
-
-                b++;
-
-
-            }
-            if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn') {
-
-                tab2[i][j] = c;
-
-
-                c++;
-
-            }
-            if (get("col_" + i + " line_" + j + " ").className == 'div2') {
-                tab2[i][j] = 0;
-            }
-
-        }
-    }
-
-
-    // formation des groupes en changant le tableau final
-    for (var i = 1; i < d; i++) {
-        for (var j = 1; j < d; j++) {
-
-            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
-
-                tab2[i + 1][j] = tab2[i][j];
-
-            }
-
-            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
-
-                tab2[i - 1][j] = tab2[i][j];
-
-            }
-
-            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
-
-                tab2[i][j + 1] = tab2[i][j];
-
-            }
-
-            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
-
-                tab2[i][j - 1] = tab2[i][j];
-
-            }
-
-        }
-        for (var j = d - 1; j > 1; j--) {
-            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
-
-                tab2[i + 1][j] = tab2[i][j];
-
-            }
-
-            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
-
-                tab2[i - 1][j] = tab2[i][j];
-
-            }
-
-            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
-
-                tab2[i][j + 1] = tab2[i][j];
-
-            }
-
-            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
-
-                tab2[i][j - 1] = tab2[i][j];
-
-            }
-
-        }
-    }
-
-    for (var i = d - 1; i > 1; i--) {
-        for (var j = d - 1; j > 1; j--) {
-            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
-
-                tab2[i + 1][j] = tab2[i][j];
-
-            }
-
-            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
-
-                tab2[i - 1][j] = tab2[i][j];
-
-            }
-
-            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
-
-                tab2[i][j + 1] = tab2[i][j];
-
-            }
-
-            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
-
-                tab2[i][j - 1] = tab2[i][j];
-
-            }
-
-
-
-
-
-
-
-
-
-        }
-        for (var j = 1; j < d; j++) {
-            if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
-
-                tab2[i + 1][j] = tab2[i][j];
-
-            }
-
-            if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
-
-                tab2[i - 1][j] = tab2[i][j];
-
-            }
-
-            if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
-
-                tab2[i][j + 1] = tab2[i][j];
-
-            }
-
-            if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
-
-                tab2[i][j - 1] = tab2[i][j];
-
-            }
-        }
-
-    }
-
-
-
-    var yolo = caser.id;
-    var Icase = parseInt(yolo.substr(4, 1));
-    var Jcase = parseInt(yolo.substr(11));
-
-
-    ///VERIF CASE AUTOUR DE CELLE OU LON VIENT DE CLIQUER ////
-
-    if (liberte(Icase, Jcase) == false) {
-        console.log(liberte(Icase, Jcase));
-        suicideuh = true;
-
-
-    }
-    if (tab2[Icase + 1][Jcase] != 0) {
-        var NombreDePion = 0;
-        var compteurFalse = 0;
         for (var i = 1; i < d; i++) {
             for (var j = 1; j < d; j++) {
-                if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
+                if (get("col_" + i + " line_" + j + " ").className == 'div1 animated rollIn') {
 
-                        break;
+                    tab2[i][j] = b;
 
-                    }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
+                    b++;
 
 
-                    }
                 }
+                if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn') {
+
+                    tab2[i][j] = c;
+
+
+                    c++;
+
+                }
+                if (get("col_" + i + " line_" + j + " ").className == 'div2') {
+                    tab2[i][j] = 0;
+                }
+
             }
         }
 
-        if (compteurFalse == NombreDePion) {
-            NombreDePion = 0;
-            compteurFalse = 0;
+
+        // formation des groupes en changant le tableau final
+        for (var i = 1; i < d; i++) {
+            for (var j = 1; j < d; j++) {
+
+                if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+
+                    tab2[i + 1][j] = tab2[i][j];
+
+                }
+
+                if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+
+                    tab2[i - 1][j] = tab2[i][j];
+
+                }
+
+                if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+
+                    tab2[i][j + 1] = tab2[i][j];
+
+                }
+
+                if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+
+                    tab2[i][j - 1] = tab2[i][j];
+
+                }
+
+            }
+            for (var j = d - 1; j > 1; j--) {
+                if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+
+                    tab2[i + 1][j] = tab2[i][j];
+
+                }
+
+                if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+
+                    tab2[i - 1][j] = tab2[i][j];
+
+                }
+
+                if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+
+                    tab2[i][j + 1] = tab2[i][j];
+
+                }
+
+                if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+
+                    tab2[i][j - 1] = tab2[i][j];
+
+                }
+
+            }
+        }
+
+        for (var i = d - 1; i > 1; i--) {
+            for (var j = d - 1; j > 1; j--) {
+                if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+
+                    tab2[i + 1][j] = tab2[i][j];
+
+                }
+
+                if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+
+                    tab2[i - 1][j] = tab2[i][j];
+
+                }
+
+                if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+
+                    tab2[i][j + 1] = tab2[i][j];
+
+                }
+
+                if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+
+                    tab2[i][j - 1] = tab2[i][j];
+
+                }
+
+
+
+
+
+
+
+
+
+            }
+            for (var j = 1; j < d; j++) {
+                if (get("col_" + (i + 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i + 1][j] > tab2[i][j]) {
+
+                    tab2[i + 1][j] = tab2[i][j];
+
+                }
+
+                if (get("col_" + (i - 1) + " line_" + j + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i - 1][j] > tab2[i][j]) {
+
+                    tab2[i - 1][j] = tab2[i][j];
+
+                }
+
+                if (get("col_" + i + " line_" + (j + 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j + 1] > tab2[i][j]) {
+
+                    tab2[i][j + 1] = tab2[i][j];
+
+                }
+
+                if (get("col_" + i + " line_" + (j - 1) + " ").className == get("col_" + i + " line_" + j + " ").className && tab2[i][j - 1] > tab2[i][j]) {
+
+                    tab2[i][j - 1] = tab2[i][j];
+
+                }
+            }
+
+        }
+
+
+
+        var yolo = caser.id;
+        var Icase = parseInt(yolo.substr(4, 1));
+        var Jcase = parseInt(yolo.substr(11));
+
+
+        ///VERIF CASE AUTOUR DE CELLE OU LON VIENT DE CLIQUER ////
+
+        if (liberte(Icase, Jcase) == false) {
+            console.log(liberte(Icase, Jcase));
+            suicideuh = true;
+
+
+        }
+        if (tab2[Icase + 1][Jcase] != 0) {
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
                     if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
-                        if (tab2[i][j] >= 200) {
-                            if (get("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g = i - 1; g <= i + 1; g++) {
-                                    for (var h = j - 1; h <= j + 1; h++) {
-                                        if (get("col_" + g + " line_" + h + " ").className != 'div5') {
-                                            get("col_" + g + " line_" + h + " ").className = 'div2';
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
 
+                            break;
+
+                        }
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
+
+
+                        }
+                    }
+                }
+            }
+
+            if (compteurFalse == NombreDePion) {
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase + 1][Jcase]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11 animated bounce') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            if (get("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
-
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8 animated bounce') {
+                                    audiomarteau.play();
                                     if (joueur == 1) {
-                                        get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
+                                        marteau1 = 2;
                                     } else {
-                                        get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
+                                        marteau2 = 2;
                                     }
-                                }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7 animated bounce') {
 
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9 animated bounce') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10 animated bounce') {
+                                    audioballe.play();
+                                    handi = handi + 3;
                                     if (joueur == 1) {
-                                        get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
+                                        joueur = 2;
                                     } else {
-                                        get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
+                                        joueur = 1;
                                     }
-                                }
 
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
-                                audioballe.play();
-                                handi = handi + 3;
-                                if (joueur == 1) {
-                                    joueur = 2;
-                                } else {
-                                    joueur = 1;
                                 }
+                            }
+
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
 
                             }
+
+                            if (bonus == true) {
+                                get("col_" + i + " line_" + j + " ").className = 'div2';
+                                suicideuh = false;
+                            } else {
+                                bonus = true
+                            };
                         }
-
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
-
-                        }
-
-                        if (bonus == true) {
-                            get("col_" + i + " line_" + j + " ").className = 'div2';
-                            suicideuh = false;
-                        } else {
-                            bonus = true
-                        };
                     }
                 }
             }
+
         }
 
-    }
-
-    if (tab2[Icase - 1][Jcase] != 0) {
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
-
-                if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
-
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
-
-
-                    }
-                }
-            }
-        }
-
-        if (compteurFalse == NombreDePion) {
-            NombreDePion = 0;
-            compteurFalse = 0;
+        if (tab2[Icase - 1][Jcase] != 0) {
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
+
                     if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
-                        if (tab2[i][j] >= 200) {
-                            if (get("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g = i - 1; g <= i + 1; g++) {
-                                    for (var h = j - 1; h <= j + 1; h++) {
-                                        if (get("col_" + g + " line_" + h + " ").className != 'div5') {
-                                            get("col_" + g + " line_" + h + " ").className = 'div2';
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
 
+                            break;
+
+                        }
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
+
+
+                        }
+                    }
+                }
+            }
+
+            if (compteurFalse == NombreDePion) {
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase - 1][Jcase]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11 animated bounce') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            if (get("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
-
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8 animated bounce') {
+                                    audiomarteau.play();
                                     if (joueur == 1) {
-                                        get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
+                                        marteau1 = 2;
                                     } else {
-                                        get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
+                                        marteau2 = 2;
                                     }
-                                }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7 animated bounce') {
 
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9 animated bounce') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10 animated bounce') {
+                                    audioballe.play();
+                                    handi = handi + 3;
                                     if (joueur == 1) {
-                                        get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
+                                        joueur = 2;
                                     } else {
-                                        get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
+                                        joueur = 1;
                                     }
-                                }
 
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
-                                audioballe.play();
-                                handi = handi + 3;
-                                if (joueur == 1) {
-                                    joueur = 2;
-                                } else {
-                                    joueur = 1;
                                 }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
 
                             }
+                            if (bonus == true) {
+                                get("col_" + i + " line_" + j + " ").className = 'div2';
+                                suicideuh = false;
+
+                            } else {
+                                bonus = true
+                            };
+
                         }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
-
-                        }
-                        if (bonus == true) {
-                            get("col_" + i + " line_" + j + " ").className = 'div2';
-                            suicideuh = false;
-
-                        } else {
-                            bonus = true
-                        };
-
                     }
                 }
             }
+
         }
 
-    }
-
-    if (tab2[Icase][Jcase + 1] != 0) {
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
-
-
-                if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
-                    NombreDePion++;
-                    liberte(i, j);
-
-                    if (liberte(i, j) == true) {
-
-
-                        break;
-
-                    }
-                    if (liberte(i, j) == false) {
-
-                        compteurFalse++;
-
-
-                    }
-                }
-            }
-        }
-
-        if (compteurFalse == NombreDePion) {
-
+        if (tab2[Icase][Jcase + 1] != 0) {
+            var NombreDePion = 0;
+            var compteurFalse = 0;
             for (var i = 1; i < d; i++) {
                 for (var j = 1; j < d; j++) {
+
+
                     if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
-                        if (tab2[i][j] >= 200) {
-                            if (get("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g = i - 1; g <= i + 1; g++) {
-                                    for (var h = j - 1; h <= j + 1; h++) {
-                                        if (get("col_" + g + " line_" + h + " ").className != 'div5') {
-                                            get("col_" + g + " line_" + h + " ").className = 'div2';
+                        NombreDePion++;
+                        liberte(i, j);
 
+                        if (liberte(i, j) == true) {
+
+
+                            break;
+
+                        }
+                        if (liberte(i, j) == false) {
+
+                            compteurFalse++;
+
+
+                        }
+                    }
+                }
+            }
+
+            if (compteurFalse == NombreDePion) {
+
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase][Jcase + 1]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11 animated bounce') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            if (get("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
-
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8 animated bounce') {
+                                    audiomarteau.play();
                                     if (joueur == 1) {
-                                        get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
+                                        marteau1 = 2;
                                     } else {
-                                        get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
+                                        marteau2 = 2;
                                     }
-                                }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7 animated bounce') {
 
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9 animated bounce') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10 animated bounce') {
+                                    audioballe.play();
+                                    handi = handi + 3;
                                     if (joueur == 1) {
-                                        get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
+                                        joueur = 2;
                                     } else {
-                                        get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
+                                        joueur = 1;
                                     }
-                                }
 
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
-                                audioballe.play();
-                                handi = handi + 3;
-                                if (joueur == 1) {
-                                    joueur = 2;
-                                } else {
-                                    joueur = 1;
                                 }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
 
                             }
+                            if (bonus == true) {
+                                get("col_" + i + " line_" + j + " ").className = 'div2';
+                                suicideuh = false;
+
+                            } else {
+                                bonus = true
+                            };
                         }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                        } else {
-                            compteurJ2++;
-
-                        }
-                        if (bonus == true) {
-                            get("col_" + i + " line_" + j + " ").className = 'div2';
-                            suicideuh = false;
-
-                        } else {
-                            bonus = true
-                        };
                     }
+                }
+            }
+
+        }
+
+        if (tab2[Icase][Jcase - 1] != 0) {
+            var NombreDePion = 0;
+            var compteurFalse = 0;
+            for (var i = 1; i < d; i++) {
+                for (var j = 1; j < d; j++) {
+
+                    if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
+                        NombreDePion++;
+                        liberte(i, j);
+                        if (liberte(i, j) == true) {
+
+                            break;
+
+                        }
+                        if (liberte(i, j) == false) {
+                            compteurFalse++;
+
+
+                        }
+                    }
+                }
+            }
+
+
+            if (compteurFalse == NombreDePion) {
+                NombreDePion = 0;
+                compteurFalse = 0;
+                for (var i = 1; i < d; i++) {
+                    for (var j = 1; j < d; j++) {
+                        if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
+                            if (tab2[i][j] >= 200) {
+                                if (get("col_" + i + " line_" + j + " ").className == 'div11 animated bounce') {
+                                    audiobombe.play();
+                                    for (var g = i - 1; g <= i + 1; g++) {
+                                        for (var h = j - 1; h <= j + 1; h++) {
+                                            if (get("col_" + g + " line_" + h + " ").className != 'div5') {
+                                                get("col_" + g + " line_" + h + " ").className = 'div2';
+
+                                            }
+                                        }
+                                    }
+                                }
+                                if (get("col_" + i + " line_" + j + " ").className == 'div8 animated bounce') {
+                                    audiomarteau.play();
+                                    if (joueur == 1) {
+                                        marteau1 = 2;
+                                    } else {
+                                        marteau2 = 2;
+                                    }
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div7 animated bounce') {
+
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
+                                        } else {
+                                            get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div9 animated bounce') {
+                                    audioup.play();
+                                    bonus = false;
+                                    for (var g = 1; g < 9; g++) {
+                                        if (joueur == 1) {
+                                            get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
+                                        } else {
+                                            get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
+                                        }
+                                    }
+
+                                } else if (get("col_" + i + " line_" + j + " ").className == 'div10 animated bounce') {
+                                    audioballe.play();
+                                    handi = handi + 3;
+                                    if (joueur == 1) {
+                                        joueur = 2;
+                                    } else {
+                                        joueur = 1;
+                                    }
+
+                                }
+                            }
+                            if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
+                                compteurJ1++;
+
+                            } else {
+                                compteurJ2++;
+
+                            }
+                            if (bonus == true) {
+                                get("col_" + i + " line_" + j + " ").className = 'div2';
+                                suicideuh = false;
+
+                            } else {
+                                bonus = true
+                            };
+                        }
+                    }
+                }
+
+            }
+
+            if (suicideuh == true) {
+
+                get("col_" + Icase + " line_" + Jcase + " ").className = 'div2';
+                window.alert('sucide');
+                if (handi > 1) {
+                    handi++
+                }
+                if (joueur == 1) {
+
+                    joueur = 2;
+                } else {
+                    joueur = 1;
+
+                }
+            }
+        }
+        get("scoreJ1").innerHTML = 'Score : ' + '<span>'+compteurJ1+'</span>';
+        get("scoreJ").innerHTML = 'Score : ' + '<span>'+compteurJ2+'</span>';
+        get("bonusJ2M").innerHTML = "X " + marteau2;
+        get("bonusJ1M").innerHTML = "X " + marteau1;
+        if (joueur == 1) {
+
+            get("bonusJ1B").innerHTML = "X " + handi;
+            if (handi == 1 && ballUse == false) {
+                ballUse = true;
+                if (handi == 1 && ballUse == true) {
+                    get("bonusJ1B").innerHTML = "X 0";
+                    ballUse = false;
+                }
+            }
+
+            if (joueur == 2) {
+                get("bonusJ2B").innerHTML = "X " + handi;
+                if (handi == 1 && ballUse == false) {
+                    ballUse = true;
+                }
+                if (handi == 1 && ballUse == true) {
+                    get("bonusJ2B").innerHTML = "X 0";
+                    ballUse = false;
                 }
             }
         }
 
-    }
 
-    if (tab2[Icase][Jcase - 1] != 0) {
-        var NombreDePion = 0;
-        var compteurFalse = 0;
-        for (var i = 1; i < d; i++) {
-            for (var j = 1; j < d; j++) {
+        }
 
-                if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
-                    NombreDePion++;
-                    liberte(i, j);
-                    if (liberte(i, j) == true) {
+        function modifier(monID) //////////////////////////////////////////////
+            {
+                x = 0;
+
+                if (joueur == 1) {
+                    document.querySelector('.ui#J1 header').className = 'currentP';
+                    document.querySelector('.ui#J2 header').className = '';
+
+
+                    if (monID.className == 'div2')
+
+                    {
+                        ApparitionObjet();
+
+                        monID.className = 'div1 animated rollIn';
+                        if (handi <= 1) {
+                            joueur = 2;
+                        } else {
+                            handi = handi - 1;
+
+
+                        }
+                    } else
+
+                    {
+                        if (marteau2 != 0) {
+                            monID.className = 'div1 animated rollIn';
+                            joueur = 2;
+                            marteau2--;
+                            ApparitionObjet();
+
+
+                        }
+
+                    }
+                } else {
+                    document.querySelector('.ui#J2 header').className = 'currentP';
+                    document.querySelector('.ui#J1 header').className = '';
+
+                    if (monID.className == 'div2')
+
+                    {
+                        ApparitionObjet();
+
+                        monID.className = 'div3 animated rollIn';
+                        if (handi <= 1) {
+                            joueur = 1;
+                        } else {
+                            handi = handi - 1;
+
+
+                        }
+                    } else
+
+                    {
+                        if (marteau1 != 0) {
+                            monID.className = 'div3 animated rollIn';
+                            joueur = 1;
+                            marteau1--;
+                            ApparitionObjet();
+
+                        }
+
+                    }
+                }
+
+                timer(joueur);
+setTimeout(function(){verification(monID)} ,500);
+
+
+            }
+
+
+        initialisation();
+
+
+
+
+        function save() {
+
+            var data = new Array();
+            for (var i = 0; i <= d; i++) {
+                for (var j = 0; j <= d; j++) {
+                    var current = tab2[i][j];
+                    data.push(current);
+                    current = null;
+                }
+            }
+            var blob = new Blob([data], {
+                type: "text/plain;charset=utf-8"
+            });
+            saveAs(blob, "array.txt");
+
+        }
+
+
+
+
+
+        function handicap(lol) {
+
+            var choix = (lol.id)
+
+            if (choix == 'oui') {
+                var Nhandi = window.prompt('Combien d\'handicap ?');
+                handi = parseInt(Nhandi);
+                return handi;
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+        // Check for the various File API support.
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            //do your stuff!
+        } else {
+            alert('The File APIs are not fully supported by your browser.');
+        }
+
+        function readSingleFile(evt) {
+            //Retrieve the first (and only!) File from the FileList object
+            var f = evt.target.files[0];
+
+            if (!f) {
+                alert("Failed to load file");
+            } else if (!file.type.match('text.*')) {
+                alert(f.name + " is not a valid text file.");
+            } else {
+                var r = new FileReader();
+                //proceed with read…
+            }
+        }
+
+
+
+        function ApparitionObjet() {
+
+            var chanceObjet = Math.ceil(Math.random() * 10);
+            if (chanceObjet <= 10) {
+                do {
+                    var popX = Math.ceil(Math.random() * 10) - 1;
+                    var popY = Math.ceil(Math.random() * 10) - 1;
+                }
+                while (get("col_" + popX + " line_" + popY + " ").className != 'div2');
+                var typeObjet = Math.ceil(Math.random() * 5);
+                if ((get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div5') &&
+                    (get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div5') &&
+                    (get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div5') &&
+                    (get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div5')) {
+
+                    var possible = liberteObjet(popX, popY);
+
+                    if (possible == '0') {
+
+                    }
+                    switch (typeObjet) {
+                    case 1:
+                        get("col_" + popX + " line_" + popY + " ").className = 'div8 animated bounce';
+                        break;
+
+                    case 2:
+                        get("col_" + popX + " line_" + popY + " ").className = 'div7 animated bounce';
+                        break;
+
+                    case 3:
+                        get("col_" + popX + " line_" + popY + " ").className = 'div9 animated bounce';
+                        break;
+                    case 4:
+                        get("col_" + popX + " line_" + popY + " ").className = 'div10 animated bounce';
 
                         break;
 
+                    case 5:
+                        get("col_" + popX + " line_" + popY + " ").className = 'div11 animated bounce';
+                        break;
                     }
-                    if (liberte(i, j) == false) {
-                        compteurFalse++;
 
+                    tab2[popX][popY] = numberObjet;
 
-                    }
-                }
-            }
-        }
-
-
-        if (compteurFalse == NombreDePion) {
-            NombreDePion = 0;
-            compteurFalse = 0;
-            for (var i = 1; i < d; i++) {
-                for (var j = 1; j < d; j++) {
-                    if (tab2[i][j] == tab2[Icase][Jcase - 1]) {
-                        if (tab2[i][j] >= 200) {
-                            if (get("col_" + i + " line_" + j + " ").className == 'div11') {
-                                audiobombe.play();
-                                for (var g = i - 1; g <= i + 1; g++) {
-                                    for (var h = j - 1; h <= j + 1; h++) {
-                                        if (get("col_" + g + " line_" + h + " ").className != 'div5') {
-                                            get("col_" + g + " line_" + h + " ").className = 'div2';
-
-                                        }
-                                    }
-                                }
-                            }
-                            if (get("col_" + i + " line_" + j + " ").className == 'div8') {
-                                audiomarteau.play();
-                                if (joueur == 1) {
-                                    marteau1 = 2;
-                                } else {
-                                    marteau2 = 2;
-                                }
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div7') {
-
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        get("col_" + g + " line_" + j + " ").className = 'div3 animated rollIn';
-                                    } else {
-                                        get("col_" + g + " line_" + j + " ").className = 'div1 animated rollIn';
-                                    }
-                                }
-
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div9') {
-                                audioup.play();
-                                bonus = false;
-                                for (var g = 1; g < 9; g++) {
-                                    if (joueur == 1) {
-                                        get("col_" + i + " line_" + g + " ").className = 'div3 animated rollIn';
-                                    } else {
-                                        get("col_" + i + " line_" + g + " ").className = 'div1 animated rollIn';
-                                    }
-                                }
-
-                            } else if (get("col_" + i + " line_" + j + " ").className == 'div10') {
-                                audioballe.play();
-                                handi = handi + 3;
-                                if (joueur == 1) {
-                                    joueur = 2;
-                                } else {
-                                    joueur = 1;
-                                }
-
-                            }
-                        }
-                        if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
-                            compteurJ1++;
-
-                            console.log(compteurJ1);
-                        } else {
-                            compteurJ2++;
-
-                            console.log(compteurJ2);
-                        }
-                        if (bonus == true) {
-                            get("col_" + i + " line_" + j + " ").className = 'div2';
-                            suicideuh = false;
-
-                        } else {
-                            bonus = true
-                        };
-                    }
-                }
-            }
-
-        }
-
-        if (suicideuh == true) {
-
-            get("col_" + Icase + " line_" + Jcase + " ").className = 'div2';
-            window.alert('sucide');
-            if (handi>1) {
-                handi++
-            }
-            if (joueur == 1) {
-
-                joueur = 2;
-            } else {
-                joueur = 1;
-
-            }
-        }
-    }
-    get("scoreJ1").innerHTML = 'Score : ' + compteurJ1;
-    get("scoreJ2").innerHTML = 'Score : ' + compteurJ2;
-    get("bonusJ2").innerHTML = "X " + marteau2;
-    get("bonusJ1").innerHTML = "X " + marteau1;
-
-}
-
-function modifier(monID) //////////////////////////////////////////////
-    {
-        x = 0;
-
-        if (joueur == 1) {
-            document.querySelector('.ui#J1 header').className = 'currentP';
-            document.querySelector('.ui#J2 header').className = '';
-
-
-            if (monID.className == 'div2')
-
-            {
-                ApparitionObjet();
-
-                monID.className = 'div1 animated rollIn';
-                if (handi <= 1) {
-                    joueur = 2;
-                } else {
-                    handi = handi - 1;
-
-
-                }
-            } else
-
-            {
-                if (marteau2 != 0) {
-                    monID.className = 'div1 animated rollIn';
-                    joueur = 2;
-                    marteau2--;
-                    ApparitionObjet();
-
-
+                    numberObjet++;
                 }
 
-            }
-        } else {
-            document.querySelector('.ui#J2 header').className = 'currentP';
-            document.querySelector('.ui#J1 header').className = '';
 
-            if (monID.className == 'div2')
-
-            {
-                ApparitionObjet();
-                
-                monID.className = 'div3 animated rollIn';
-                if (handi <= 1) {
-                    joueur = 1;
-                } else {
-                    handi = handi - 1;
-
-
-                }
-            } else
-
-            {
-                if (marteau1 != 0) {
-                    monID.className = 'div3 animated rollIn';
-                    joueur = 1;
-                    marteau1--;
-                    ApparitionObjet();
-
-                }
 
             }
         }
 
-        timer(joueur);
-        console.log(handi);
-       verification(monID);
-    }
-
-
-initialisation();
-
-
-
-
-function save() {
-
-    var data = new Array();
-    for (var i = 0; i <= d; i++) {
-        for (var j = 0; j <= d; j++) {
-            var current = tab2[i][j];
-            data.push(current);
-            current = null;
-            console.log(data)
-        }
-    }
-    var blob = new Blob([data], {
-        type: "text/plain;charset=utf-8"
-    });
-    saveAs(blob, "array.txt");
-
-}
-
-
-
-
-
-function handicap(lol) {
-
-    var choix = (lol.id)
-
-    if (choix == 'oui') {
-        var Nhandi = window.prompt('Combien d\'handicap ?');
-        handi = parseInt(Nhandi);
-        return handi;
-
-    }
-}
-
-
-
-
-
-
-
-
-
-// Check for the various File API support.
-if (window.File && window.FileReader && window.FileList && window.Blob) {
-    //do your stuff!
-} else {
-    alert('The File APIs are not fully supported by your browser.');
-}
-
-function readSingleFile(evt) {
-    //Retrieve the first (and only!) File from the FileList object
-    var f = evt.target.files[0];
-
-    if (!f) {
-        alert("Failed to load file");
-    } else if (!file.type.match('text.*')) {
-        alert(f.name + " is not a valid text file.");
-    } else {
-        var r = new FileReader();
-        //proceed with read…
-    }
-}
-
-
-
-function ApparitionObjet() {
-
-    var chanceObjet = Math.ceil(Math.random() * 10);
-    if (chanceObjet <= 1) {
-        do {
-            var popX = Math.ceil(Math.random() * 10) - 1;
-            var popY = Math.ceil(Math.random() * 10) - 1;
-        }
-        while (get("col_" + popX + " line_" + popY + " ").className != 'div2');
-        var typeObjet = Math.ceil(Math.random() * 5);
-        if ((get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div5') &&
-            (get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div5') &&
-            (get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div5') &&
-            (get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div5')) {
-
-            var possible = liberteObjet(popX, popY);
-
-            if (possible == '0') {
+        function liberteObjet(i, j) {
+            var liberte2 = 4;
+            if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
+                liberte2--;
 
             }
-            switch (typeObjet) {
-            case 1:
-                get("col_" + popX + " line_" + popY + " ").className = 'div8';
-                break;
+            if (get("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
 
-            case 2:
-                get("col_" + popX + " line_" + popY + " ").className = 'div7';
-                break;
+                liberte2--;
 
-            case 3:
-                get("col_" + popX + " line_" + popY + " ").className = 'div9';
-                break;
-            case 4:
-                get("col_" + popX + " line_" + popY + " ").className = 'div10';
-
-                break;
-
-            case 5:
-                get("col_" + popX + " line_" + popY + " ").className = 'div11';
-                break;
             }
+            if (get("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
+                liberte2--;
 
-            tab2[popX][popY] = numberObjet;
+            }
+            if (get("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
+                liberte2--;
 
-            numberObjet++;
+            }
+            return liberte2;
+
         }
 
 
 
-    }
-}
-
-function liberteObjet(i, j) {
-    var liberte2 = 4;
-    if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
-        liberte2--;
-
-    }
-    if (get("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
-
-        liberte2--;
-
-    }
-    if (get("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
-        liberte2--;
-
-    }
-    if (get("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
-        liberte2--;
-
-    }
-    return liberte2;
-
-}
 
 
 
 
-
-
-
-//HUD
+        //HUD

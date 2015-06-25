@@ -34,7 +34,7 @@ h1 {
     height: 45px;
     /*    background: url(../images/pionRouge.png);*/
     
-    background: url(../img/captainAmerica.svg);
+    background: url(../img/pion1.svg);
     border-radius: 50%;
     background-size: cover;
     background-position: center;
@@ -117,7 +117,7 @@ h1 {
     display: inline-block;
     width: 45px;
     height: 45px;
-    background: url('http://cdn.shopify.com/s/files/1/0326/0713/products/smash-ball-burning_grande.jpg?v=1420043793')no-repeat center;
+    background: url('http://orig04.deviantart.net/6e56/f/2009/321/4/0/smash_ball___template___by_elmind.png')no-repeat center;
     background-size: contain;
 }
 
@@ -135,7 +135,7 @@ h1 {
     height: 45px;
     /*    background: url(../images/pionBleu.png);*/
     
-    background: url(../img/irondMan.svg);
+    background: url(../img/pion2.svg);
     border-radius: 50%;
     background-size: cover;
     background-position: center;
@@ -152,8 +152,8 @@ body {
 }
 
 table {
-    background: url(../img/gban2.png) no-repeat top;
-    background-size: cover;
+    background: url(../img/gban2.png) no-repeat;
+    background-size:cover;
     margin: 12vh auto;
     box-shadow: 0px 2px 3px RGB(26, 26, 26);
     /*    width:31.5%;*/
@@ -256,11 +256,20 @@ td {
     padding: 3vh 0;
 }
 
-.ui .logoBonus {
+.ui .logoBonusMarteau {
     background: url('../img/marteau.svg') no-repeat center;
     background-size: contain;
     width: 50px;
     height: 50px;
+    display:inline-block;
+}
+
+.ui .logoBonusBalle {
+    background: url('http://orig04.deviantart.net/6e56/f/2009/321/4/0/smash_ball___template___by_elmind.png') no-repeat center;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    display:inline-block;
 }
 
 .bonus {
@@ -306,9 +315,9 @@ td {
 }
 
 .currentP {
-    box-shadow: 0px 5px 5px RGB(85, 104, 116) !important;
-    background:RGB(123, 150, 167);
-    border:none !important;
+/*    box-shadow: 0px 5px 5px #1C1C1C !important;*/
+    background:#424242;
+/*    border:none !important;*/
     color:white;
     transition: 0.5s;
 }

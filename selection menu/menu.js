@@ -3,7 +3,6 @@ var j = 1; // numéro du joueur
 
 function change(e) {
     var test = e.id; //je récupère l'id de la div qui correspond au nom du perso 
-    var classe = e.className;    console.log(classe);
 
 
         switch (test) {
@@ -12,7 +11,6 @@ function change(e) {
         case 'mario':
             document.querySelector('.hero:nth-child(' + j + ')').style.background = 'url("images/mario.png") no-repeat center, white';
             document.querySelector('.hero:nth-child(' + j + ')').style.backgroundSize = 'contain';
-                            document.querySelector('.hero:nth-child(' + j + ')').style.border = '2px solid black';
 
             break;
         case 'pikachu':

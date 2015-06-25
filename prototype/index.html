@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+        <link rel="stylesheet" href="../styles/animate.css">
+
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>go game</title>
+    <script type="text/javascript" src="cookie.js"></script>
+
+</head>
+
+<body>
+    <div class="mainHeader">
+        <h1> Jeu de Go </h1>
+        <button id='save' value="save" onclick="save();">SAVE</button>
+
+
+    </div>
+
+    <div class="ui" id="J2">
+        <header>
+            <div class="head"></div>
+            <div class="name">Mario</div>
+
+        </header>
+
+        <div class="infos" style="width:80%;margin:auto;">
+
+            <div class="score" id='scoreJ2'>Score : 0</div>
+            <div class="bonus">
+                <div class="logoBonusMarteau"></div>
+                <div class="bonusLeft" id="bonusJ2M">X 0</div>
+            </div>
+            <div class="bonus">
+                <div class="logoBonusBalle"></div>
+                <div class="bonusLeft" id="bonusJ2B">X 0</div>
+            </div>
+            <div class="timer">
+                <div class="iconTimer"></div>
+                <div id="timerJ2">30 : 00</div>
+            </div>
+            <button onclick='passer();' id="pass">PASS</button>
+
+        </div>
+
+
+
+
+    </div>
+    <div class="ui" id="J1">
+        <header>
+            <div class="head"></div>
+            <div class="name">MarioJ1</div>
+
+        </header>
+
+        <div class="infos" style="width:80%;margin:auto;">
+
+            <div class="score" id="scoreJ1">Score : 0</div>
+            <div class="bonus">
+                <div class="logoBonus"></div>
+                <div class="bonusLeft" id="bonusJ1M">X 0</div>
+            </div>
+            <div class="bonus">
+                <div class="logoBonusBalle"></div>
+                <div class="bonusLeft" id="bonusJ1B">X 0</div>
+            </div>
+            <div class="timer">
+                <div class="iconTimer"></div>
+                <div id="timerJ1">30 : 00</div>
+            </div>
+            <button onclick='passer();' id="pass">PASS</button>
+        </div>
+
+
+
+
+    </div>
+    <!--    <div class="handicap">-->
+    <button id='oui' onclick='handicap(this)'> Oui </button>
+    <button id='non' onclick='handicap(this)'> Non </button>
+    <button id='bomb' onclick=' bomb()'>bomb</button>
+    <!--    </div>-->
+    <script>
+        theme = GetCookie("theme");
+        console.log(theme);
+        theme2 = GetCookie("theme2");
+        console.log(theme2);
+    </script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <input type="file" id="fileinput" multiple />
+    <style>
+        #byte_content {
+            margin: 5px 0;
+            max-height: 100px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        #byte_range {
+            margin-top: 5px;
+        }
+    </style>
+
+    <input type="file" id="files" name="file" /> Read bytes:
+    <span class="readBytesButtons">
+  <button data-startbyte="0" data-endbyte="4">1-5</button>
+  <button data-startbyte="5" data-endbyte="14">6-15</button>
+  <button data-startbyte="6" data-endbyte="7">7-8</button>
+  <button>entire file</button>
+</span>
+    <div id="byte_range"></div>
+    <div id="byte_content"></div>
+
+    <script>
+        function readBlob(opt_startByte, opt_stopByte) {
+
+            var files = document.getElementById('files').files;
+            if (!files.length) {
+                alert('Please select a file!');
+                return;
+            }
+
+            var file = files[0];
+            var start = parseInt(opt_startByte) || 0;
+            var stop = parseInt(opt_stopByte) || file.size - 1;
+
+            var reader = new FileReader();
+
+            // If we use onloadend, we need to check the readyState.
+            reader.onloadend = function (evt) {
+                if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+                    document.getElementById('byte_content').textContent = evt.target.result;
+                    document.getElementById('byte_range').textContent = ['Read bytes: ', start + 1, ' - ', stop + 1,
+             ' of ', file.size, ' byte file'].join('');
+                }
+            };
+
+            var blob = file.slice(start, stop + 1);
+            reader.readAsBinaryString(blob);
+        }
+
+        document.querySelector('.readBytesButtons').addEventListener('click', function (evt) {
+            if (evt.target.tagName.toLowerCase() == 'button') {
+                var startByte = evt.target.getAttribute('data-startbyte');
+                var endByte = evt.target.getAttribute('data-endbyte');
+                readBlob(startByte, endByte);
+            }
+        }, false);
+    </script>
+    <script type='text/javascript' src='scripts/FileSaver.min.js'></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+
+</body>
+
+
+
+</html>
