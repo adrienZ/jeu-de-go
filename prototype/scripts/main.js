@@ -29,11 +29,12 @@ var suicideuh = false;
 var passe = 0;
 var timerJ1 = 0;
 var timerJ2 = 0;
-var ballUse=false;
+var ballUse = false;
 var audiobombe = new Audio(['songs/bombe.mp3']);
 var audiomarteau = new Audio(['songs/marteau.mp3']);
 var audioballe = new Audio(['songs/balle.mp3']);
 var audioup = new Audio(['songs/UP.mp3']);
+
 
 
 function timer(test) {
@@ -90,18 +91,16 @@ function time() {
 
 
 function blabla() {
-    if ( timerJ1 > 9) {  
-      get('timerJ1').innerHTML = min1 + ' : ' + timerJ1;
-}
-else {
-          get('timerJ1').innerHTML = min1 + ' : 0' + timerJ1;
+    if (timerJ1 > 9) {
+        get('timerJ1').innerHTML = min1 + ' : ' + timerJ1;
+    } else {
+        get('timerJ1').innerHTML = min1 + ' : 0' + timerJ1;
 
     }
-    if ( timerJ2 > 9) {  
-      get('timerJ2').innerHTML = min2 + ' : ' + timerJ2;
-}
-else {
-    get('timerJ2').innerHTML = min2 + ' : 0' + timerJ2;
+    if (timerJ2 > 9) {
+        get('timerJ2').innerHTML = min2 + ' : ' + timerJ2;
+    } else {
+        get('timerJ2').innerHTML = min2 + ' : 0' + timerJ2;
 
     }
 }
@@ -133,6 +132,7 @@ function passer() {
     }
 
 }
+
 function initialisation() //////////////////////////////////////////////
     {
         tab1 = new Array();
@@ -175,6 +175,62 @@ function initialisation() //////////////////////////////////////////////
 
         document.write('</table>');
 
+//        switch (theme) {
+//
+//        case 1:
+//                console.log('test')
+//            document.querySelector(".ui#J1 .head").style.background = 'url(../img/MARIO.svg)';
+//            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
+//            break;
+//        case 2:
+//            document.querySelector(".ui#J1 .head").style.background = 'url(../img/pika.svg)';
+//            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
+//            break;
+//        case 3:
+//            document.querySelector(".ui#J1 .head").style.background = 'url(../img/sonic.svg)';
+//            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
+//            break;
+//        case 4:
+//            document.querySelector(".ui#J1 .head").style.background = 'url(../img/link.svg)';
+//            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
+//            break;
+//        }
+        
+
+        if( theme== 1){
+                console.log('test')
+            document.querySelector(".ui#J1 .head").style.background = 'url(../img/MARIO.svg)';
+            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
+        }
+        if( theme== 2){
+            document.querySelector(".ui#J1 .head").style.background = 'url(../img/pika.svg)';
+            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
+    }     
+        if( theme== 3){
+            document.querySelector(".ui#J1 .head").style.background = 'url(../img/sonic.svg)';
+            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
+        }
+        if( theme== 4){
+            document.querySelector(".ui#J1 .head").style.background = 'url(../img/link.svg)';
+            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
+        }
+        if( theme2== 1){
+                console.log('test')
+            document.querySelector(".ui#J2 .head").style.background = 'url(../img/MARIO.svg)';
+            document.querySelector(".ui#J2 .head").style.backgroundSize = 'cover';
+        }
+        if( theme2== 2){
+            document.querySelector(".ui#J2 .head").style.background = 'url(../img/pika.svg)';
+            document.querySelector(".ui#J2 .head").style.backgroundSize = 'cover';
+    }     
+        if( theme2== 3){
+            document.querySelector(".ui#J2 .head").style.background = 'url(../img/sonic.svg)';
+            document.querySelector(".ui#J2 .head").style.backgroundSize = 'cover';
+        }
+        if( theme2== 4){
+            document.querySelector(".ui#J2 .head").style.background = 'url(../img/link.svg)';
+            document.querySelector(".ui#J2 .head").style.backgroundSize = 'cover';
+        }
 
 
     } //////////////////////////////////////////////////
@@ -237,8 +293,8 @@ function libertes(i, j) {
     var libertes = 4;
 
     if (get("col_" + i + " line_" + j + " ").className == 'div1 animated rollIn') {
-       
-        if (get("col_" + (i + 1) + " line_" + j + " ").className == 'div5' || get("col_" + (i + 1) + " line_" + j + " ").className == 'div3 animated rollIn' ) {
+
+        if (get("col_" + (i + 1) + " line_" + j + " ").className == 'div5' || get("col_" + (i + 1) + " line_" + j + " ").className == 'div3 animated rollIn') {
             libertes--;
 
         }
@@ -258,8 +314,8 @@ function libertes(i, j) {
 
     }
     if (get("col_" + i + " line_" + j + " ").className == 'div3 animated rollIn') {
-        
-        if (get("col_" + (i + 1) + " line_" + j + " ").className == 'div5' || get("col_" + (i + 1) + " line_" + j + " ").className == 'div1 animated rollIn' ) {
+
+        if (get("col_" + (i + 1) + " line_" + j + " ").className == 'div5' || get("col_" + (i + 1) + " line_" + j + " ").className == 'div1 animated rollIn') {
             libertes--;
 
         }
@@ -278,7 +334,7 @@ function libertes(i, j) {
         }
 
     }
-   
+
 
     if (libertes != 0) {
         return true;
@@ -290,6 +346,7 @@ function libertes(i, j) {
 
 
 }
+
 function verification(caser) {
     b = 1;
     var bonus = true;
@@ -454,8 +511,8 @@ function verification(caser) {
 
     ///VERIF CASE AUTOUR DE CELLE OU LON VIENT DE CLIQUER ////
 
-    if (libertes(Icase,Jcase) == false) {
-        
+    if (libertes(Icase, Jcase) == false) {
+
         suicideuh = true;
 
 
@@ -882,7 +939,7 @@ function verification(caser) {
 
             get("col_" + Icase + " line_" + Jcase + " ").className = 'div2';
             window.alert('sucide');
-            if (handi>1) {
+            if (handi > 1) {
                 handi++
             }
             if (joueur == 1) {
@@ -894,42 +951,94 @@ function verification(caser) {
             }
         }
     }
-        get("scoreJ1").innerHTML = 'Score : ' + '<span>'+compteurJ1+'</span>';
-        get("scoreJ2").innerHTML = 'Score : ' + '<span>'+compteurJ2+'</span>';
-        get("bonusJ2M").innerHTML = "X " + marteau2;
-        get("bonusJ1M").innerHTML = "X " + marteau1;
-        if (joueur == 1) {
+    get("scoreJ1").innerHTML = 'Score : ' + '<span>' + compteurJ1 + '</span>';
+    get("scoreJ2").innerHTML = 'Score : ' + '<span>' + compteurJ2 + '</span>';
+    get("bonusJ2M").innerHTML = "X " + marteau2;
+    get("bonusJ1M").innerHTML = "X " + marteau1;
+    if (joueur == 1) {
 
-            get("bonusJ1B").innerHTML = "X " + handi;
-            if (handi == 1 && ballUse == false) {
-                ballUse = true;
-                if (handi == 1 && ballUse == true) {
-                    get("bonusJ1B").innerHTML = "X 0";
-                    ballUse = false;
-                }
-            }
-
-            if (joueur == 2) {
-                get("bonusJ2B").innerHTML = "X " + handi;
-                if (handi == 1 && ballUse == false) {
-                    ballUse = true;
-                }
-                if (handi == 1 && ballUse == true) {
-                    get("bonusJ2B").innerHTML = "X 0";
-                    ballUse = false;
-                }
+        get("bonusJ1B").innerHTML = "X " + handi;
+        if (handi == 1 && ballUse == false) {
+            ballUse = true;
+            if (handi == 1 && ballUse == true) {
+                get("bonusJ1B").innerHTML = "X 0";
+                ballUse = false;
             }
         }
 
+        if (joueur == 2) {
+            get("bonusJ2B").innerHTML = "X " + handi;
+            if (handi == 1 && ballUse == false) {
+                ballUse = true;
+            }
+            if (handi == 1 && ballUse == true) {
+                get("bonusJ2B").innerHTML = "X 0";
+                ballUse = false;
+            }
+        }
+    }
+    var myElements = document.querySelectorAll(".div1");
+    console.log(myElements.length)
+    for (var i = 0; i < myElements.length; i++) {
+        if (theme == 1) {
+            myElements[i].style.background = 'url(../img/MARIO.svg)';
+            myElements[i].style.backgroundSize = 'cover';
+        }
+        if (theme == 2) {
+            myElements[i].style.background = 'url(../img/pika.svg)';
+            myElements[i].style.backgroundSize = 'cover';
+        }
+        if (theme == 3) {
+            myElements[i].style.background = 'url(../img/sonic.svg)';
+            myElements[i].style.backgroundSize = 'cover';
+        }
+
+        if (theme == 4) {
+            myElements[i].style.background = 'url(../img/link.svg)';
+            myElements[i].style.backgroundSize = 'cover';
+        }
+        myElements[i].style.visibility = 'visible';
+    }
+
+    var myElements1 = document.querySelectorAll(".div3");
+    console.log(myElements1.length)
+    for (var i = 0; i < myElements1.length; i++) {
+        if (theme2 == 1) {
+            myElements1[i].style.background = 'url(../img/MARIO.svg)';
+            myElements1[i].style.backgroundSize = 'cover';
+        }
+        if (theme2 == 2) {
+            myElements1[i].style.background = 'url(../img/pika.svg)';
+            myElements1[i].style.backgroundSize = 'cover';
+        }
+        if (theme2 == 3) {
+            myElements1[i].style.background = 'url(../img/sonic.svg)';
+            myElements1[i].style.backgroundSize = 'cover';
+        }
+
+        if (theme2 == 4) {
+            myElements1[i].style.background = 'url(../img/link.svg)';
+            myElements1[i].style.backgroundSize = 'cover';
+        }
+        myElements1[i].style.visibility = 'visible';
+    }
+
+    var myElements2 = document.querySelectorAll(".div2");
+    console.log(myElements2.length)
+    for (var i = 0; i < myElements2.length; i++) {
+        myElements2[i].style.background = '';
+
+    }
 }
+
 
 function modifier(monID) //////////////////////////////////////////////
     {
         x = 0;
 
         if (joueur == 1) {
-            document.querySelector('.ui#J1 header').className = 'currentP';
-            document.querySelector('.ui#J2 header').className = '';
+            document.querySelector('.ui#J2 header').className = 'currentP';
+            document.querySelector('.ui#J1 header').className = '';
 
 
             if (monID.className == 'div2')
@@ -959,14 +1068,14 @@ function modifier(monID) //////////////////////////////////////////////
 
             }
         } else {
-            document.querySelector('.ui#J2 header').className = 'currentP';
-            document.querySelector('.ui#J1 header').className = '';
+            document.querySelector('.ui#J1 header').className = 'currentP';
+            document.querySelector('.ui#J2 header').className = '';
 
             if (monID.className == 'div2')
 
             {
                 ApparitionObjet();
-                
+
                 monID.className = 'div3 animated rollIn';
                 if (handi <= 1) {
                     joueur = 1;
@@ -990,8 +1099,10 @@ function modifier(monID) //////////////////////////////////////////////
         }
 
         timer(joueur);
-        
-      setTimeout(function(){verification(monID)} ,500);;
+
+        setTimeout(function () {
+            verification(monID)
+        }, 500);;
     }
 
 
@@ -1141,7 +1252,9 @@ function liberteObjet(i, j) {
 }
 
 
-
+if (theme == 1) {
+    console.log('lol');
+}
 
 
 

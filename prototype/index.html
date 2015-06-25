@@ -14,6 +14,8 @@
 </head>
 
 <body>
+
+   
     <div class="mainHeader">
         <h1> Jeu de Go </h1>
         <button id='save' value="save" onclick="save();">SAVE</button>
@@ -21,7 +23,7 @@
 
     </div>
 
-    <div class="ui" id="J2">
+    <div class="ui" id="J2" onclick="css('body','background','red')">
         <header>
             <div class="head"></div>
             <div class="name">Mario</div>
@@ -52,7 +54,7 @@
 
     </div>
     <div class="ui" id="J1">
-        <header>
+        <header class='currentP'>
             <div class="head"></div>
             <div class="name">MarioJ1</div>
 
@@ -62,7 +64,7 @@
 
             <div class="score" id="scoreJ1">Score : 0</div>
             <div class="bonus">
-                <div class="logoBonus"></div>
+                <div class="logoBonusMarteau"></div>
                 <div class="bonusLeft" id="bonusJ1M">X 0</div>
             </div>
             <div class="bonus">

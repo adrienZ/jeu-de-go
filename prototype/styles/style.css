@@ -34,22 +34,16 @@
     margin:5vh auto;
 }
 
-
-
 #section0 button {
     width:15vw;
     height:10vh;
-    border:none;
-    font-size:1em;
+    border:1px solid black;
+    font-size:1.5em;
     margin: 0 2vw;
     border-radius:10px;
 }
 
-.fb {
-    background : #3B5998;
-    color:#FFFFFF;
 
-}
 
 
 .mouse-icon {
@@ -301,7 +295,7 @@ div.text {
     width:40.6vw;
     height:20vw;
     border:2px solid black;
-    margin:0 20vw;;
+    margin:0 20vw;
 }
 
 
