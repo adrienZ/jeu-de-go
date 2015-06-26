@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Smash Brawl go</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/javascript.fullPage.css" />
+    <link rel="stylesheet" href="styles/home.css">
+        <link rel="stylesheet" href="styles/buttons.css">
+                <link rel="stylesheet" href="styles/tooltip-round.css">
+
+
+    <script type="text/javascript" src="cookie.js"></script>
+
+
+</head>
+
+<body>
+    <div id="fullpage">
+        <a href="https://github.com/adrienZ/jeu-de-go"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+        </a>
+
+
+        <div class="section " id="section0">
+            <h1>Super Smash Bros Go</h1>
+            <p>Partage le jeu pour affronter tes amis  !</p>
+<div class="buttons">
+                <button class="button button--antiman button--round-l button--text-medium" id='fb'><span>Partager sur Facebook</span></button>
+            </div>
+            <div class="mouse-icon">
+                <div class="wheel"></div>
+            </div>
+        </div>
+
+
+
+
+        <div class="section" id="section2">
+            <div class="slide" id="slide1">
+
+                <div class="container">
+
+                    <h3>Règles du jeu</h3>
+
+                    <div class="rule">
+                        <div class="view" id="view1"></div>
+                        <div class="text">
+                            <p>Le jeu se joue à deux. L’un prends les pions noirs, l’autres blancs. Les quatres libertés d’un pion sont celle ci-dessus.</p>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="view" id="view2"></div>
+                        <div class="text">
+                            <p>Plusieurs pions d’un même joueur forment une chaine.</p>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="view" id="view3"></div>
+                        <div class="text">
+                            <p>Les libertés prise, la pièce disparait. Un pion ne peut pas se placer sur une intersection où elle n’a pas de libertés</p>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="view" id="view4"></div>
+                        <div class="text">
+                            <p>À la fin de la partie, il reste des pierres impossibles à capturer et qui délimitent des territoires. On compte un point par intersection libre et un point pour chaque prisonnier.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="arrowrule">
+				<nav class="nav-fillpath">
+					<a class="next" href="#secondPage/1">
+						<span class="icon-wrap"></span>
+						<h3><strong>Règles</strong> Custom</h3>
+					</a>
+				</nav>
+			</div>
+            </div>
+            
+            
+            
+                        <div class="slide" id="slide2">
+                        <div class="custom"></div>
+                
+                <div class="rulecustom">
+                <div class="title"><h3>Règles du jeu custom</h3></div>
+                 <div class="textrulecustom">
+                        <div class="txtintro"><p>Pour plus de fun nous avons créé un nouveau mode de jeu avec plusieurs nouvelles règles. Toujours dans en respectant les règles du jeu de Go classique mais en rajoutant quelques fonctionnalités qui vont, Je l'espère vous amusez et vous faire redécouvrir le jeu sous un autre angle.</p></div>
+                        
+                     
+                         <p><a class="tooltip tooltip-effect-1 bonus" href="#">Bombe :<span class="tooltip-content"><img src="img/bombe.svg" alt=""></span></a> detruit toutes les cases dans une zone de 3x3 au niveau de la bombe.</p>
+
+                         <p><a class="tooltip tooltip-effect-1 bonus" href="#">BillBall :<span class="tooltip-content"><img src="img/BULLET BILL GAUCHE DROITE.svg" id='adjust'></span></a> capturez le pour avoir une ligne verticale/horizontale(en fonction de la direction de la bill ball) remplis de vos jetons.</p>
+
+                         <p><a class="tooltip tooltip-effect-2 bonus" href="#">Balle Smash :<span class="tooltip-content lword"><img src="http://orig04.deviantart.net/6e56/f/2009/321/4/0/smash_ball___template___by_elmind.png" alt=""></span></a>capturez la et vous obtiendrer 3 tours de jeu d'affilé !</p>
+
+                         <p><a class="tooltip tooltip-effect-1 bonus" href="#">Marteau : <span class="tooltip-content"><img src="img/marteau.svg" alt=""></span></a>capturez le pour obtenir la possibilité de detruire 2 fois un pion adverse et le remplacer par l'un des votres.</p>
+
+                          
+                         
+                         <p>Bon à savoir : Capturer un bonus alors que vous possedez déjà ce bonus reinitialise votre bonus, mais il ne se cumule pas </p>
+                         
+                          <div class="txtintro"><p>Regles spécial bonus les bonus sont capturés par le joueur mettant le dernier jeton afin de bloquer le bonus,même si les autres pieces bloquant le bonus ne lui appartienne pas.
+                           Les bonus agissent comme un mur tant qu'ils sont sur le terrain,c'est à dire qu'ils peuvent aider a la capture des pions de J1 comme pour J2.</p> </div>
+                          
+                 </div>
+
+                
+             </div>
+              <div class="custom"></div>
+             
+              
+         </div>
+                        
+                        
+                        
+
+            
+            
+            
+            
+            
+        </div>
+
+
+
+        <div class="section" id="section1">
+
+            <h3>Mode de jeu</h3>
+            <div class="mod">
+                <div class="tri" id="duel" onclick="linkage()">
+                    <p>Super</p>
+
+                </div>
+                <div class="tri" id=classiq>
+                    <p>Classique</p>
+                </div>
+
+
+
+
+
+                <!--                    <div class="apercu"></div>-->
+                <!--                    <button>OK</button>-->
+            </div>
+            <div class="choose_ia">
+                <p> Comment souhaitez vous jouer ?</p>
+                <div class=choice_box>
+                    <a href="indexia.html" class="choice  button button--antiman button--text-thick button--text-upper button--size-s button--inverted-alt button--round-s button--border-thick" id="ia">Jouer contre une I.A</a>
+                    <a href="indexClassique.html" class="choice  button button--antiman button--text-thick button--text-upper button--size-s button--inverted-alt button--round-s button--border-thick"  id="friend">Jouer contre un ami</a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <script type="text/javascript" src="scripts/javascript.fullPage.js"></script>
+    <script type="text/javascript">
+        fullpage.initialize("#fullpage", {
+            anchors: ["firstPage", "secondPage", "3rdPage", "4thpage", "lastPage"],
+            menu: "#menu",
+            css3: true
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/interaction.js"></script>
+</body>
+
+</html>

@@ -30,10 +30,10 @@ var passe = 0;
 var timerJ1 = 0;
 var timerJ2 = 0;
 var ballUse = false;
-var audiobombe = new Audio(['../songs/bombe.mp3']);
-var audiomarteau = new Audio(['../songs/marteau.mp3']);
-var audioballe = new Audio(['../songs/balle.mp3']);
-var audioup = new Audio(['../songs/UP.mp3']);
+var audiobombe = new Audio(['songs/bombe.mp3']);
+var audiomarteau = new Audio(['songs/marteau.mp3']);
+var audioballe = new Audio(['songs/balle.mp3']);
+var audioup = new Audio(['songs/UP.mp3']);
 
 
 
@@ -47,10 +47,11 @@ function timer(test) {
             if (timerJ1 >= 0) {
 
                 timerJ1--;
-                if (timerJ1 == -1) {
-                    min1--;
+                if (timerJ1 == 0) {
+                    min2--;
                     timerJ1 = 59;
 
+                    //                    clearInterval(minusJ1);
                 }
             }
         }, 1000);
@@ -67,6 +68,7 @@ function timer(test) {
                     min2--;
                     timerJ2 = 59;
 
+                    //                    clearInterval(minusJ2);
                 }
             }
         }, 1000);
@@ -79,8 +81,8 @@ function timer(test) {
 
 }
 var interval;
-var min1 = 5;
-var min2 = 5;
+var min1 = 10;
+var min2 = 10;
 
 function time() {
     interval = setInterval(blabla, 1000);
@@ -104,6 +106,7 @@ function blabla() {
 }
 
 time();
+
 
 
 
@@ -176,57 +179,6 @@ function initialisation() //////////////////////////////////////////////
         document.write('</table>');
 
 
-
-        if (theme == 1) {
-            document.querySelector(".ui#J1 .head").style.background = 'url(img/MARIO.svg)';
-            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
-            document.querySelector(".ui#J1 .name").innerHTML = 'MARIO';
-
-        }
-        if (theme == 2) {
-            document.querySelector(".ui#J1 .head").style.background = 'url(img/pika.svg)';
-            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
-            document.querySelector(".ui#J1 .name").innerHTML = 'PIKACHU';
-
-        }
-        if (theme == 3) {
-            document.querySelector(".ui#J1 .head").style.background = 'url(img/sonic.svg)';
-            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
-            document.querySelector(".ui#J1 .name").innerHTML = 'SONIC';
-
-        }
-
-        if (theme == 4) {
-            document.querySelector(".ui#J1 .head").style.background = 'url(img/link.svg)';
-            document.querySelector(".ui#J1 .head").style.backgroundSize = 'cover';
-            document.querySelector(".ui#J1 .name").innerHTML = 'LINK';
-
-        }
-        if (theme2 == 1) {
-            document.querySelector(".ui#J2 .head").style.background = 'url(img/MARIO.svg)';
-            document.querySelector(".ui#J2 .head").style.backgroundSize = 'cover';
-            document.querySelector(".ui#J2 .name").innerHTML = 'MARIO';
-
-
-        }
-        if (theme2 == 2) {
-            document.querySelector(".ui#J2 .head").style.background = 'url(img/pika.svg)';
-            document.querySelector(".ui#J2 .head").style.backgroundSize = 'cover';
-            document.querySelector(".ui#J2 .name").innerHTML = 'PIKACHU';
-
-        }
-        if (theme2 == 3) {
-            document.querySelector(".ui#J2 .head").style.background = 'url(img/sonic.svg)';
-            document.querySelector(".ui#J2 .head").style.backgroundSize = 'cover';
-            document.querySelector(".ui#J2 .name").innerHTML = 'SONIC';
-
-        }
-        if (theme2 == 4) {
-            document.querySelector(".ui#J2 .head").style.background = 'url(img/link.svg)';
-            document.querySelector(".ui#J2 .head").style.backgroundSize = 'cover';
-            document.querySelector(".ui#J2 .name").innerHTML = 'LINK';
-
-        }
 
 
     } //////////////////////////////////////////////////
@@ -912,9 +864,11 @@ function verification(caser) {
                         if (tab2[i][j] >= 100 && tab2[i][j] < 200) {
                             compteurJ1++;
 
+                            console.log(compteurJ1);
                         } else {
                             compteurJ2++;
 
+                            console.log(compteurJ2);
                         }
                         if (bonus == true) {
                             get("col_" + i + " line_" + j + " ").className = 'div2';
@@ -971,55 +925,7 @@ function verification(caser) {
             }
         }
     }
-    var myElements = document.querySelectorAll(".div1");
-    for (var i = 0; i < myElements.length; i++) {
-        if (theme == 1) {
-            myElements[i].style.background = 'url(img/MARIO.svg)';
-            myElements[i].style.backgroundSize = 'cover';
-        }
-        if (theme == 2) {
-            myElements[i].style.background = 'url(img/pika.svg)';
-            myElements[i].style.backgroundSize = 'cover';
-        }
-        if (theme == 3) {
-            myElements[i].style.background = 'url(img/sonic.svg)';
-            myElements[i].style.backgroundSize = 'cover';
-        }
 
-        if (theme == 4) {
-            myElements[i].style.background = 'url(img/link.svg)';
-            myElements[i].style.backgroundSize = 'cover';
-        }
-        myElements[i].style.visibility = 'visible';
-    }
-
-    var myElements1 = document.querySelectorAll(".div3");
-    for (var i = 0; i < myElements1.length; i++) {
-        if (theme2 == 1) {
-            myElements1[i].style.background = 'url(img/MARIO.svg)';
-            myElements1[i].style.backgroundSize = 'cover';
-        }
-        if (theme2 == 2) {
-            myElements1[i].style.background = 'url(img/pika.svg)';
-            myElements1[i].style.backgroundSize = 'cover';
-        }
-        if (theme2 == 3) {
-            myElements1[i].style.background = 'url(img/sonic.svg)';
-            myElements1[i].style.backgroundSize = 'cover';
-        }
-
-        if (theme2 == 4) {
-            myElements1[i].style.background = 'url(img/link.svg)';
-            myElements1[i].style.backgroundSize = 'cover';
-        }
-        myElements1[i].style.visibility = 'visible';
-    }
-
-    var myElements2 = document.querySelectorAll(".div2");
-    for (var i = 0; i < myElements2.length; i++) {
-        myElements2[i].style.background = '';
-
-    }
 }
 
 
@@ -1035,7 +941,7 @@ function modifier(monID) //////////////////////////////////////////////
             if (monID.className == 'div2')
 
             {
-                ApparitionObjet();
+                
 
                 monID.className = 'div1 animated rollIn';
                 if (handi <= 1) {
@@ -1052,7 +958,7 @@ function modifier(monID) //////////////////////////////////////////////
                     monID.className = 'div1 animated rollIn';
                     joueur = 2;
                     marteau2--;
-                    ApparitionObjet();
+                    
 
 
                 }
@@ -1065,7 +971,7 @@ function modifier(monID) //////////////////////////////////////////////
             if (monID.className == 'div2')
 
             {
-                ApparitionObjet();
+               
 
                 monID.className = 'div3 animated rollIn';
                 if (handi <= 1) {
@@ -1082,7 +988,7 @@ function modifier(monID) //////////////////////////////////////////////
                     monID.className = 'div3 animated rollIn';
                     joueur = 1;
                     marteau1--;
-                    ApparitionObjet();
+                    
 
                 }
 
@@ -1110,6 +1016,7 @@ function save() {
             var current = tab2[i][j];
             data.push(current);
             current = null;
+            console.log(data)
         }
     }
     var blob = new Blob([data], {
@@ -1163,85 +1070,6 @@ function readSingleFile(evt) {
         //proceed with read…
     }
 }
-
-
-
-function ApparitionObjet() {
-
-    var chanceObjet = Math.ceil(Math.random() * 10);
-    if (chanceObjet <= 1) {
-        do {
-            var popX = Math.ceil(Math.random() * 10) - 1;
-            var popY = Math.ceil(Math.random() * 10) - 1;
-        }
-        while (get("col_" + popX + " line_" + popY + " ").className != 'div2');
-        var typeObjet = Math.ceil(Math.random() * 5);
-        if ((get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX + 1) + " line_" + popY + " ").className == 'div5') &&
-            (get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div2' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div1' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div3' || get("col_" + (popX - 1) + " line_" + popY + " ").className == 'div5') &&
-            (get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY - 1) + " ").className == 'div5') &&
-            (get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div2' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div1' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div3' || get("col_" + (popX) + " line_" + (popY + 1) + " ").className == 'div5')) {
-
-            var possible = liberteObjet(popX, popY);
-
-            if (possible == '0') {
-
-            }
-            switch (typeObjet) {
-            case 1:
-                get("col_" + popX + " line_" + popY + " ").className = 'div8';
-                break;
-
-            case 2:
-                get("col_" + popX + " line_" + popY + " ").className = 'div7';
-                break;
-
-            case 3:
-                get("col_" + popX + " line_" + popY + " ").className = 'div9';
-                break;
-            case 4:
-                get("col_" + popX + " line_" + popY + " ").className = 'div10';
-
-                break;
-
-            case 5:
-                get("col_" + popX + " line_" + popY + " ").className = 'div11';
-                break;
-            }
-
-            tab2[popX][popY] = numberObjet;
-
-            numberObjet++;
-        }
-
-
-
-    }
-}
-
-function liberteObjet(i, j) {
-    var liberte2 = 4;
-    if (get("col_" + (i + 1) + " line_" + j + " ").className != 'div2') {
-        liberte2--;
-
-    }
-    if (get("col_" + (i - 1) + " line_" + j + " ").className != 'div2') {
-
-        liberte2--;
-
-    }
-    if (get("col_" + i + " line_" + (j - 1) + " ").className != 'div2') {
-        liberte2--;
-
-    }
-    if (get("col_" + i + " line_" + (j + 1) + " ").className != 'div2') {
-        liberte2--;
-
-    }
-    return liberte2;
-
-}
-
-
 
 
 
