@@ -41,13 +41,15 @@ function passer() {
 }
 
 
-function findepartie() {
-    if (compteurJ2 > compteurJ1) {
-        window.alert('Joueur 2 à gagné avec ' + compteurJ2 + ' points !');
-    } else if (compteurJ1 > compteurJ2) {
-        window.alert('Joueur 1 à gagné avec ' + compteurJ1 + ' points !');
-    } else {
-        window.alert('Egalité !');
+function findepartie(){
+    if(compteurJ2>compteurJ1){
+   document.location.href='victoireJ2.html';
+    }
+    else if(compteurJ1>compteurJ2){
+    document.location.href='victoireJ1.html';
+    }
+    else {
+        document.location.href='victoireJ0.html';
     }
 
 }

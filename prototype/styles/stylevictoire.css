@@ -1,0 +1,24 @@
+body {
+	background:url(../images/egalite.jpg);
+	background-size:cover;
+}
+
+
+#link {
+    width: 30vw;
+    height:10vh;
+    color:black;
+    background:white;
+    border-radius: 25px;
+/*    position:absolute;*/
+/*    bottom: 15vh;*/
+    padding: 2vh 4vw;
+/*    margin :auto;*/
+vertical-align:center;
+    font-size:2em;
+    text-decoration:none;
+    text-align:center;
+    margin-left:35vw;
+    border:1px solid black;
+    margin-bottom: -50vh;
+}

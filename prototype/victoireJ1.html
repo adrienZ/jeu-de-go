@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Victoire</title>
+    <link rel="stylesheet" href="styles/stylevictoire1.css">
+    <link rel="stylesheet" href="normalize.css">
+    <script type="text/javascript" src="cookie.js"></script>
+</head>
+
+<body>
+<div id="tete1"></div>
+<div id="tete2"></div>
+<a href="demo.html" id="link">Revenir à l'acceuil</a>
+<script>
+    
+    theme = GetCookie("theme");
+        console.log(theme);
+theme2 = GetCookie("theme2");
+        console.log(theme2);
+        if(theme==1){
+document.write('<h1 class="h1vicdef"> VICTOIRE DE MARIO !</h1>');
+document.getElementById("tete1").style.background = 'url(images/mario.png) no-repeat center';
+            
+}
+		if(theme==2){
+document.write('<h1 class="h1vicdef"> VICTOIRE DE PIKACHU !</h1>');
+            document.getElementById("tete1").style.background = 'url(images/pika.png) no-repeat center';
+
+}
+	if(theme==3){
+document.write('<h1 class="h1vicdef"> VICTOIRE DE SONIC !</h1>');
+        document.getElementById("tete1").style.background = 'url(images/sonic.svg) no-repeat center';
+
+}
+
+if(theme==4){
+document.write('<h1 class="h1vicdef"> VICTOIRE DE LINK !</h1>');
+    document.getElementById("tete1").style.background = 'url(images/link.png) no-repeat center';
+
+}
+    
+    
+            if(theme2==1){
+document.getElementById("tete2").style.background = 'url(images/mario.png) no-repeat center';
+            
+}
+		if(theme2==2){
+            document.getElementById("tete2").style.background = 'url(images/pika.png) no-repeat center';
+
+}
+	if(theme2==3){
+        document.getElementById("tete2").style.background = 'url(images/sonic.svg) no-repeat center';
+
+}
+
+if(theme2==4){
+    document.getElementById("tete2").style.background = 'url(images/link.png) no-repeat center';
+
+}
+   
+</script>
+
+
+</body>

@@ -11,6 +11,9 @@ $(document).ready(function () {
 
 
     $('div.tri:nth-child(1)').click(function () {
+        $('.mod').fadeOut();
+        $(".chooseP").fadeIn(500);
+
 
     });
 

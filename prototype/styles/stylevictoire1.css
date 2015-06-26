@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'museo';
+    src: url(../fonts/Museo_Slab_300.otf);
+}
+* {
+    box-sizing: border-box;
+    
+    font-family:'museo';
+    font-weight:50;
+}
+
+
+body {
+	background:url(../images/victoire.jpg);
+	background-size:cover;
+}
+
+
+.h1vicdef {
+margin:30vh auto 0 auto;
+width:50%;
+text-align: center;
+}
+
+#tete1 {
+    width : 65px;
+    height : 65px;
+    background-size: contain !important;
+    position:absolute;
+    left:32vw;
+    top:50.5vh;
+}
+
+#tete2 {
+    width : 65px;
+    height : 65px;
+    background-size: contain !important;
+    position:absolute;
+    right:31vw;
+    top:51.5vh;
+}
+
+#link {
+    width: 30vw;
+    height:10vh;
+    color:black;
+    background:white;
+    border-radius: 25px;
+/*    position:absolute;*/
+/*    bottom: 15vh;*/
+    padding: 2vh 4vw;
+/*    margin :auto;*/
+vertical-align:center;
+    font-size:2em;
+    text-decoration:none;
+    text-align:center;
+    margin-left:35vw;
+    border:1px solid black;
+    margin-bottom: -50vh;
+}
+    
+    
+    

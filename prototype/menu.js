@@ -38,7 +38,7 @@ function change(e) {
             document.querySelector('.hero:nth-child(' + j + ')').style.backgroundSize = 'contain';
             break;
         case 'sonic':
-            document.querySelector('.hero:nth-child(' + j + ')').style.background = 'url("images/sonic.png") no-repeat center, white';
+            document.querySelector('.hero:nth-child(' + j + ')').style.background = 'url("images/sonic.svg") no-repeat center, white';
             document.querySelector('.hero:nth-child(' + j + ')').style.backgroundSize = 'contain';
             break;
 
